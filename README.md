@@ -5,6 +5,7 @@ displays it in an appealing background image
 and sets that image as a new desktop wallpaper.
 
 Aggregated content:
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Birthdays:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The repository provides a directory for saving birthdays of family and friends.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The wallpaper will display all birthdays of the next 31 days.
