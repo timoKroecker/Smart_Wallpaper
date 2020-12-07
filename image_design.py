@@ -43,23 +43,18 @@ def draw_primer_widgets(img, added_days):
     draw_box(draw, (13, -1), (3, 2), colors[1])
     draw.text((1400, 15), "Letzter reload:", font=SECOND_FONT, fill=font_colors[0])
     draw.text((1400 - (len(time_string) + 1) * 2, 40), time_string, font=SECOND_FONT, fill=font_colors[0])
-    #all apps
-    draw_box(draw, (0, 1), (2, 9), colors[1])
+    #apps - left
+    draw_box(draw, (0, 1), (3, 9), colors[1])
+    #apps - top
+    draw_box(draw, (5, -1), (6, 3), colors[1])
     #this semester
-    draw_box(draw, (2, 9), (4, 1), colors[1])
+    draw_box(draw, (3, 9), (4, 1), colors[1])
     #freespace
-    draw_box(draw, (6, 9), (9, 1), colors[1])
+    draw_box(draw, (7, 9), (8, 1), colors[1])
     #trashbin
     draw_box(draw, (15, 9), (1, 1), colors[1])
-
-def draw_calendar_widgets(img, todo_list):
-    draw = ImageDraw.Draw(img)
-    #daily reminder
-    draw_box(draw, (5, -1), (6, 2), colors[2])
-    draw_box(draw, (5, 0), (6, 2), colors[2], caption="Kalendar")
-    draw_box(draw, (5.1, 0.5), (5.8, 1.4), colors[3])
-    draw.text((750, 100), todo_list[0], font=SECOND_FONT, fill= font_colors[2])
-    return img
+    #behind the news
+    draw_box(draw, (13, 1), (3, 8), colors[1])
 
 def draw_birthday_widgets(img, todays_list, num_events_today, months_list):
     draw = ImageDraw.Draw(img)
@@ -103,14 +98,14 @@ def draw_finance_widgets(   img,
                             year_str):
     draw = ImageDraw.Draw(img)
     #finance
-    draw_box(draw, (8, 2), (4, 5), colors[2], caption="Finanzen")
-    draw_box(draw, (8.1, 2.5), (3.8, 2.2), colors[3])
-    draw_box(draw, (8.1, 4.7), (3.8, 2.2), colors[3])
+    draw_box(draw, (8, 3), (4, 5), colors[2], caption="Finanzen")
+    draw_box(draw, (8.1, 3.5), (3.8, 2.2), colors[3])
+    draw_box(draw, (8.1, 5.7), (3.8, 2.2), colors[3])
 
-    draw.text((1140, 218), month_str, font=BOLD_GEORGIA_13, fill=font_colors[1])
+    draw.text((1140, 218 + 83), month_str, font=BOLD_GEORGIA_13, fill=font_colors[1])
     draw_finance_month_list(draw, month_expences, month_total)
 
-    draw.text((1129, 400), year_str, font=BOLD_GEORGIA_15, fill=font_colors[1])
+    draw.text((1129, 400 + 83), year_str, font=BOLD_GEORGIA_15, fill=font_colors[1])
     draw_finance_year_list(draw, year_expences, year_total)
     return img
 
@@ -118,7 +113,7 @@ def draw_finance_month_list(draw, expences, total):
     pos_x1 = 835
     pos_x2 = 990
     pos_x3 = 1080
-    pos_y = 225
+    pos_y = 225 + 83
     for entry in expences:
         draw.text((pos_x1, pos_y), entry[0], font= FOURTH_FONT, fill=font_colors[0])
         draw_expence_value(draw, entry[2], pos_x2, pos_y - 5, 8, GEORGIA_14, "%")
@@ -127,13 +122,13 @@ def draw_finance_month_list(draw, expences, total):
 
     draw.rectangle((pos_x1, pos_y, pos_x3 + 30, pos_y + 1), fill=font_colors[0])
     draw.text((pos_x1, pos_y + 13), total[0], font= THIRD_FONT, fill=font_colors[0])
-    draw_expence_value(draw, total[1], pos_x3 + 20, pos_y + 8, 10, GEORGIA_15, "€")
+    draw_expence_value(draw, total[1], pos_x3 + 20, pos_y + 9, 10, GEORGIA_15, "€")
 
 def draw_finance_year_list(draw, expences, total):
     pos_x1 = 835
     pos_x2 = 990
     pos_x3 = 1080
-    pos_y = 409
+    pos_y = 409 + 83
     for entry in expences:
         draw.text((pos_x1, pos_y), entry[0], font= FOURTH_FONT, fill=font_colors[0])
         draw_expence_value(draw, entry[2], pos_x2, pos_y - 5, 8, GEORGIA_14, "%")
@@ -142,7 +137,7 @@ def draw_finance_year_list(draw, expences, total):
 
     draw.rectangle((pos_x1, pos_y, pos_x3 + 30, pos_y + 1), fill=font_colors[0])
     draw.text((pos_x1, pos_y + 13), total[0], font= THIRD_FONT, fill=font_colors[0])
-    draw_expence_value(draw, total[1], pos_x3 + 20, pos_y + 8, 10, GEORGIA_15, "€")
+    draw_expence_value(draw, total[1], pos_x3 + 20, pos_y + 9, 10, GEORGIA_15, "€")
 
 def draw_expence_value(draw, value_str, pos_x, pos_y, offset, custom_font, trailer):
     index = len(value_str)
@@ -188,7 +183,7 @@ def compress_headline(headline):
 
 def draw_weather_widgets(img, weather_list):
     draw = ImageDraw.Draw(img)
-    #weather
+    #today
     draw_box(draw, (3, -1), (2, 2), colors[2])
     draw_box(draw, (3.1, -0.5), (1.8, 1.4), colors[3])
     draw.text((425 - len(weather_list[0]) * 2, 22), weather_list[0], font=GEORGIA_15, fill=font_colors[0])
@@ -206,9 +201,9 @@ def draw_weather_widgets(img, weather_list):
         img.paste(sunrise_icon, (1140, 5), sunrise_icon)
         draw.text((1225 - len(weather_list[2]) * 2, 8), weather_list[2], font=GEORGIA_15, fill=font_colors[0])
         #sunset
-        sunrise_icon = Image.open("weather/icons/sunset.png", "r")
-        sunrise_icon = sunrise_icon.resize((39, 26), Image.ANTIALIAS)
-        img.paste(sunrise_icon, (1140, 35), sunrise_icon)
+        sunset_icon = Image.open("weather/icons/sunset.png", "r")
+        sunset_icon = sunset_icon.resize((39, 26), Image.ANTIALIAS)
+        img.paste(sunset_icon, (1140, 35), sunset_icon)
         draw.text((1225 - len(weather_list[3]) * 2, 38), weather_list[3], font=GEORGIA_15, fill=font_colors[0])
     return img
     

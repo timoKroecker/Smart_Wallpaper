@@ -23,7 +23,6 @@ def the_one_ring():
     except:
         pass
     img = dsgn.create_raw_image(DAY_OFFSET)
-    img = draw_calendar(img, DAY_OFFSET)
     img = scrape_n_draw_birthday_info(img, DAY_OFFSET)
     img = scrape_n_draw_finances(img, DAY_OFFSET)
     img = scrape_n_draw_news(img)
@@ -35,14 +34,6 @@ def the_one_ring():
 
     op.final_words()
 
-def draw_calendar(img, added_days):
-    todo_list = []
-    if(bs.get_date(added_days).tm_wday == 5):
-        todo_list.append("Mama anrufen")
-    if(len(todo_list) != 0):
-        img = dsgn.draw_calendar_widgets(img, todo_list)
-    return img
-
 def scrape_n_draw_birthday_info(img, added_days):
     op.birthday_intro()
 
@@ -51,8 +42,6 @@ def scrape_n_draw_birthday_info(img, added_days):
     num_events_today = birthdays_list[1]
     months_list = birthdays_list[2]
 
-    #todays_list, num_events_today = bs.get_daily_reminders(added_days)
-    #months_list = bs.get_monthly_reminders(added_days)
     if(len(todays_list) != 0 or len(months_list) != 0):
         img = dsgn.draw_birthday_widgets(img, todays_list, num_events_today, months_list)
         op.visible()
