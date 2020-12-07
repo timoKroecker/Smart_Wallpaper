@@ -39,7 +39,6 @@ def draw_calendar(img, added_days):
     todo_list = []
     if(bs.get_date(added_days).tm_wday == 5):
         todo_list.append("Mama anrufen")
-    todo_list.append("Mama anrufen")
     if(len(todo_list) != 0):
         img = dsgn.draw_calendar_widgets(img, todo_list)
     return img
