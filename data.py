@@ -151,6 +151,12 @@ font_colors =   [
                     (255,215,0)                 #gold
                 ]
 
+birthdays_categories =  [
+                            ["1_geburtstage", "\ntt<TAB>mm<TAB>jj<TAB>Name<ENTER> (0 wenn jj unbekannt)"],
+                            ["2_muttertage", "\ntt<TAB>mm<TAB>jj<ENTER>"],
+                            ["3_vatertage", "\ntt<TAB>mm<TAB>jj<ENTER>"]
+                        ]
+
 news_soup_ingredients = [
                             ["https://www.rt1.de/nachrichten/augsburg/", "h3", "headline", " -rt1/aux", 5],
                             ["https://focus.de", "h4", "vr", " -Focus", 30],

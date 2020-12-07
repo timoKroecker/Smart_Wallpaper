@@ -45,8 +45,8 @@ def manage_global_files(finance_dir, header_1, header_2):
         file_name = category[0] + "_global"
         contents = ""
         if(not os.path.isfile(finance_dir + "\\" + file_name + ".txt")):
-            glob_fixed_costs_file = open(finance_dir + "\\" + file_name + ".txt", "w+")
-            glob_fixed_costs_file.write(header_merge)
+            glob_file = open(finance_dir + "\\" + file_name + ".txt", "w+")
+            glob_file.write(header_merge)
         else:
             contents = read_txt_file_contents(finance_dir + "\\" + file_name + ".txt")
             contents_list.append(contents)
@@ -105,7 +105,7 @@ def extract_content_list(file_dir):
     final_content_list = []
     for string in temp_content_list:
         if(string != ""):
-            final_content_list.append(string.split(" "))
+            final_content_list.append(string.split("\t"))
     return final_content_list
 
 def read_txt_file_contents(file_dir):
