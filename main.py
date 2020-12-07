@@ -42,6 +42,7 @@ def draw_calendar(img, added_days):
     if(len(todo_list) != 0):
         img = dsgn.draw_calendar_widgets(img, todo_list)
     return img
+    
 
 def scrape_n_draw_birthday_info(img, added_days):
     op.birthday_intro()
