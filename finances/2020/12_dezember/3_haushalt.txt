@@ -5,3 +5,5 @@
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
 LenovoThinkpad	413.70
+QWERTZ-Tas	79.90
+
