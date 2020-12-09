@@ -9,10 +9,10 @@ def save_img(img, img_name):
 
 def change_wallpaper(absolute_path):
     osys = platform.system()
-    if(osys.lower() == "Windows"):
+    if(osys == "Windows"):
         ctypes.windll.user32.SystemParametersInfoW(20, 0, absolute_path , 2)
         #time.sleep(0.5)
         ctypes.windll.user32.SystemParametersInfoW(20, 0, absolute_path , 2)
         time.sleep(0.5)
-    if(osys.lower() == "Linux"):
+    if(osys == "Linux"):
         os.system("/usr/bin/gsettings set org.gnome.desktop.background picture-uri " + absolute_path)
