@@ -6,3 +6,4 @@ Regenschauer
 Schneeschauer
 Schneefall
 Bedeckt
+Bedeckt

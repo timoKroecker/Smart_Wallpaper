@@ -37,7 +37,10 @@ def extract_content_list(file_dir):
     final_content_list = []
     for string in temp_content_list:
         if(string != ""):
-            final_content_list.append(string[0:-1].split("\t"))
+            if(string[-1] == "\r"):
+                final_content_list.append(string[0:-1].split("\t"))
+            else:
+                final_content_list.append(string.split("\t"))
     return final_content_list
 
 def read_txt_file_contents(file_dir):

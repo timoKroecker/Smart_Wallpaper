@@ -1,2 +1,2 @@
-Betreibssystem:	Windows
-extra_y:	0
+Betreibssystem:	Linux
+extra_y:	-20
