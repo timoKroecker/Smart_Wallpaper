@@ -1,0 +1,49 @@
++++++++++++++++++++++
+1_geburtstage
+tt<TAB>mm<TAB>jj<TAB>Name<ENTER> (0 wenn jj unbekannt)
++++++++++++++++++++++
+
+|||||||||||||||||||||
+vvvvvvvvvvvvvvvvvvvvv
+20	8	1966	Mom
+28	11	1965	Dad
+3	4	0	Yvonne Meier
+7	11	1962	Jan Meier
+4	1	1987	Daisy
+13	3	2019	Nelly Meier
+30	12	0	Mireya Ortega Bajaña
+29	8	0	Greet Meier
+13	2	0	Oma Kröcker
+20	10	1970	Peter Kröcker
+9	10	1989	Manu Mierau
+5	9	1992	Tobi Mierau
+16	5	1994	Jenny Martini
+16	5	1986	Larissa Schulze
+3	1	1996	Raphy Beldzik
+21	12	1995	Micha Kolb
+9	2	1997	Sarah Plenio
+16	5	1992	Johannes Stabenow
+20	9	1996	Anni Schütz
+14	9	1988	Flo Banhardt
+9	6	1992	Judy Banhardt
+31	7	1992	Solomon Gavrilla
+25	8	1996	Fabian Thomas-Barein
+12	12	1996	Moritz Riehn
+31	12	1996	Nikola Cvisic
+25	7	1996	Adrian Lück
+21	6	1997	Mahmoud AbuIsaac
+10	2	0	Mohammed Al Ahmad
+4	12	0	Anas Asad
+13	11	0	Hadhemi Sekri
+9	3	1996	Pavel Boodo
+2	5	0	Boris Kamdem Taffo
+9	4	0	Orelle
+12	12	1997	Marcel Achner
+10	9	0	Lascha Lobjanidze
+3	11	1998	Meruna Yugarajah
+15	8	1995	Minh Quan Nguyen
+2	12	0	Hercules
+31	8	1996	Eva Martens
+24	5	0	Dave Lüttmann
+13	7	0	Philipp Breuer
+14	7	1998	Nijat Dilshat
