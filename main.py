@@ -16,8 +16,6 @@ IMG_NAME = "current_img.png"
 IMG_NAME_NEW = "new_img.png"
 IMG_NAME_PREV = "previous_img.png"
 
-
-
 def the_one_ring():
     op.heading()
     try:
