@@ -9,8 +9,8 @@ from data import font_colors
 WIDTH = 1600
 HEIGHT = 900
 FONT = "fonts/SANFW___.TTF"
-BOLD_GEORGIA = "fonts/georgiab.TTF"
-GEORGIA = "fonts/georgia.TTF"
+BOLD_GEORGIA = "fonts/georgiab.ttf"
+GEORGIA = "fonts/georgia.ttf"
 MAIN_FONT = ImageFont.truetype(FONT, 20)
 SECOND_FONT = ImageFont.truetype(FONT, 17)
 THIRD_FONT = ImageFont.truetype(FONT, 15)
