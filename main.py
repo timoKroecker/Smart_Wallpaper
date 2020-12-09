@@ -21,7 +21,6 @@ def the_one_ring():
         os.remove(PATH + IMG_NAME)
     except:
         pass
-    settings = collect_settings()
     img = dsgn.create_raw_image(DAY_OFFSET)
     img = scrape_n_draw_birthday_info(img, DAY_OFFSET)
     img = scrape_n_draw_finances(img, DAY_OFFSET)
@@ -29,7 +28,7 @@ def the_one_ring():
     img = scrape_n_draw_weather(img)
 
     cw.save_img(img, IMG_NAME)
-    cw.change_wallpaper(PATH + "/" + IMG_NAME, settings[0])
+    cw.change_wallpaper(PATH + "/" + IMG_NAME)
 
     op.final_words()
 
@@ -90,20 +89,5 @@ def scrape_n_draw_weather(img):
     else:
         op.hidden()
     return img
-
-def collect_settings():
-    settings_file = open(PATH + "/settings.txt", "r")
-    temp_settings_list = settings_file.read().split("\n")
-    temp_settings_list_two = []
-    for string in temp_settings_list:
-        if(string != ""):
-            temp_settings_list_two.append(string.split("\t"))
-    final_settings_list = []
-    for entry in temp_settings_list_two:
-        try:
-            final_settings_list.append(int(entry[1]))
-        except:
-            final_settings_list.append(entry[1])
-    return final_settings_list
 
 the_one_ring()

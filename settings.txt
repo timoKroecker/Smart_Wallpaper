@@ -1,2 +1,0 @@
-Betreibssystem:	Linux
-extra_y:	-20

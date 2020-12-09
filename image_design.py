@@ -1,6 +1,7 @@
 from PIL import Image, ImageDraw, ImageFont
 import time
 import os
+import platform
 
 import birthday_scraper as bs
 from data import colors
@@ -35,7 +36,7 @@ def create_raw_image(added_days):
 
 def draw_primer_widgets(img, added_days):
     draw = ImageDraw.Draw(img)
-    osys_y = collect_settings()[1]
+    osys_y = get_osys_y()
     #name_label
     draw_box(draw, (0, -1), (3, 2), colors[1])
     draw.text((70 + 15, 28 - osys_y), "Smart wallpaper", font=SECOND_FONT, fill=font_colors[0])
@@ -69,7 +70,7 @@ def draw_birthday_widgets(img, todays_list, num_events_today, months_list):
 def draw_birthday_todays_list(draw, todays_list):
     pos_x1 = 435
     pos_x2 = 740
-    pos_y = 310 - collect_settings()[1]
+    pos_y = 310 - get_osys_y()
     for entry in todays_list:
         draw.text((pos_x1, pos_y), entry[0], font=MAIN_FONT, fill=font_colors[2])
         draw.text((pos_x2, pos_y), entry[1], font=MAIN_FONT, fill=font_colors[2])
@@ -79,7 +80,7 @@ def draw_birthday_months_list(draw, months_list, num_events_today):
     pos_x1 = 435
     pos_x2 = 500
     pos_x3 = 600
-    pos_y = 310 - collect_settings()[1]
+    pos_y = 310 - get_osys_y()
     if(num_events_today != 0):
         pos_y = pos_y + (num_events_today + 1) * 30
         line_offset = (num_events_today - 1) * 30
@@ -98,7 +99,7 @@ def draw_finance_widgets(   img,
                             year_total,
                             year_str):
     draw = ImageDraw.Draw(img)
-    osys_y = collect_settings()[1]
+    osys_y = get_osys_y()
     #finance
     draw_box(draw, (8, 3), (4, 5), colors[2], caption="Finanzen")
     draw_box(draw, (8.1, 3.5), (3.8, 2.2), colors[3])
@@ -115,7 +116,7 @@ def draw_finance_month_list(draw, expences, total):
     pos_x1 = 835
     pos_x2 = 990
     pos_x3 = 1080
-    pos_y = 225 + 83 - collect_settings()[1]
+    pos_y = 225 + 83 - get_osys_y()
     for entry in expences:
         draw.text((pos_x1, pos_y), entry[0], font= FOURTH_FONT, fill=font_colors[0])
         draw_expence_value(draw, entry[2], pos_x2, pos_y - 5, 8, GEORGIA_14, "%")
@@ -130,7 +131,7 @@ def draw_finance_year_list(draw, expences, total):
     pos_x1 = 835
     pos_x2 = 990
     pos_x3 = 1080
-    pos_y = 409 + 83 - collect_settings()[1]
+    pos_y = 409 + 83 - get_osys_y()
     for entry in expences:
         draw.text((pos_x1, pos_y), entry[0], font= FOURTH_FONT, fill=font_colors[0])
         draw_expence_value(draw, entry[2], pos_x2, pos_y - 5, 8, GEORGIA_14, "%")
@@ -164,7 +165,7 @@ def draw_news_widgets(img, headline_list):
 
 def draw_headline_list(draw, headline_list):
     pos_x = 1330
-    pos_y = 140 - collect_settings()[1]
+    pos_y = 140 - get_osys_y()
     for i in range(4):
         comp_headline = compress_headline(headline_list[i])
         draw.text((pos_x, pos_y), comp_headline, font=THIRD_FONT, fill=font_colors[0])
@@ -185,7 +186,7 @@ def compress_headline(headline):
 
 def draw_weather_widgets(img, weather_list):
     draw = ImageDraw.Draw(img)
-    osys_y = collect_settings()[1]
+    osys_y = get_osys_y()
     #today
     draw_box(draw, (3, -1), (2, 2), colors[2])
     draw_box(draw, (3.1, -0.5), (1.8, 1.4), colors[3])
@@ -215,7 +216,7 @@ def draw_box(draw, pos, size, fill_color, caption=None):
     left = pos[0] * PIXEL_PER_ICON_X
     right = left + size[0] * PIXEL_PER_ICON_X
     bottom = top + (size[1] + 1) * PIXEL_PER_ICON_Y
-    osys_y = collect_settings()[1]
+    osys_y = get_osys_y()
     draw.ellipse((left + MARGIN_X, top + MARGIN_Y - EXTRA_Y - osys_y, left + MARGIN_X + DIAMETER, top + MARGIN_Y + DIAMETER - EXTRA_Y - osys_y), fill=fill_color)
     draw.ellipse((right - MARGIN_X - DIAMETER, top + MARGIN_Y - EXTRA_Y - osys_y, right - MARGIN_X, top + MARGIN_Y + DIAMETER - EXTRA_Y - osys_y), fill=fill_color)
     draw.ellipse((left + MARGIN_X, bottom - MARGIN_Y - DIAMETER - BOTTOM_BORDER - EXTRA_Y - osys_y, left + MARGIN_X + DIAMETER, bottom - MARGIN_Y - BOTTOM_BORDER - EXTRA_Y - osys_y), fill=fill_color)
@@ -226,18 +227,9 @@ def draw_box(draw, pos, size, fill_color, caption=None):
         half_caption_width = (len(caption) + 1) * 4
         draw.text((left + (right - left) / 2 - half_caption_width, top + PIXEL_PER_ICON_Y / 5.5 - osys_y), caption, font=MAIN_FONT, fill=font_colors[0])
 
-def collect_settings():
-    path = os.path.dirname(os.path.realpath(__file__))
-    settings_file = open(path + "/settings.txt", "r")
-    temp_settings_list = settings_file.read().split("\n")
-    temp_settings_list_two = []
-    for string in temp_settings_list:
-        if(string != ""):
-            temp_settings_list_two.append(string.split("\t"))
-    final_settings_list = []
-    for entry in temp_settings_list_two:
-        try:
-            final_settings_list.append(int(entry[1]))
-        except:
-            final_settings_list.append(entry[1])
-    return final_settings_list
+def get_osys_y():
+    osys = platform.system()
+    if(osys == "Windows"):
+        return 0
+    if(osys == "Linux"):
+        return -20
