@@ -10,8 +10,6 @@ import weather_scraper as ws
 import change_wallpaper as cw
 import output as op
 
-#test
-
 DAY_OFFSET = 0
 IMG_PATH = "C:/Users/tkroe/Desktop/Python/Smart_Wallpaper/"
 IMG_NAME = "current_img.png"
