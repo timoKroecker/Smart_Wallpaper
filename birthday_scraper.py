@@ -23,7 +23,7 @@ def manage_dir_structure():
     if(not os.path.isdir(birthdays_dir)):
         os.mkdir(birthdays_dir)
     for file_data in bc:
-        file_dir = birthdays_dir + "\\" + file_data[0] + ".txt"
+        file_dir = birthdays_dir + "/" + file_data[0] + ".txt"
         if(not os.path.isfile(file_dir)):
             txt_file = open(file_dir, "w+")
             txt_file.write(header_1 + file_data[0] + file_data[1] + header_2)

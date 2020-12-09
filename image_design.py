@@ -35,14 +35,15 @@ def create_raw_image(added_days):
 
 def draw_primer_widgets(img, added_days):
     draw = ImageDraw.Draw(img)
+    osys_y = collect_settings()[1]
     #name_label
     draw_box(draw, (0, -1), (3, 2), colors[1])
-    draw.text((70 + 15, 28), "Smart wallpaper", font=SECOND_FONT, fill=font_colors[0])
+    draw.text((70 + 15, 28 - osys_y), "Smart wallpaper", font=SECOND_FONT, fill=font_colors[0])
     #date
     time_string = bs.get_time_string(added_days)
     draw_box(draw, (13, -1), (3, 2), colors[1])
-    draw.text((1400, 15), "Letzter reload:", font=SECOND_FONT, fill=font_colors[0])
-    draw.text((1400 - (len(time_string) + 1) * 2, 40), time_string, font=SECOND_FONT, fill=font_colors[0])
+    draw.text((1400, 15 - osys_y), "Letzter reload:", font=SECOND_FONT, fill=font_colors[0])
+    draw.text((1400 - (len(time_string) + 1) * 2, 40 - osys_y), time_string, font=SECOND_FONT, fill=font_colors[0])
     #apps - left
     draw_box(draw, (0, 1), (3, 9), colors[1])
     #apps - top
@@ -68,7 +69,7 @@ def draw_birthday_widgets(img, todays_list, num_events_today, months_list):
 def draw_birthday_todays_list(draw, todays_list):
     pos_x1 = 435
     pos_x2 = 740
-    pos_y = 310
+    pos_y = 310 - collect_settings()[1]
     for entry in todays_list:
         draw.text((pos_x1, pos_y), entry[0], font=MAIN_FONT, fill=font_colors[2])
         draw.text((pos_x2, pos_y), entry[1], font=MAIN_FONT, fill=font_colors[2])
@@ -78,7 +79,7 @@ def draw_birthday_months_list(draw, months_list, num_events_today):
     pos_x1 = 435
     pos_x2 = 500
     pos_x3 = 600
-    pos_y = 310
+    pos_y = 310 - collect_settings()[1]
     if(num_events_today != 0):
         pos_y = pos_y + (num_events_today + 1) * 30
         line_offset = (num_events_today - 1) * 30
@@ -97,15 +98,16 @@ def draw_finance_widgets(   img,
                             year_total,
                             year_str):
     draw = ImageDraw.Draw(img)
+    osys_y = collect_settings()[1]
     #finance
     draw_box(draw, (8, 3), (4, 5), colors[2], caption="Finanzen")
     draw_box(draw, (8.1, 3.5), (3.8, 2.2), colors[3])
     draw_box(draw, (8.1, 5.7), (3.8, 2.2), colors[3])
 
-    draw.text((1140, 218 + 83), month_str, font=BOLD_GEORGIA_13, fill=font_colors[1])
+    draw.text((1140, 218 + 83 - osys_y), month_str, font=BOLD_GEORGIA_13, fill=font_colors[1])
     draw_finance_month_list(draw, month_expences, month_total)
 
-    draw.text((1129, 400 + 83), year_str, font=BOLD_GEORGIA_15, fill=font_colors[1])
+    draw.text((1129, 400 + 83 - osys_y), year_str, font=BOLD_GEORGIA_15, fill=font_colors[1])
     draw_finance_year_list(draw, year_expences, year_total)
     return img
 
@@ -113,7 +115,7 @@ def draw_finance_month_list(draw, expences, total):
     pos_x1 = 835
     pos_x2 = 990
     pos_x3 = 1080
-    pos_y = 225 + 83
+    pos_y = 225 + 83 - collect_settings()[1]
     for entry in expences:
         draw.text((pos_x1, pos_y), entry[0], font= FOURTH_FONT, fill=font_colors[0])
         draw_expence_value(draw, entry[2], pos_x2, pos_y - 5, 8, GEORGIA_14, "%")
@@ -128,7 +130,7 @@ def draw_finance_year_list(draw, expences, total):
     pos_x1 = 835
     pos_x2 = 990
     pos_x3 = 1080
-    pos_y = 409 + 83
+    pos_y = 409 + 83 - collect_settings()[1]
     for entry in expences:
         draw.text((pos_x1, pos_y), entry[0], font= FOURTH_FONT, fill=font_colors[0])
         draw_expence_value(draw, entry[2], pos_x2, pos_y - 5, 8, GEORGIA_14, "%")
@@ -162,7 +164,7 @@ def draw_news_widgets(img, headline_list):
 
 def draw_headline_list(draw, headline_list):
     pos_x = 1330
-    pos_y = 140
+    pos_y = 140 - collect_settings()[1]
     for i in range(4):
         comp_headline = compress_headline(headline_list[i])
         draw.text((pos_x, pos_y), comp_headline, font=THIRD_FONT, fill=font_colors[0])
@@ -183,14 +185,15 @@ def compress_headline(headline):
 
 def draw_weather_widgets(img, weather_list):
     draw = ImageDraw.Draw(img)
+    osys_y = collect_settings()[1]
     #today
     draw_box(draw, (3, -1), (2, 2), colors[2])
     draw_box(draw, (3.1, -0.5), (1.8, 1.4), colors[3])
-    draw.text((425 - len(weather_list[0]) * 2, 22), weather_list[0], font=GEORGIA_15, fill=font_colors[0])
+    draw.text((425 - len(weather_list[0]) * 2, 22 - osys_y), weather_list[0], font=GEORGIA_15, fill=font_colors[0])
     if(weather_list[1] != None):
         weather_icon = Image.open("weather/icons/" + weather_list[1], "r")
         weather_icon = weather_icon.resize((45, 45), Image.ANTIALIAS)
-        img.paste(weather_icon, (340, 8), weather_icon)
+        img.paste(weather_icon, (340, 8 - osys_y), weather_icon)
     #sunrise/sunset
     if(weather_list[2] != None and weather_list[3] != None):
         draw_box(draw, (11, -1), (2, 2), colors[2])
@@ -198,13 +201,13 @@ def draw_weather_widgets(img, weather_list):
         #sunrise
         sunrise_icon = Image.open("weather/icons/sunrise.png", "r")
         sunrise_icon = sunrise_icon.resize((39, 26), Image.ANTIALIAS)
-        img.paste(sunrise_icon, (1140, 5), sunrise_icon)
-        draw.text((1225 - len(weather_list[2]) * 2, 8), weather_list[2], font=GEORGIA_15, fill=font_colors[0])
+        img.paste(sunrise_icon, (1140, 5 - osys_y), sunrise_icon)
+        draw.text((1225 - len(weather_list[2]) * 2, 8 - osys_y), weather_list[2], font=GEORGIA_15, fill=font_colors[0])
         #sunset
         sunset_icon = Image.open("weather/icons/sunset.png", "r")
         sunset_icon = sunset_icon.resize((39, 26), Image.ANTIALIAS)
-        img.paste(sunset_icon, (1140, 35), sunset_icon)
-        draw.text((1225 - len(weather_list[3]) * 2, 38), weather_list[3], font=GEORGIA_15, fill=font_colors[0])
+        img.paste(sunset_icon, (1140, 35 - osys_y), sunset_icon)
+        draw.text((1225 - len(weather_list[3]) * 2, 38 - osys_y), weather_list[3], font=GEORGIA_15, fill=font_colors[0])
     return img
     
 def draw_box(draw, pos, size, fill_color, caption=None):
@@ -212,12 +215,29 @@ def draw_box(draw, pos, size, fill_color, caption=None):
     left = pos[0] * PIXEL_PER_ICON_X
     right = left + size[0] * PIXEL_PER_ICON_X
     bottom = top + (size[1] + 1) * PIXEL_PER_ICON_Y
-    draw.ellipse((left + MARGIN_X, top + MARGIN_Y - EXTRA_Y, left + MARGIN_X + DIAMETER, top + MARGIN_Y + DIAMETER - EXTRA_Y), fill=fill_color)
-    draw.ellipse((right - MARGIN_X - DIAMETER, top + MARGIN_Y - EXTRA_Y, right - MARGIN_X, top + MARGIN_Y + DIAMETER - EXTRA_Y), fill=fill_color)
-    draw.ellipse((left + MARGIN_X, bottom - MARGIN_Y - DIAMETER - BOTTOM_BORDER - EXTRA_Y, left + MARGIN_X + DIAMETER, bottom - MARGIN_Y - BOTTOM_BORDER - EXTRA_Y), fill=fill_color)
-    draw.ellipse((right - MARGIN_X - DIAMETER, bottom - MARGIN_Y - DIAMETER - BOTTOM_BORDER - EXTRA_Y, right - MARGIN_X, bottom - MARGIN_Y - BOTTOM_BORDER - EXTRA_Y), fill=fill_color)
-    draw.rectangle((left + MARGIN_X + RADIUS, top + MARGIN_Y - EXTRA_Y, right - MARGIN_X - RADIUS, bottom - MARGIN_Y - BOTTOM_BORDER - EXTRA_Y), fill=fill_color)
-    draw.rectangle((left + MARGIN_X, top + MARGIN_Y + RADIUS - EXTRA_Y, right - MARGIN_X, bottom - MARGIN_Y - RADIUS - BOTTOM_BORDER - EXTRA_Y), fill=fill_color)
+    osys_y = collect_settings()[1]
+    draw.ellipse((left + MARGIN_X, top + MARGIN_Y - EXTRA_Y - osys_y, left + MARGIN_X + DIAMETER, top + MARGIN_Y + DIAMETER - EXTRA_Y - osys_y), fill=fill_color)
+    draw.ellipse((right - MARGIN_X - DIAMETER, top + MARGIN_Y - EXTRA_Y - osys_y, right - MARGIN_X, top + MARGIN_Y + DIAMETER - EXTRA_Y - osys_y), fill=fill_color)
+    draw.ellipse((left + MARGIN_X, bottom - MARGIN_Y - DIAMETER - BOTTOM_BORDER - EXTRA_Y - osys_y, left + MARGIN_X + DIAMETER, bottom - MARGIN_Y - BOTTOM_BORDER - EXTRA_Y - osys_y), fill=fill_color)
+    draw.ellipse((right - MARGIN_X - DIAMETER, bottom - MARGIN_Y - DIAMETER - BOTTOM_BORDER - EXTRA_Y - osys_y, right - MARGIN_X, bottom - MARGIN_Y - BOTTOM_BORDER - EXTRA_Y - osys_y), fill=fill_color)
+    draw.rectangle((left + MARGIN_X + RADIUS, top + MARGIN_Y - EXTRA_Y - osys_y, right - MARGIN_X - RADIUS, bottom - MARGIN_Y - BOTTOM_BORDER - EXTRA_Y - osys_y), fill=fill_color)
+    draw.rectangle((left + MARGIN_X, top + MARGIN_Y + RADIUS - EXTRA_Y - osys_y, right - MARGIN_X, bottom - MARGIN_Y - RADIUS - BOTTOM_BORDER - EXTRA_Y - osys_y), fill=fill_color)
     if(caption!=None):
         half_caption_width = (len(caption) + 1) * 4
-        draw.text((left + (right - left) / 2 - half_caption_width, top + PIXEL_PER_ICON_Y / 5.5), caption, font=MAIN_FONT, fill=font_colors[0])
+        draw.text((left + (right - left) / 2 - half_caption_width, top + PIXEL_PER_ICON_Y / 5.5 - osys_y), caption, font=MAIN_FONT, fill=font_colors[0])
+
+def collect_settings():
+    path = os.path.dirname(os.path.realpath(__file__))
+    settings_file = open(path + "/settings.txt", "r")
+    temp_settings_list = settings_file.read().split("\n")
+    temp_settings_list_two = []
+    for string in temp_settings_list:
+        if(string != ""):
+            temp_settings_list_two.append(string.split("\t"))
+    final_settings_list = []
+    for entry in temp_settings_list_two:
+        try:
+            final_settings_list.append(int(entry[1]))
+        except:
+            final_settings_list.append(entry[1])
+    return final_settings_list

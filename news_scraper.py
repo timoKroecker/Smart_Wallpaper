@@ -41,15 +41,18 @@ def cook_soup(index):
 def get_scored_selection(matches, source, num_headlines):
     selection = []
     while(len(selection) < num_headlines):
-        headline = matches.pop(0).text
-        headline = remove_spiegel_timestamp(headline)
-        headline = remove_unwanted_characters(headline)
-        if(len(headline) > 30 and len(headline) < 90 and not contains_headline(headline, selection, source)):
-            score = calculate_headline_score(headline.lower())
-            entry = []
-            entry.append(headline + source)
-            entry.append(score)
-            selection.append(entry)
+        try:
+            headline = matches.pop(0).text
+            headline = remove_spiegel_timestamp(headline)
+            headline = remove_unwanted_characters(headline)
+            if(len(headline) > 30 and len(headline) < 90 and not contains_headline(headline, selection, source)):
+                score = calculate_headline_score(headline.lower())
+                entry = []
+                entry.append(headline + source)
+                entry.append(score)
+                selection.append(entry)
+        except:
+            pass
     return selection
 
 def calculate_headline_score(headline):

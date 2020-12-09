@@ -68,8 +68,12 @@ def get_months_expences(added_days):
         entry.append(get_content_list_sum(content_list))
         expences.append(entry)
     total.append(get_content_list_sum(expences))
-    for entry in expences:
-        entry.append(str(int(round(float(entry[1]) / float(total[1]) * 100, 0))))
+    if(float(total[1]) != 0):
+        for entry in expences:
+            entry.append(str(int(round(float(entry[1]) / float(total[1]) * 100, 0))))
+    else:
+        for entry in expences:
+            entry.append("0")
     return [expences, total, mnths[month_int][1]]
 
 def get_years_expences(added_days):
@@ -95,8 +99,12 @@ def get_years_expences(added_days):
         entry.append(get_content_list_sum(month_content_list))
         expences.append(entry)
     total.append(get_content_list_sum(expences))
-    for entry in expences:
-        entry.append(str(int(round(float(entry[1]) / float(total[1]) * 100, 0))))
+    if(float(total[1]) != 0):
+        for entry in expences:
+            entry.append(str(int(round(float(entry[1]) / float(total[1]) * 100, 0))))
+    else:
+        for entry in expences:
+            entry.append("0")
     return [expences, total, year_str]
 
 def extract_content_list(file_dir):

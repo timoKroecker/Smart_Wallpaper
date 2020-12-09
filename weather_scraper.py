@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import time
+import codecs
 
 from data import weather_descriptions as wd
 
@@ -68,7 +69,7 @@ def get_desc_file(desc_str):
     return None, None
 
 def get_known_descriptions():
-    desc_file = open("weather/descriptions.txt", "r")
+    desc_file = codecs.open("weather/descriptions.txt", "r", "utf-8")
     desc_text = desc_file.read()
     desc_list = desc_text.split("\n")
     return desc_list, desc_text
