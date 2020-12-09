@@ -8,16 +8,16 @@ from data import birthdays_categories as bc
 def scrape_birthdays(added_days):
     birthdays_dir = manage_dir_structure()
 
-    birthdays_list = extract_content_list(birthdays_dir + "\\" + bc[0][0] + ".txt")
-    mothersday_list = extract_content_list(birthdays_dir + "\\" + bc[1][0] + ".txt")
-    fathersday_list = extract_content_list(birthdays_dir + "\\" + bc[2][0] + ".txt")
+    birthdays_list = extract_content_list(birthdays_dir + "/" + bc[0][0] + ".txt")
+    mothersday_list = extract_content_list(birthdays_dir + "/" + bc[1][0] + ".txt")
+    fathersday_list = extract_content_list(birthdays_dir + "/" + bc[2][0] + ".txt")
 
     todays_list, num_events_today = get_daily_reminders(added_days, birthdays_list, mothersday_list, fathersday_list)
     months_list = get_monthly_reminders(added_days, birthdays_list, mothersday_list, fathersday_list)
     return [todays_list, num_events_today, months_list]
 
 def manage_dir_structure():
-    birthdays_dir = os.path.dirname(os.path.realpath(__file__)) + "\\birthdays"
+    birthdays_dir = os.path.dirname(os.path.realpath(__file__)) + "/birthdays"
     header_1 = "+++++++++++++++++++++\n"
     header_2 = "\n+++++++++++++++++++++\n\n|||||||||||||||||||||\nvvvvvvvvvvvvvvvvvvvvv\n"
     if(not os.path.isdir(birthdays_dir)):

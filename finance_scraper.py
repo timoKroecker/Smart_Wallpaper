@@ -11,9 +11,9 @@ def scrape_finances(added_days):
     return [get_months_expences(added_days), get_years_expences(added_days)]
 
 def manage_dir_structure(added_days):
-    finance_dir = os.path.dirname(os.path.realpath(__file__)) + "\\finances"
-    year_dir = finance_dir + "\\" + str(get_localtime(added_days).tm_year)
-    month_dir = year_dir + "\\" + mnths[get_localtime(added_days).tm_mon - 1][0]
+    finance_dir = os.path.dirname(os.path.realpath(__file__)) + "/finances"
+    year_dir = finance_dir + "/" + str(get_localtime(added_days).tm_year)
+    month_dir = year_dir + "/" + mnths[get_localtime(added_days).tm_mon - 1][0]
     if(not os.path.isdir(finance_dir)):
         os.mkdir(finance_dir)
     if(not os.path.isdir(year_dir)):
@@ -30,12 +30,12 @@ def manage_file_structure(finance_dir, month_dir):
     for i in range(len(ec)):
         file_name = ec[i][0]
         header_merge = header_1 + file_name + header_2
-        if(not os.path.isfile(month_dir + "\\" + file_name + ".txt")):
-            new_file = open(month_dir + "\\" + file_name + ".txt", "w+")
+        if(not os.path.isfile(month_dir + "/" + file_name + ".txt")):
+            new_file = open(month_dir + "/" + file_name + ".txt", "w+")
             new_file.write(header_merge + global_contents_list[i])
             txt_files.append(new_file)
         else:
-            txt_files.append(open(month_dir + "\\" + file_name + ".txt", "r"))
+            txt_files.append(open(month_dir + "/" + file_name + ".txt", "r"))
     return txt_files
 
 def manage_global_files(finance_dir, header_1, header_2):
@@ -44,11 +44,11 @@ def manage_global_files(finance_dir, header_1, header_2):
         header_merge = header_1 + category[0] + header_2
         file_name = category[0] + "_global"
         contents = ""
-        if(not os.path.isfile(finance_dir + "\\" + file_name + ".txt")):
-            glob_file = open(finance_dir + "\\" + file_name + ".txt", "w+")
+        if(not os.path.isfile(finance_dir + "/" + file_name + ".txt")):
+            glob_file = open(finance_dir + "/" + file_name + ".txt", "w+")
             glob_file.write(header_merge)
         else:
-            contents = read_txt_file_contents(finance_dir + "\\" + file_name + ".txt")
+            contents = read_txt_file_contents(finance_dir + "/" + file_name + ".txt")
             contents_list.append(contents)
     return contents_list
 
@@ -56,13 +56,13 @@ def get_months_expences(added_days):
     month_int = get_localtime(added_days).tm_mon - 1
     month_str = mnths[month_int][0]
     year_str = str(get_localtime(added_days).tm_year)
-    month_dir = os.path.dirname(os.path.realpath(__file__)) + "\\finances\\" + year_str + "\\" + month_str
+    month_dir = os.path.dirname(os.path.realpath(__file__)) + "/finances/" + year_str + "/" + month_str
 
     expences = []
     total = ["Gesamt:"]
     for i in range(len(ec)):
         file_name = ec[i][0] + ".txt"
-        content_list = extract_content_list(month_dir + "\\" + file_name)
+        content_list = extract_content_list(month_dir + "/" + file_name)
         entry = []
         entry.append(ec[i][1] + ":")
         entry.append(get_content_list_sum(content_list))
@@ -74,7 +74,7 @@ def get_months_expences(added_days):
 
 def get_years_expences(added_days):
     year_str = str(get_localtime(added_days).tm_year)
-    year_dir = os.path.dirname(os.path.realpath(__file__)) + "\\finances\\" + year_str
+    year_dir = os.path.dirname(os.path.realpath(__file__)) + "/finances/" + year_str
 
     expences = []
     total = ["Gesamt:"]
@@ -83,9 +83,9 @@ def get_years_expences(added_days):
         category_sum = 0.0
         month_content_list = []
         for j in range(12):
-            month_dir = year_dir + "\\" + mnths[j][0]
+            month_dir = year_dir + "/" + mnths[j][0]
             if(os.path.isdir(month_dir)):
-                content_list = extract_content_list(month_dir + "\\" + file_name)
+                content_list = extract_content_list(month_dir + "/" + file_name)
                 entry = []
                 entry.append(mnths[j][0])
                 entry.append(get_content_list_sum(content_list))
