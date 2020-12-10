@@ -1,9 +1,1 @@
-Stark bewoelkt
-Nebel
-Bedeckt
-Schauer in der Naehe
-Regenschauer
-Schneeschauer
-Schneefall
-Bedeckt
-Bedeckt
+Nebel
