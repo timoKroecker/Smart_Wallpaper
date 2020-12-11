@@ -32,7 +32,7 @@ vvvvvvvvvvvvvvvvvvvvv
 31	12	1996	Nikola Cvisic
 25	7	1996	Adrian Lück
 21	6	1997	Mahmoud AbuIsaac
-10	2	0	Mohammed Al Ahmad
+10	2	1985	Mohammed Al Ahmad
 4	12	0	Anas Asad
 13	11	0	Hadhemi Sekri
 9	3	1996	Pavel Boodo
