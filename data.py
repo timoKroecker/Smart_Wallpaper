@@ -77,9 +77,7 @@ font_colors =   [
                 ]
 
 birthdays_categories =  [
-                            ["1_geburtstage", "\ntt<TAB>mm<TAB>jj<TAB>Name<ENTER> (0 wenn jj unbekannt)"],
-                            ["2_muttertage", "\ntt<TAB>mm<TAB>jj<ENTER>"],
-                            ["3_vatertage", "\ntt<TAB>mm<TAB>jj<ENTER>"]
+                            ["1_geburtstage", "\ntt<TAB>mm<TAB>jj<TAB>Name<ENTER> (0 wenn jj unbekannt)"]
                         ]
 
 news_soup_ingredients = [
@@ -110,4 +108,15 @@ weather_descriptions =  [
                             ["Regen", "Regenschauer"],                      #confirmed
                             ["Schneefall", "Schneeschauer"],                #confirmed
                             ["Gewitter"]
+                        ]
+
+calendar_categories =   [
+                            ["1_termine", "\ntt<TAB>mm<TAB>jj<TAB>Name<ENTER>"],
+                            ["2_muttertage", "\ntt<TAB>mm<TAB>jj<ENTER>"],
+                            ["3_vatertage", "\ntt<TAB>mm<TAB>jj<ENTER>"]
+                        ]
+
+text_file_header =      [
+                            "+++++++++++++++++++++\n",
+                            "\n+++++++++++++++++++++\n\n|||||||||||||||||||||\nvvvvvvvvvvvvvvvvvvvvv\n"
                         ]

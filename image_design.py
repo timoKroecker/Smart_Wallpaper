@@ -48,7 +48,7 @@ def draw_primer_widgets(img, added_days):
     #apps - left
     draw_box(draw, (0, 1), (3, 9), colors[1])
     #apps - top
-    draw_box(draw, (5, -1), (6, 3), colors[1])
+    #draw_box(draw, (5, -1), (6, 3), colors[1])
     #this semester
     draw_box(draw, (3, 9), (4, 1), colors[1])
     #freespace
@@ -58,34 +58,40 @@ def draw_primer_widgets(img, added_days):
     #behind the news
     draw_box(draw, (13, 1), (3, 8), colors[1])
 
+def draw_calendar_widgets(img, todays_list, num_events_today, months_list):
+    draw = ImageDraw.Draw(img)
+    #calendar
+    draw_box(draw, (6, -1), (4, 2), colors[2])
+    draw_box(draw, (6, 0), (4, 3), colors[2], caption="Kalendar")
+    draw_box(draw, (6.1, 0.5), (3.8, 2.4), colors[3])
+    draw_todays_list(draw, todays_list, 635, 940, 59)
+    draw_months_list(draw, months_list, num_events_today, 635, 700, 800, 59)
+
+    return img
+
 def draw_birthday_widgets(img, todays_list, num_events_today, months_list):
     draw = ImageDraw.Draw(img)
     #birhthdays
     draw_box(draw, (4, 3), (4, 5), colors[2], caption="Geburtstage")
     draw_box(draw, (4.1, 3.5), (3.8, 4.4), colors[3])
-    draw_birthday_todays_list(draw, todays_list)
-    draw_birthday_months_list(draw, months_list, num_events_today)
+    draw_todays_list(draw, todays_list, 435, 740, 310)
+    draw_months_list(draw, months_list, num_events_today, 435, 500, 600, 310)
     return img
 
-def draw_birthday_todays_list(draw, todays_list):
-    pos_x1 = 435
-    pos_x2 = 740
-    pos_y = 310 - get_osys_y()
+def draw_todays_list(draw, todays_list, pos_x1, pos_x2, pos_y0):
+    pos_y = pos_y0 - get_osys_y()
     for entry in todays_list:
         draw.text((pos_x1, pos_y), entry[0], font=MAIN_FONT, fill=font_colors[2])
         draw.text((pos_x2, pos_y), entry[1], font=MAIN_FONT, fill=font_colors[2])
         pos_y = pos_y + 30
 
-def draw_birthday_months_list(draw, months_list, num_events_today):
+def draw_months_list(draw, months_list, num_events_today, pos_x1, pos_x2, pos_x3, pos_y0):
     osys_y = get_osys_y()
-    pos_x1 = 435
-    pos_x2 = 500
-    pos_x3 = 600
-    pos_y = 310 - osys_y
+    pos_y = pos_y0 - osys_y
     if(num_events_today != 0):
         pos_y = pos_y + (num_events_today + 1) * 30
         line_offset = (num_events_today - 1) * 30
-        draw.rectangle((410, 345 + line_offset - osys_y, 790, 350 + line_offset - osys_y), fill=colors[2])
+        draw.rectangle((pos_x1 - 25, pos_y - 20 + line_offset, pos_x1 + 355, pos_y - 25 + line_offset), fill=colors[2])
     for entry in months_list:
         draw.text((pos_x1, pos_y), entry[0], font=THIRD_FONT, fill=font_colors[0])
         draw.text((pos_x2, pos_y), entry[1], font=THIRD_FONT, fill=font_colors[0])

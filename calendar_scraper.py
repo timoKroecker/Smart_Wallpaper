@@ -2,29 +2,32 @@ import time
 import os
 import codecs
 
-import data as da
-from data import birthdays_categories as bc
+from data import calendar_categories as cc
 from data import text_file_header as header
+from data import weekdays
 
-def scrape_birthdays(added_days):
-    birthdays_dir = manage_dir_structure()
+def scrape_calendar(added_days):
+    calendar_dir = manage_dir_structure()
 
-    birthdays_list = extract_content_list(birthdays_dir + "/" + bc[0][0] + ".txt")
+    calendar_list = extract_content_list(calendar_dir + "/" + cc[0][0] + ".txt")
+    mothersday_list = extract_content_list(calendar_dir + "/" + cc[1][0] + ".txt")
+    fathersday_list = extract_content_list(calendar_dir + "/" + cc[2][0] + ".txt")
 
-    todays_list, num_events_today = get_daily_reminders(added_days, birthdays_list)
-    months_list = get_monthly_reminders(added_days, birthdays_list)
+    todays_list, num_events_today = get_daily_reminders(added_days, calendar_list, mothersday_list, fathersday_list)
+    months_list = get_monthly_reminders(added_days, calendar_list, mothersday_list, fathersday_list)
+
     return [todays_list, num_events_today, months_list]
 
 def manage_dir_structure():
-    birthdays_dir = os.path.dirname(os.path.realpath(__file__)) + "/birthdays"
-    if(not os.path.isdir(birthdays_dir)):
-        os.mkdir(birthdays_dir)
-    for file_data in bc:
-        file_dir = birthdays_dir + "/" + file_data[0] + ".txt"
+    calendar_dir = os.path.dirname(os.path.realpath(__file__)) + "/calendar"
+    if(not os.path.isdir(calendar_dir)):
+        os.mkdir(calendar_dir)
+    for file_data in cc:
+        file_dir = calendar_dir + "/" + file_data[0] + ".txt"
         if(not os.path.isfile(file_dir)):
             txt_file = codecs.open(file_dir, "w+", "utf-8")
             txt_file.write(header[0] + file_data[0] + file_data[1] + header[1])
-    return birthdays_dir
+    return calendar_dir
 
 def extract_content_list(file_dir):
     content = read_txt_file_contents(file_dir)
@@ -53,11 +56,23 @@ def read_txt_file_contents(file_dir):
         index = index + 1
     return txt_str[index:len(txt_str)]
 
-def get_daily_reminders(added_days, birthdays_list):
+def get_daily_reminders(added_days, calendar_list, mothersday_list, fathersday_list):
     date = get_date(added_days)
     output = []
     num_events = 0
-    for item in birthdays_list:
+    if(is_mothersday(date, mothersday_list)):
+        num_events = num_events + 1
+        entry = []
+        entry.append("Muttertag")
+        entry.append("")
+        output.append(entry)
+    if(is_fathersday(date, fathersday_list)):
+        num_events = num_events + 1
+        entry = []
+        entry.append("Vatertag")
+        entry.append("")
+        output.append(entry)
+    for item in calendar_list:
         if(int(item[0]) == date.tm_mday and int(item[1]) == date.tm_mon):
             num_events = num_events + 1
             entry = []
@@ -69,11 +84,15 @@ def get_daily_reminders(added_days, birthdays_list):
             output.append(entry)
     return output, num_events
 
-def get_monthly_reminders(added_days, birthdays_list):
+def get_monthly_reminders(added_days, calendar_list, mothersday_list, fathersday_list):
     output= []
     for i in range(31):
         date = get_date(added_days + i + 1)
-        for item in birthdays_list:
+        if(is_mothersday(date, mothersday_list)):
+            output.append(get_dated_reminder(date, "Muttertag", added_days))
+        if(is_fathersday(date, fathersday_list)):
+            output.append(get_dated_reminder(date, "Vatertag", added_days))
+        for item in calendar_list:
             if(int(item[0]) == date.tm_mday and int(item[1]) == date.tm_mon):
                 output.append(get_dated_reminder(date, item[3], added_days))
     return output
@@ -95,20 +114,21 @@ def get_dated_reminder(date, caption, added_days):
             date_string = date_string + "0"
         date_string = date_string + str(date.tm_mon) + "."
         output.append(date_string)
-        output.append(da.weekdays[date.tm_wday][0])
+        output.append(weekdays[date.tm_wday][0])
     output.append(caption)
     return output
 
-def get_time_string(added_days):
-    date = get_date(added_days)
-    string =    (da.weekdays[date.tm_wday][1] + "   " +
-                str(date.tm_mday) + "." +
-                str(date.tm_mon) + "." +
-                str(date.tm_year) + "   " +
-                str(date.tm_hour) + ":")
-    if(date.tm_min < 10):
-        return string + "0" + str(date.tm_min)
-    return string + str(date.tm_min)
+def is_mothersday(date, mothersday_list):
+    for item in mothersday_list:
+        if(date.tm_mday == int(item[0]) and date.tm_mon == int(item[1]) and date.tm_year == int(item[2])):
+            return True
+    return False
+
+def is_fathersday(date, fathersday_list):
+    for item in fathersday_list:
+        if(date.tm_mday == int(item[0]) and date.tm_mon == int(item[1]) and date.tm_year == int(item[2])):
+            return True
+    return False
 
 def get_date(added_days):
     return time.localtime(time.time() + added_days * 86400)

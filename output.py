@@ -6,17 +6,20 @@ def heading():
     print("--------------------------------------------------")
     print("")
 
-def weather_intro():
-    print("\t~weather sheet")
+def calendar_intro():
+    print("\tcalendar")
 
 def birthday_intro():
-    print("\t~birthday sheet")
+    print("\t~birthday")
 
 def finance_intro():
-    print("\t~finance sheet")
+    print("\t~finance")
 
 def news_intro():
-    print("\t~news sheet")
+    print("\t~news")
+
+def weather_intro():
+    print("\t~weather")
 
 def visible():
     print("\t\tvisible")

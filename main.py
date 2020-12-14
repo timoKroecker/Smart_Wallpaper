@@ -4,6 +4,7 @@ import time
 import codecs
 
 import image_design as dsgn
+import calendar_scraper as cs
 import birthday_scraper as bs
 import finance_scraper as fs
 import news_scraper as ns
@@ -22,6 +23,7 @@ def the_one_ring():
     except:
         pass
     img = dsgn.create_raw_image(DAY_OFFSET)
+    img = scrape_n_draw_calendar(img, DAY_OFFSET)
     img = scrape_n_draw_birthday_info(img, DAY_OFFSET)
     img = scrape_n_draw_finances(img, DAY_OFFSET)
     img = scrape_n_draw_news(img)
@@ -31,6 +33,21 @@ def the_one_ring():
     cw.change_wallpaper(PATH + "/" + IMG_NAME)
 
     op.final_words()
+
+def scrape_n_draw_calendar(img, added_days):
+    op.calendar_intro()
+
+    calendar_list = cs.scrape_calendar(added_days)
+    todays_list = calendar_list[0]
+    num_events_today = calendar_list[1]
+    months_list = calendar_list[2]
+    
+    if(len(todays_list) != 0 or len(months_list) != 0):
+        img = dsgn.draw_calendar_widgets(img, todays_list, num_events_today, months_list)
+        op.visible()
+    else:
+        op.hidden()
+    return img
 
 def scrape_n_draw_birthday_info(img, added_days):
     op.birthday_intro()

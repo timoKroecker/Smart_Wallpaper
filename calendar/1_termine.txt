@@ -1,0 +1,8 @@
++++++++++++++++++++++
+1_termine
+tt<TAB>mm<TAB>jj<TAB>Name<ENTER>
++++++++++++++++++++++
+
+|||||||||||||||||||||
+vvvvvvvvvvvvvvvvvvvvv
+
