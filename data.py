@@ -26,7 +26,7 @@ negative_keywords_1 =   [
                             "gutscheine", "schnäppchen", "schnäppchenjagd", "sparen", "bvb", "fc", "fußball",
                             "club", "gewinnt", "tore", "spiel", "liga", "championsleague", "zutaten", "reiseziele",
                             "sat1", "pro7", "rtl", "tv", "flirt", "beziehung", "porno", "sex", "dhl", "wm", "em",
-                            "flat", "trainer", "bundesliga", "tipps", "deals", "tricks", "treffer"
+                            "flat", "trainer", "bundesliga", "tipps", "deals", "tricks", "treffer", "geschenk", "geschenke"
                         ]
 
 negative_keywords_2 =   [
