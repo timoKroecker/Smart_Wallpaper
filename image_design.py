@@ -61,11 +61,11 @@ def draw_primer_widgets(img, added_days):
 def draw_calendar_widgets(img, todays_list, num_events_today, months_list):
     draw = ImageDraw.Draw(img)
     #calendar
-    draw_box(draw, (6, -1), (4, 2), colors[2])
-    draw_box(draw, (6, 0), (4, 3), colors[2], caption="Kalendar")
-    draw_box(draw, (6.1, 0.5), (3.8, 2.4), colors[3])
+    draw_box(draw, (5.5, -1), (5, 2), colors[2])
+    draw_box(draw, (5.5, 0), (5, 3), colors[2], caption="Kalendar")
+    draw_box(draw, (5.6, 0.5), (4.8, 2.4), colors[3])
     draw_todays_list(draw, todays_list, 635, 940, 59)
-    draw_months_list(draw, months_list, num_events_today, 635, 700, 800, 59)
+    draw_months_list(draw, months_list, num_events_today, 635, 700, 800, 59, extra_x=45)
 
     return img
 
@@ -85,13 +85,12 @@ def draw_todays_list(draw, todays_list, pos_x1, pos_x2, pos_y0):
         draw.text((pos_x2, pos_y), entry[1], font=MAIN_FONT, fill=font_colors[2])
         pos_y = pos_y + 30
 
-def draw_months_list(draw, months_list, num_events_today, pos_x1, pos_x2, pos_x3, pos_y0):
+def draw_months_list(draw, months_list, num_events_today, pos_x1, pos_x2, pos_x3, pos_y0, extra_x = 0):
     osys_y = get_osys_y()
     pos_y = pos_y0 - osys_y
     if(num_events_today != 0):
         pos_y = pos_y + (num_events_today + 1) * 30
-        line_offset = (num_events_today - 1) * 30
-        draw.rectangle((pos_x1 - 25, pos_y - 20 + line_offset, pos_x1 + 355, pos_y - 25 + line_offset), fill=colors[2])
+        draw.rectangle((pos_x1 - 25 - extra_x, pos_y - 28, pos_x1 + 355 + extra_x, pos_y - 23), fill=colors[2])
     for entry in months_list:
         draw.text((pos_x1, pos_y), entry[0], font=THIRD_FONT, fill=font_colors[0])
         draw.text((pos_x2, pos_y), entry[1], font=THIRD_FONT, fill=font_colors[0])

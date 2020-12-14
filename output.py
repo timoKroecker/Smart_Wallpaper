@@ -7,7 +7,7 @@ def heading():
     print("")
 
 def calendar_intro():
-    print("\tcalendar")
+    print("\t~calendar")
 
 def birthday_intro():
     print("\t~birthday")
