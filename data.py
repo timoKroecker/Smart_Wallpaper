@@ -106,7 +106,7 @@ weather_descriptions =  [
                             ["Bedeckt"],                                    #confirmed
                             ["Stark bewölkt", "Schauer in der Nähe"],       #confirmed
                             ["Nebel"],                                      #confirmed
-                            ["Leichter Regen", "Leichter Regen/Gefrierender Regen"],                             #confirmed
+                            ["Leichter Regen"],                             #confirmed
                             ["Regen", "Regenschauer"],                      #confirmed
                             ["Schneefall", "Schneeschauer"],                #confirmed
                             ["Gewitter"]

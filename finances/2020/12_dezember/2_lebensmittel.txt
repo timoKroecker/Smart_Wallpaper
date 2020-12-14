@@ -7,3 +7,4 @@ vvvvvvvvvvvvvvvvvvvvv
 Kliver	21.09
 Kliver	7.35
 Fleischtheke	3.52
+Bäcker	5.45

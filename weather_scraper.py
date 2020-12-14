@@ -50,7 +50,14 @@ def get_night_temperature(soup):
     return div.find_all("span")[1].text
 
 def get_current_description(soup):
-    return soup.find("div", class_="CurrentConditions--phraseValue--2xXSr").text
+    desc = soup.find("div", class_="CurrentConditions--phraseValue--2xXSr").text
+    return remove_secondary_descriptions(desc)
+
+def remove_secondary_descriptions(description):
+    for i in range(len(description)):
+        if(description[i] == "/"):
+            return description[0:i]
+    return description
 
 def update_descriptions(desc_str):
     desc_file, desc_text = get_desc_file(desc_str)
@@ -65,7 +72,7 @@ def get_desc_file(desc_str):
             is_unique = False
             break
     if(is_unique):
-        return open("weather/descriptions.txt", "w"), desc_text
+        return codecs.open("weather/descriptions.txt", "w", "utf-8"), desc_text
     return None, None
 
 def get_known_descriptions():

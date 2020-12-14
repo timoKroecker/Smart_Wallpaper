@@ -77,14 +77,15 @@ def draw_birthday_todays_list(draw, todays_list):
         pos_y = pos_y + 30
 
 def draw_birthday_months_list(draw, months_list, num_events_today):
+    osys_y = get_osys_y()
     pos_x1 = 435
     pos_x2 = 500
     pos_x3 = 600
-    pos_y = 310 - get_osys_y()
+    pos_y = 310 - osys_y
     if(num_events_today != 0):
         pos_y = pos_y + (num_events_today + 1) * 30
         line_offset = (num_events_today - 1) * 30
-        draw.rectangle((410, 345 + line_offset, 790, 350 + line_offset), fill=colors[2])
+        draw.rectangle((410, 345 + line_offset - osys_y, 790, 350 + line_offset - osys_y), fill=colors[2])
     for entry in months_list:
         draw.text((pos_x1, pos_y), entry[0], font=THIRD_FONT, fill=font_colors[0])
         draw.text((pos_x2, pos_y), entry[1], font=THIRD_FONT, fill=font_colors[0])
