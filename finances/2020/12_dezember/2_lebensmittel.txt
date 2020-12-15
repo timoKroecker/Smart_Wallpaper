@@ -8,3 +8,5 @@ Kliver	21.09
 Kliver	7.35
 Fleischtheke	3.52
 Bäcker	5.45
+Kliver	9.95
+Döner	4.90

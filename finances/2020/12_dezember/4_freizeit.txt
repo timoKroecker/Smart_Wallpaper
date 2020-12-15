@@ -11,3 +11,5 @@ Spotify	2.50
 McDonalds	15.78
 Steam	9.99
 Micha-StartNext	50.00
+Likör-Geschenk	29.70
+Geschenke(Thalia)	15.33
