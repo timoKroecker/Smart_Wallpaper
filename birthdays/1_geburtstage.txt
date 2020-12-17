@@ -47,3 +47,4 @@ vvvvvvvvvvvvvvvvvvvvv
 24	5	0	Dave Lüttmann
 13	7	0	Philipp Breuer
 14	7	1998	Nijat Dilshat
+22	12	2000	Simon Kolb

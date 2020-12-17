@@ -1,2 +1,5 @@
 Bedeckt
 Wolkig
+Sonnig
+Nebel
+Stark bewölkt
