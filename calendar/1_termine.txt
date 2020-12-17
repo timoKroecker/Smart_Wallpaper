@@ -6,3 +6,5 @@ tt<TAB>mm<TAB>jj<TAB>Name<ENTER>
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
 22	7	2016	OEZ Amoklauf Jahrestag
+7	1	0	Studis Start
+18	1	0	Studis Ende
