@@ -3,3 +3,4 @@ Wolkig
 Sonnig
 Nebel
 Stark bewölkt
+Heiter
