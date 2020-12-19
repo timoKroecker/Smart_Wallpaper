@@ -8,3 +8,5 @@ vvvvvvvvvvvvvvvvvvvvv
 22	7	2016	OEZ Amoklauf Jahrestag
 7	1	0	Studis Start
 18	1	0	Studis Ende
+2	1	0	Rückmeldung Start
+15	2	0	Rückmeldung Ende
