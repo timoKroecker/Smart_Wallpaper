@@ -11,3 +11,4 @@ Bäcker	5.45
 Kliver	9.95
 Döner	4.90
 Kliver	8.59
+Kliver	0.79

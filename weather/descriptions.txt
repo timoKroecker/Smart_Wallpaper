@@ -4,3 +4,4 @@ Sonnig
 Nebel
 Stark bewölkt
 Heiter
+Leichter Regen
