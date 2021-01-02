@@ -26,7 +26,8 @@ negative_keywords_1 =   [
                             "gutscheine", "schnäppchen", "schnäppchenjagd", "sparen", "bvb", "fc", "fußball",
                             "club", "gewinnt", "tore", "spiel", "liga", "championsleague", "zutaten", "reiseziele",
                             "sat1", "pro7", "rtl", "tv", "flirt", "beziehung", "porno", "sex", "dhl", "wm", "em",
-                            "flat", "trainer", "bundesliga", "tipps", "deals", "tricks", "treffer", "geschenk", "geschenke"
+                            "flat", "trainer", "bundesliga", "tipps", "deals", "tricks", "treffer", "geschenk", "geschenke",
+                            "bayern"
                         ]
 
 negative_keywords_2 =   [
@@ -81,7 +82,7 @@ birthdays_categories =  [
                         ]
 
 news_soup_ingredients = [
-                            ["https://www.rt1.de/nachrichten/augsburg/", "h3", "headline", " -rt1/aux", 5],
+                            ["https://www.rt1.de/nachrichten/augsburg/", "h3", "headline", " -rt1.de", 5],
                             ["https://focus.de", "h4", "vr", " -Focus", 30],
                             ["https://www.spiegel.de/", "span", "hover:opacity-moderate focus:opacity-moderate", " -Spiegel", 30],
                             ["https://n-tv.de", "span", "teaser__headline", " -ntv", 30],

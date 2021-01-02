@@ -1,14 +1,7 @@
 +++++++++++++++++++++
-5_transport
+3_haushalt
 +++++++++++++++++++++
 
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
-DB	10.20
-DB	10.20
-Voi	1.55
-DB	10.20
-DB	54.55
-DB	10.20
-MVG	14.60
-DB	10.55
+Wäsche	4.00

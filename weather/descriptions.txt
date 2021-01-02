@@ -5,3 +5,4 @@ Nebel
 Stark bewölkt
 Heiter
 Leichter Regen
+Regen
