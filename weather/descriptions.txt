@@ -6,3 +6,7 @@ Stark bewölkt
 Heiter
 Leichter Regen
 Regen
+Bedeckt
+Nebel
+Schneeschauer
+Wolkig
