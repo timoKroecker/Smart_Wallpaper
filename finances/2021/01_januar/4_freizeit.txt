@@ -8,3 +8,4 @@ McFit	19.90
 Spotify	2.50
 
 Spende	2.00
+Tenet-Leihe	4.99
