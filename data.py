@@ -100,7 +100,7 @@ expence_categories =    [
                         ]
 
 weather_descriptions =  [
-                            ["Sonnig"],                                     #confirmed
+                            ["Sonnig", "Klar"],                             #confirmed
                             ["Wolkig", "Heiter"],                           #confirmed
                             ["Bedeckt"],                                    #confirmed
                             ["Stark bewölkt", "Schauer in der Nähe"],       #confirmed

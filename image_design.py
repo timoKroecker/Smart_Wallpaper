@@ -81,8 +81,8 @@ def draw_birthday_widgets(img, todays_list, num_events_today, months_list):
 def draw_todays_list(draw, todays_list, pos_x1, pos_x2, pos_y0):
     pos_y = pos_y0 - get_osys_y()
     for entry in todays_list:
-        draw.text((pos_x1, pos_y), entry[0], font=MAIN_FONT, fill=font_colors[2])
-        draw.text((pos_x2, pos_y), entry[1], font=MAIN_FONT, fill=font_colors[2])
+        draw.text((pos_x1, pos_y), entry, font=MAIN_FONT, fill=font_colors[2])
+        #draw.text((pos_x2, pos_y), entry[1], font=MAIN_FONT, fill=font_colors[2])
         pos_y = pos_y + 30
 
 def draw_months_list(draw, months_list, num_events_today, pos_x1, pos_x2, pos_x3, pos_y0, extra_x = 0):
