@@ -11,3 +11,4 @@ Nebel
 Schneeschauer
 Wolkig
 Klar
+Stark bewölkt
