@@ -64,21 +64,27 @@ def draw_calendar_widgets(img, todays_list, num_events_today, months_list):
     draw_box(draw, (5.5, -1), (5, 2), colors[2])
     draw_box(draw, (5.5, 0), (5, 3), colors[2], caption="Kalendar")
     draw_box(draw, (5.6, 0.5), (4.8, 2.4), colors[3])
-    draw_todays_list(draw, todays_list, 635, 940, 59)
+    draw_todays_calendar_list(draw, todays_list, 635, 940, 59)
     draw_months_list(draw, months_list, num_events_today, 635, 700, 800, 59, extra_x=45)
 
     return img
+
+def draw_todays_calendar_list(draw, todays_list, pos_x1, pos_x2, pos_y0):
+    pos_y = pos_y0 - get_osys_y()
+    for entry in todays_list:
+        draw.text((pos_x1, pos_y), entry, font=MAIN_FONT, fill=font_colors[2])
+        pos_y = pos_y + 30
 
 def draw_birthday_widgets(img, todays_list, num_events_today, months_list):
     draw = ImageDraw.Draw(img)
     #birhthdays
     draw_box(draw, (4, 3), (4, 5), colors[2], caption="Geburtstage")
     draw_box(draw, (4.1, 3.5), (3.8, 4.4), colors[3])
-    draw_todays_list(draw, todays_list, 435, 740, 310)
+    draw_todays_birthday_list(draw, todays_list, 435, 740, 310)
     draw_months_list(draw, months_list, num_events_today, 435, 500, 600, 310)
     return img
 
-def draw_todays_list(draw, todays_list, pos_x1, pos_x2, pos_y0):
+def draw_todays_birthday_list(draw, todays_list, pos_x1, pos_x2, pos_y0):
     pos_y = pos_y0 - get_osys_y()
     for entry in todays_list:
         draw.text((pos_x1, pos_y), entry[0], font=MAIN_FONT, fill=font_colors[2])
