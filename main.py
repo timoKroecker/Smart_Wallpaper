@@ -1,7 +1,5 @@
 import os
-import ctypes
 import time
-import codecs
 
 import image_design as dsgn
 import calendar_scraper as cs
