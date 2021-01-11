@@ -6,3 +6,4 @@
 vvvvvvvvvvvvvvvvvvvvv
 Wäsche	4.00
 Kliver	0.39
+Kliver	0.69
