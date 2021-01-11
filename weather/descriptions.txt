@@ -12,3 +12,4 @@ Schneeschauer
 Wolkig
 Klar
 Stark bewölkt
+Feuchter Dunst
