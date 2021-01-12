@@ -13,3 +13,5 @@ Wolkig
 Klar
 Stark bewölkt
 Feuchter Dunst
+Schneefall
+Schneeregen

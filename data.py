@@ -107,7 +107,7 @@ weather_descriptions =  [
                             ["Nebel", "Feuchter Dunst"],                    #confirmed
                             ["Leichter Regen"],                             #confirmed
                             ["Regen", "Regenschauer"],                      #confirmed
-                            ["Schneefall", "Schneeschauer"],                #confirmed
+                            ["Schneefall", "Schneeschauer", "Schneeregen"], #confirmed
                             ["Gewitter"]
                         ]
 
