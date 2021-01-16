@@ -188,7 +188,7 @@ def compress_headline(headline):
     comp_headline = ""
     row_len = -1
     for word in splitted_words:
-        if(row_len + len(word) + 1 <= 31):
+        if(row_len + len(word) + 1 <= 30):
             comp_headline = comp_headline + word + " "
             row_len = row_len + len(word) + 1
         else:

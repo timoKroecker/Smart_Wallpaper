@@ -15,3 +15,5 @@ Stark bewölkt
 Feuchter Dunst
 Schneefall
 Schneeregen
+Sonnig
+Heiter
