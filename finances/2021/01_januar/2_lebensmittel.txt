@@ -11,3 +11,5 @@ Fleischtheke	3.45
 Kliver	7.81
 Kliver	10.21
 Kliver	15.86
+Kliver	0.88
+Fleischtheke	4.75
