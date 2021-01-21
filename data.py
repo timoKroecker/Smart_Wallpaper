@@ -7,7 +7,7 @@ positive_keywords_1 =   [
                             "amok", "amoklauf", "unfall", "katastrophe", "todesfälle", "tote", "impfpflicht", "putin",
                             "wahl", "flüchtlinge", "flüchtlingslager", "schock", "terror", "angriff", "angst",
                             "klima", "biden", "harris", "niederlande", "trump", "präsident",
-                            "militär", "krieg", "syrien", "feuer", "obama", "unfall", "trauer", "lockdown",
+                            "militär", "krieg", "syrien", "feuer", "brand", "obama", "unfall", "trauer", "lockdown",
                             "kliniken", "krankenhäuser", "pfleger", "proteste"
                         ]
 
