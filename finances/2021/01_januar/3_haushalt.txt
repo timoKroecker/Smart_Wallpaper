@@ -4,9 +4,11 @@
 
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
-Wäsche	4.00
-Kliver	0.39
-Kliver	0.69
-Wäsche	4.00
-Kliver	2.15
+Wäsche  	4.00
+Kliver  	0.39
+Kliver  	0.69
+Wäsche  	4.00
+Kliver  	2.15
 FFP2 Masken	5.99
+Copyshop	0.15
+Copyshop	0.30

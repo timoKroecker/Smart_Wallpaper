@@ -6,11 +6,12 @@
 vvvvvvvvvvvvvvvvvvvvv
 McDonalds?	20.74
 Fleischtheke	3.98
-Kliver	11.60
+Kliver  	11.60
 Fleischtheke	3.45
-Kliver	7.81
-Kliver	10.21
-Kliver	15.86
-Kliver	0.88
+Kliver  	7.81
+Kliver  	10.21
+Kliver  	15.86
+Kliver  	0.88
 Fleischtheke	4.75
-Norma	4.92
+Norma   	4.92
+Kliver  	12.64

@@ -4,9 +4,11 @@
 
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
-McFit	19.90
-Spotify	2.50
+McFit           	19.90
+Spotify         	2.50
 
-Spende	2.00
-Tenet Leihe	4.99
-reBuy Bücher	21.83
+Spende          	2.00
+Tenet Leihe     	4.99
+reBuy Bücher    	21.83
+Sarah Geschenk Shirt	6.00
+Sarah Geschenk Jute	1.25
