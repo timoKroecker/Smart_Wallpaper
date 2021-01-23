@@ -17,3 +17,5 @@ Schneefall
 Schneeregen
 Sonnig
 Heiter
+Leichter Regen
+Regenschauer
