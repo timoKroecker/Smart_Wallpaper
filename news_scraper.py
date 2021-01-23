@@ -13,13 +13,13 @@ def scrape_news_headlines(print_on=False):
     scored_selections = []
     for i in range(len(ingr)):
         scored_selections.append(cook_soup(i))
-    if(scored_selections[0] == None):
+    if(no_soup_cooked(scored_selections)):
         return None
 
-    total_scored_selection = scored_selections[0]
-    for i in range(len(scored_selections) - 1):
-        if(scored_selections[i + 1] != None):
-            total_scored_selection = total_scored_selection + scored_selections[i + 1]
+    total_scored_selection = []
+    for i in range(len(scored_selections)):
+        if(scored_selections[i] != None):
+            total_scored_selection = total_scored_selection + scored_selections[i]
 
     total_ranked_selection = get_ranked_selection(total_scored_selection, print_on)
     return total_ranked_selection
@@ -124,6 +124,12 @@ def remove_spiegel_timestamp(headline):
         if(timestamp_caught):
             return headline[0:index]
     return headline
+
+def no_soup_cooked(scored_selections):
+    for elem in scored_selections:
+        if(elem != None):
+            return False
+    return True
 
 #------------------------TESTS------------------------------------
 
