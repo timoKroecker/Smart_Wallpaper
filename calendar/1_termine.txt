@@ -15,3 +15,4 @@ vvvvvvvvvvvvvvvvvvvvv
 12	1	2021	Münchner Zoom Meeting
 1	2	2021	BA Zoom Meeting
 1	2	2021	Wohnungssuche Start
+3	2	2021	Schule-Zoom
