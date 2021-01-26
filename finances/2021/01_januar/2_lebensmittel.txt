@@ -16,3 +16,5 @@ Fleischtheke	4.75
 Norma   	4.92
 Kliver  	12.64
 Kliver  	9.73
+Bierfried	0.80
+Kliver   	21.59
