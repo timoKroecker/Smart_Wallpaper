@@ -61,9 +61,9 @@ def draw_primer_widgets(img, added_days):
 def draw_calendar_widgets(img, todays_list, num_events_today, months_list):
     draw = ImageDraw.Draw(img)
     #calendar
-    draw_box(draw, (5.5, -1), (5, 2), colors[2])
-    draw_box(draw, (5.5, 0), (5, 3), colors[2], caption="Kalendar")
-    draw_box(draw, (5.6, 0.5), (4.8, 2.4), colors[3])
+    draw_box(draw, (5.5, -1), (5, 3), colors[2])
+    draw_box(draw, (5.5, 0), (5, 4), colors[2], caption="Kalendar")
+    draw_box(draw, (5.6, 0.5), (4.8, 3.4), colors[3])
     draw_todays_calendar_list(draw, todays_list, 635, 940, 59)
     draw_months_list(draw, months_list, num_events_today, 635, 700, 800, 59, extra_x=45)
 
@@ -78,10 +78,10 @@ def draw_todays_calendar_list(draw, todays_list, pos_x1, pos_x2, pos_y0):
 def draw_birthday_widgets(img, todays_list, num_events_today, months_list):
     draw = ImageDraw.Draw(img)
     #birhthdays
-    draw_box(draw, (4, 3), (4, 5), colors[2], caption="Geburtstage")
-    draw_box(draw, (4.1, 3.5), (3.8, 4.4), colors[3])
-    draw_todays_birthday_list(draw, todays_list, 435, 740, 310)
-    draw_months_list(draw, months_list, num_events_today, 435, 500, 600, 310)
+    draw_box(draw, (4, 4), (4, 5), colors[2], caption="Geburtstage")
+    draw_box(draw, (4.1, 4.5), (3.8, 4.4), colors[3])
+    draw_todays_birthday_list(draw, todays_list, 435, 740, 310 + 83)
+    draw_months_list(draw, months_list, num_events_today, 435, 500, 600, 310 + 83)
     return img
 
 def draw_todays_birthday_list(draw, todays_list, pos_x1, pos_x2, pos_y0):
@@ -113,14 +113,14 @@ def draw_finance_widgets(   img,
     draw = ImageDraw.Draw(img)
     osys_y = get_osys_y()
     #finance
-    draw_box(draw, (8, 3), (4, 5), colors[2], caption="Finanzen")
-    draw_box(draw, (8.1, 3.5), (3.8, 2.2), colors[3])
-    draw_box(draw, (8.1, 5.7), (3.8, 2.2), colors[3])
+    draw_box(draw, (8, 4), (4, 5), colors[2], caption="Finanzen")
+    draw_box(draw, (8.1, 4.5), (3.8, 2.2), colors[3])
+    draw_box(draw, (8.1, 6.7), (3.8, 2.2), colors[3])
 
-    draw.text((1140, 218 + 83 - osys_y), month_str, font=BOLD_GEORGIA_13, fill=font_colors[1])
+    draw.text((1140, 218 + 2 * 83 - osys_y), month_str, font=BOLD_GEORGIA_13, fill=font_colors[1])
     draw_finance_month_list(draw, month_expences, month_total)
 
-    draw.text((1129, 400 + 83 - osys_y), year_str, font=BOLD_GEORGIA_15, fill=font_colors[1])
+    draw.text((1129, 400 + 2 * 83 - osys_y), year_str, font=BOLD_GEORGIA_15, fill=font_colors[1])
     draw_finance_year_list(draw, year_expences, year_total)
     return img
 
@@ -128,7 +128,7 @@ def draw_finance_month_list(draw, expences, total):
     pos_x1 = 835
     pos_x2 = 990
     pos_x3 = 1080
-    pos_y = 225 + 83 - get_osys_y()
+    pos_y = 225 + 2 * 83 - get_osys_y()
     for entry in expences:
         draw.text((pos_x1, pos_y), entry[0], font= FOURTH_FONT, fill=font_colors[0])
         draw_expence_value(draw, entry[2], pos_x2, pos_y - 5, 8, GEORGIA_14, "%")
@@ -143,7 +143,7 @@ def draw_finance_year_list(draw, expences, total):
     pos_x1 = 835
     pos_x2 = 990
     pos_x3 = 1080
-    pos_y = 409 + 83 - get_osys_y()
+    pos_y = 409 + 2 * 83 - get_osys_y()
     for entry in expences:
         draw.text((pos_x1, pos_y), entry[0], font= FOURTH_FONT, fill=font_colors[0])
         draw_expence_value(draw, entry[2], pos_x2, pos_y - 5, 8, GEORGIA_14, "%")
