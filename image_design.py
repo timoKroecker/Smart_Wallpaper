@@ -65,7 +65,7 @@ def draw_calendar_widgets(img, todays_list, num_events_today, months_list):
     draw_box(draw, (5.5, 0), (5, 4), colors[2], caption="Kalendar")
     draw_box(draw, (5.6, 0.5), (4.8, 3.4), colors[3])
     draw_todays_calendar_list(draw, todays_list, 635, 940, 59)
-    draw_months_list(draw, months_list, num_events_today, 635, 700, 800, 59, extra_x=45)
+    draw_months_list(draw, months_list, num_events_today, 635, 700, 770, 59, extra_x=45)
 
     return img
 
