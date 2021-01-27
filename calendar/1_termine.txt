@@ -7,6 +7,8 @@ tt<TAB>mm<TAB>jj<TAB>Name<ENTER>
 vvvvvvvvvvvvvvvvvvvvv
 22	7	0	OEZ Amoklauf Jahrestag
 1	2	0	Zahnarzttermin vereinbaren
+15	7	2021	Bewerbungsschluss Uni Erlangen
+10	8	2021	Bewerbungsschluss Uni Augsburg
 7	1	2021	Studis Start
 18	1	2021	Studis Ende
 2	1	2021	Rückmeldung Start
@@ -16,3 +18,5 @@ vvvvvvvvvvvvvvvvvvvvv
 1	2	2021	BA Zoom Meeting
 1	2	2021	Wohnungssuche Start
 3	2	2021	Schule-Zoom
+12	2	2021	Kemmerich "Termin"
+9	2	2021	Articam Kickoff

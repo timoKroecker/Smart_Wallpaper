@@ -12,3 +12,5 @@ Tenet Leihe     	4.99
 reBuy Bücher    	21.83
 Sarah Geschenk Shirt	6.00
 Sarah Geschenk Jute	1.25
+reBuy Retour    	-8.48
+Mohammed Geschenk	41.98
