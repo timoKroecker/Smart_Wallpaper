@@ -31,6 +31,12 @@ def cook_soup(index):
     except:
         return None
     soup = BeautifulSoup(req.text, 'lxml')
+    #check if the html text is just a blank header
+    if(len(str(soup)) < 10000):
+        print("COOK-SOUP-EXCEPION:\n")
+        print("\t" + ingr[index][4] + " website is blank.")
+        print("\t -Length: " + len(str(soup)))
+        return None
     matches = soup.find_all(ingr[index][1], class_=ingr[index][2])
     if(len(matches) == 0):
         matches = soup.find_all(ingr[index][1], itemprop=ingr[index][2])
