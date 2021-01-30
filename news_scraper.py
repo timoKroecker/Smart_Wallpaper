@@ -32,10 +32,7 @@ def cook_soup(index):
         return None
     soup = BeautifulSoup(req.text, 'lxml')
     #check if the html text is just a blank header
-    if(len(str(soup)) < 10000):
-        print("COOK-SOUP-EXCEPION:\n")
-        print("\t" + ingr[index][3] + " website is blank.")
-        print("\t -Length: " + len(str(soup)))
+    if(len(str(soup)) < 5000):
         return None
     matches = soup.find_all(ingr[index][1], class_=ingr[index][2])
     if(len(matches) == 0):
@@ -46,9 +43,12 @@ def cook_soup(index):
 
 def get_scored_selection(matches, source, num_headlines):
     selection = []
-    while(len(selection) < num_headlines):
+    popped_matches = 0
+    denied_headlines = 0
+    while(len(selection) < num_headlines and len(selection) + denied_headlines < len(matches) + popped_matches):
         try:
             headline = matches.pop(0).text
+            popped_matches = popped_matches + 1
             headline = remove_spiegel_timestamp(headline)
             headline = remove_unwanted_characters(headline)
             if(len(headline) > 30 and len(headline) < 90 and not contains_headline(headline, selection, source)):
@@ -57,6 +57,8 @@ def get_scored_selection(matches, source, num_headlines):
                 entry.append(headline + source)
                 entry.append(score)
                 selection.append(entry)
+            else:
+                denied_headlines = denied_headlines + 1
         except:
             pass
     return selection
@@ -108,6 +110,10 @@ def get_index_w_best_score(selection):
 def remove_unwanted_characters(headline):
     for char in unwntd:
         headline = headline.replace(char, "")
+    while(headline[0] == " "):
+        headline = headline[1:]
+    while(headline[len(headline) - 1] == " "):
+        headline = headline[:-1]
     return headline
 
 def remove_spiegel_timestamp(headline):
@@ -146,7 +152,11 @@ def test_soup(index):
     except:
         return None
     soup = BeautifulSoup(req.text, 'lxml')
-    matches = soup.find_all(ingr[index][1], itemprop=ingr[index][2])
+    matches = soup.find_all(ingr[index][1], class_=ingr[index][2])
+    if(len(matches) == 0):
+        matches = soup.find_all(ingr[index][1], itemprop=ingr[index][2])
+    if(len(matches) == 0):
+        matches = soup.find_all(ingr[index][1], itemprop_=ingr[index][2])
     sel = get_scored_selection(matches, ingr[index][3], ingr[index][4])
     sel = get_ranked_selection(sel, True)
 

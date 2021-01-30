@@ -19,3 +19,4 @@ Kliver  	9.73
 Bierfried	0.80
 Kliver   	21.59
 Bierfried	1.90
+Bierfried	1.90

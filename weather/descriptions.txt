@@ -1,12 +1,4 @@
 Bedeckt
-Wolkig
-Sonnig
-Nebel
-Stark bewölkt
-Heiter
-Leichter Regen
-Regen
-Bedeckt
 Nebel
 Schneeschauer
 Wolkig
@@ -19,3 +11,5 @@ Sonnig
 Heiter
 Leichter Regen
 Regenschauer
+Regen
+Schauer in der Nähe
