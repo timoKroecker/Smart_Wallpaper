@@ -14,7 +14,7 @@ def scrape_calendar(added_days):
     fathersday_list = extract_content_list(calendar_dir + "/" + cc[2][0] + ".txt")
 
     todays_list, num_events_today = get_daily_reminders(added_days, calendar_list, mothersday_list, fathersday_list)
-    months_list = get_monthly_reminders(added_days, calendar_list, mothersday_list, fathersday_list)
+    months_list = get_two_weeks_reminders(added_days, calendar_list, mothersday_list, fathersday_list)
 
     return [todays_list, num_events_today, months_list]
 
@@ -78,9 +78,9 @@ def get_daily_reminders(added_days, calendar_list, mothersday_list, fathersday_l
             output.append(item[3])
     return output, num_events
 
-def get_monthly_reminders(added_days, calendar_list, mothersday_list, fathersday_list):
+def get_two_weeks_reminders(added_days, calendar_list, mothersday_list, fathersday_list):
     output= []
-    for i in range(31):
+    for i in range(14):
         date = get_date(added_days + i + 1)
         if(is_mothersday(date, mothersday_list)):
             output.append(get_dated_reminder(date, "Muttertag", added_days))
