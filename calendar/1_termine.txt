@@ -15,10 +15,13 @@ vvvvvvvvvvvvvvvvvvvvv
 15	2	2021	Rückmeldung Ende
 30	1	2021	Micha Zoom Konzert
 12	1	2021	Münchner Zoom Meeting
-1	2	2021	BA Zoom Meeting
 1	2	2021	Wohnungssuche Start
 3	2	2021	Schule-Zoom
 12	2	2021	Kemmerich "Termin"
 9	2	2021	Articam Kickoff
+10	2	2021	Articam
 9	3	2021	Zahnarzttermin
 27	2	2021	Die Rückkehr des Königs
+9	2	2021	WG Zoom Meeting (Jenny)
+11	2	2021	WG Zoom Meeting (Annalena)
+15	2	2021	BA Zoom Meeting
