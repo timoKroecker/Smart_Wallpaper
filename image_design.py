@@ -95,8 +95,8 @@ def draw_months_list(draw, months_list, num_events_today, pos_x1, pos_x2, pos_x3
     osys_y = get_osys_y()
     pos_y = pos_y0 - osys_y
     if(num_events_today != 0):
-        pos_y = pos_y + (num_events_today + 1) * 30
-        draw.rectangle((pos_x1 - 25 - extra_x, pos_y - 28, pos_x1 + 355 + extra_x, pos_y - 23), fill=colors[2])
+        pos_y = pos_y + (num_events_today + 1) * 30 - 8
+        draw.rectangle((pos_x1 - 25 - extra_x, pos_y - 20, pos_x1 + 355 + extra_x, pos_y - 15), fill=colors[2])
     for entry in months_list:
         draw.text((pos_x1, pos_y), entry[0], font=THIRD_FONT, fill=font_colors[0])
         draw.text((pos_x2, pos_y), entry[1], font=THIRD_FONT, fill=font_colors[0])
