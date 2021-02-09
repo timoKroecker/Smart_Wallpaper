@@ -4,4 +4,7 @@
 
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
-Kliver	3.69
+Kliver  	3.69
+Wäsche  	4.00
+Kliver  	0.39
+Wäsche  	2.00

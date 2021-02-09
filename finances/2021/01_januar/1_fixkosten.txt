@@ -6,3 +6,5 @@
 vvvvvvvvvvvvvvvvvvvvv
 Miete	219.00
 GEZ	17.5
+
+Fernseher Miete	-10.00

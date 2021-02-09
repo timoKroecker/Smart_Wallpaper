@@ -4,5 +4,9 @@
 
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
-Miete	219.00
-GEZ	17.5
+Miete           	219.00
+GEZ             	17.5
+
+Fernseher Miete 	-10.00
+Sofa verkauft   	-20.00
+Glühwein verkauft	-3.00
