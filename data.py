@@ -27,7 +27,7 @@ negative_keywords_1 =   [
                             "club", "gewinnt", "tore", "spiel", "liga", "championsleague", "zutaten", "reiseziele",
                             "sat1", "pro7", "rtl", "tv", "flirt", "beziehung", "porno", "sex", "dhl", "wm", "em",
                             "flat", "trainer", "bundesliga", "tipps", "deals", "tricks", "treffer", "geschenk", "geschenke",
-                            "bayern"
+                            "bayern", "rabatt"
                         ]
 
 negative_keywords_2 =   [
