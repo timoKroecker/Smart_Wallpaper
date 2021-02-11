@@ -4,7 +4,9 @@
 
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
-Kliver	20.75
-Kliver	6.02
-Kliver	5.64
-Kliver	11.58
+Kliver  	20.75
+Kliver  	6.02
+Kliver  	5.64
+Kliver  	11.58
+Kliver  	11.90
+Bierfried	1.50
