@@ -8,3 +8,5 @@ McFit	19.90
 Spotify	2.50
 
 Sarah Geschenk	2.75
+Nelly Geschenk	11.99
+Pavel Geschenk	17.09

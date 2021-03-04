@@ -5,8 +5,9 @@ tt<TAB>mm<TAB>jj<TAB>Name<ENTER>
 
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
+1	4	2022	Miete Dauerauftrag verlängern
 22	7	0	OEZ Amoklauf Jahrestag
-1	2	0	Zahnarzttermin vereinbaren
+15	1	0	Zahnarzttermin vereinbaren
 15	7	2021	Bewerbungsschluss Uni Erlangen
 10	8	2021	Bewerbungsschluss Uni Augsburg
 7	1	2021	Studis Start
@@ -24,4 +25,15 @@ vvvvvvvvvvvvvvvvvvvvv
 27	2	2021	Die Rückkehr des Königs
 9	2	2021	WG Zoom Meeting (Jenny)
 11	2	2021	WG Zoom Meeting (Annalena)
-15	2	2021	BA Zoom Meeting
+27	4	2021	Von Beckerath Termin
+22	2	2021	BA Zoom
+2	3	2021	BA Zoom
+8	3	2021	BA Zoom
+5	3	2021	Marketing Zoom
+1	3	2021	Jobusuche Erlangen Start
+28	2	2021	Moritz' Umzug
+8	3	2021	UNSer Zoom
+25	3	2021	StudiTemps Bewerbungsgespräch
+13	3	2021	Jan und Daisy besuchen
+10	12	2021	Bonsai Action
+31	3	2021	Jobsuche abschließen

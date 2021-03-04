@@ -7,3 +7,5 @@ vvvvvvvvvvvvvvvvvvvvv
 CarSharing	6.07
 DB      	10.55
 DB      	10.55
+DB      	16.40
+DB      	25.00

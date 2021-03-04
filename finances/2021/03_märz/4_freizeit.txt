@@ -1,8 +1,8 @@
 +++++++++++++++++++++
-1_fixkosten
+4_freizeit
 +++++++++++++++++++++
 
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
-Miete           	219.00
-GEZ             	17.5
+McFit	19.90
+Spotify	2.50

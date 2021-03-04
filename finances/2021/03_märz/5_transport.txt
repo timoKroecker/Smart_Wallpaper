@@ -1,8 +1,6 @@
 +++++++++++++++++++++
-1_fixkosten
+5_transport
 +++++++++++++++++++++
 
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
-Miete           	219.00
-GEZ             	17.5

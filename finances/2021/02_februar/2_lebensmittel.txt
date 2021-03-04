@@ -10,3 +10,15 @@ Kliver  	5.64
 Kliver  	11.58
 Kliver  	11.90
 Bierfried	1.50
+Dunkin Donuts	4.80
+Kliver  	10.61
+Kliver  	10.45
+Fleischtheke	1.79
+Kliver  	18.16
+Fleischtheke	10.51
+Kliver  	14.61
+Fleischtheke	4.52
+Kliver  	10.19
+Kliver  	1.76
+Bäcker  	4.90
+Bäcker  	1.30

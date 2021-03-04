@@ -4,5 +4,5 @@
 
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
-Miete	219.00
-GEZ	17.5
+Miete	325.00
+GEZ	4.4

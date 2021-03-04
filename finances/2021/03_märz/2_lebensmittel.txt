@@ -1,8 +1,8 @@
 +++++++++++++++++++++
-1_fixkosten
+2_lebensmittel
 +++++++++++++++++++++
 
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
-Miete           	219.00
-GEZ             	17.5
+Kliver	15.79
+Kliver	2.37
