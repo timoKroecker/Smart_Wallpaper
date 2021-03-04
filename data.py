@@ -4,11 +4,11 @@
 
 positive_keywords_1 =   [
                             "münchen", "gießen", "amsterdam", "ludwigsburg", "nürnberg", "erlangen",
-                            "amok", "amoklauf", "unfall", "katastrophe", "todesfälle", "tote", "impfpflicht", "putin",
+                            "amok", "amoklauf", "unfall", "katastrophe", "tote", "impfpflicht", "putin",
                             "wahl", "flüchtlinge", "flüchtlingslager", "schock", "terror", "angriff", "angst",
                             "klima", "biden", "harris", "niederlande", "trump", "präsident",
                             "militär", "krieg", "syrien", "feuer", "brand", "obama", "unfall", "trauer", "lockdown",
-                            "kliniken", "krankenhäuser", "pfleger", "proteste"
+                            "kliniken", "krankenhäuser", "pfleger", "proteste", "inzidenz"
                         ]
 
 positive_keywords_2 =   [
