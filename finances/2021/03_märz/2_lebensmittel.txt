@@ -6,3 +6,6 @@
 vvvvvvvvvvvvvvvvvvvvv
 Kliver	15.79
 Kliver	2.37
+Kliver	23.88
+Kliver	6.60
+Kliver	13.83

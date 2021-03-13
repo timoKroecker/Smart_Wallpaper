@@ -5,3 +5,4 @@
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
 Kaution	500.00
+Wäsche	2.00
