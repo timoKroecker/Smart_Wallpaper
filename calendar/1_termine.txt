@@ -39,6 +39,16 @@ vvvvvvvvvvvvvvvvvvvvv
 31	3	2021	Jobsuche abschließen
 15	3	2021	BA Zoom
 22	3	2021	BA Zoom
-29	3	2021	BA Zoom Final
-15	3	2021	Trödeleröffnung
+29	3	2021	BA Zoom
+26	3	2021	Trödeleröffnung
 6	3	2021	Marcel Spieleabend
+19	3	2021	WiIn3 Klausur
+19	3	2021	BA Zoom
+19	4	2021	Pneumologie Erlangen Termin
+31	3	2021	Schlüsselabgabe
+1	9	2021	Perso erneuern
+25	3	2021	Matratze bestellen
+5	4	2021	Ba Zoom
+12	4	2021	Ba Zoom
+19	4	2021	Ba Zoom
+26	4	2021	Ba Zoom?

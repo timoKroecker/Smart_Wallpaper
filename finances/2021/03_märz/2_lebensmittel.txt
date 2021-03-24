@@ -9,3 +9,7 @@ Kliver	2.37
 Kliver	23.88
 Kliver	6.60
 Kliver	13.83
+Kliver	13.97
+Bäcker	3.19
+Norma	2.37
+Kliver	10.65

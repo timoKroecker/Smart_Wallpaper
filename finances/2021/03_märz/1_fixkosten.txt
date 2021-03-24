@@ -6,3 +6,4 @@
 vvvvvvvvvvvvvvvvvvvvv
 Miete	219.00
 GEZ	17.5
+Kaution	500.00
