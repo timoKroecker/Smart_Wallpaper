@@ -21,6 +21,9 @@ def news_intro():
 def weather_intro():
     print("\t~weather")
 
+def incidents_intro():
+    print("\t~incidents")
+
 def visible():
     print("\t\tvisible")
 

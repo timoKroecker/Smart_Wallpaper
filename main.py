@@ -7,6 +7,7 @@ import birthday_scraper as bs
 import finance_scraper as fs
 import news_scraper as ns
 import weather_scraper as ws
+import incidents_scraper as ins
 import change_wallpaper as cw
 import output as op
 
@@ -26,6 +27,7 @@ def the_one_ring():
     img = scrape_n_draw_finances(img, DAY_OFFSET)
     img = scrape_n_draw_news(img)
     img = scrape_n_draw_weather(img)
+    img = scrape_n_draw_incidents(img)
 
     cw.save_img(img, IMG_NAME)
     cw.change_wallpaper(PATH + "/" + IMG_NAME)
@@ -100,6 +102,16 @@ def scrape_n_draw_weather(img):
     weather_list = ws.scrape_weather()
     if(weather_list != None):
         img = dsgn.draw_weather_widgets(img, weather_list)
+        op.visible()
+    else:
+        op.hidden()
+    return img
+
+def scrape_n_draw_incidents(img):
+    op.incidents_intro()
+    incidents_list = ins.scrape_incidents()
+    if(incidents_list != None):
+        img = dsgn.draw_incidents_widgets(img, incidents_list)
         op.visible()
     else:
         op.hidden()

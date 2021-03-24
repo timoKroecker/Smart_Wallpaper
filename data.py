@@ -121,3 +121,11 @@ text_file_header =      [
                             "+++++++++++++++++++++\n",
                             "\n+++++++++++++++++++++\n\n|||||||||||||||||||||\nvvvvvvvvvvvvvvvvvvvvv\n"
                         ]
+
+incidents_soup_broth =  "https://www.lgl.bayern.de/gesundheit/infektionsschutz/infektionskrankheiten_a_z/coronavirus/karte_coronavirus/#uebersicht"
+
+incidents_soup_ingredients =    [
+                                    ["Erlangen", "Erlangen Stadt"],
+                                    ["Augsburg", "Augsburg Stadt"],
+                                    ["München", "München Stadt"]
+                                ]

@@ -47,8 +47,6 @@ def draw_primer_widgets(img, added_days):
     draw.text((1400 - (len(time_string) + 1) * 2, 40 - osys_y), time_string, font=SECOND_FONT, fill=font_colors[0])
     #apps - left
     draw_box(draw, (0, 1), (3, 9), colors[1])
-    #apps - top
-    #draw_box(draw, (5, -1), (6, 3), colors[1])
     #this semester
     draw_box(draw, (3, 9), (4, 1), colors[1])
     #freespace
@@ -221,6 +219,21 @@ def draw_weather_widgets(img, weather_list):
         sunset_icon = sunset_icon.resize((39, 26), Image.ANTIALIAS)
         img.paste(sunset_icon, (1140, 35 - osys_y), sunset_icon)
         draw.text((1225 - len(weather_list[3]) * 2, 38 - osys_y), weather_list[3], font=GEORGIA_15, fill=font_colors[0])
+    return img
+
+def draw_incidents_widgets(img, incidents_list):
+    draw = ImageDraw.Draw(img)
+    draw_box(draw, (10.5, 1), (2.5, 2), colors[2], caption="Inzidenzen")
+    draw_box(draw, (10.6, 1.5), (2.3, 1.4), colors[3])
+
+    pos_x1 = 1085
+    pos_x2 = 1265
+    pos_y = 145
+    for entry in incidents_list:
+        draw.text((pos_x1, pos_y), entry[0], font= FOURTH_FONT, fill=font_colors[0])
+        draw_expence_value(draw, entry[1], pos_x2, pos_y - 5, 8, GEORGIA_14, "")
+        pos_y = pos_y + 30
+
     return img
     
 def draw_box(draw, pos, size, fill_color, caption=None):
