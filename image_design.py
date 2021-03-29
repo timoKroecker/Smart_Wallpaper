@@ -226,9 +226,10 @@ def draw_incidents_widgets(img, incidents_list):
     draw_box(draw, (10.5, 1), (2.5, 2), colors[2], caption="Inzidenzen")
     draw_box(draw, (10.6, 1.5), (2.3, 1.4), colors[3])
 
+    osys_y = get_osys_y()
     pos_x1 = 1085
     pos_x2 = 1265
-    pos_y = 143
+    pos_y = 143 - osys_y
     for entry in incidents_list:
         draw.text((pos_x1, pos_y), entry[0], font= FOURTH_FONT, fill=font_colors[0])
         draw_expence_value(draw, entry[1], pos_x2, pos_y - 5, 8, GEORGIA_14, "")
