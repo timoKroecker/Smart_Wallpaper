@@ -4,6 +4,7 @@
 
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
-Wäsche	2.00
-Wäsche	4.00
-Kliver	0.53
+Wäsche  	2.00
+Wäsche  	4.00
+Kliver  	0.53
+Matratze	189.99

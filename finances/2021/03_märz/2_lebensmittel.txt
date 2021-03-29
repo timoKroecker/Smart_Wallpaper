@@ -4,12 +4,16 @@
 
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
-Kliver	15.79
-Kliver	2.37
-Kliver	23.88
-Kliver	6.60
-Kliver	13.83
-Kliver	13.97
-Bäcker	3.19
-Norma	2.37
-Kliver	10.65
+Kliver  	15.79
+Kliver  	2.37
+Kliver  	23.88
+Kliver  	6.60
+Kliver  	13.83
+Kliver  	13.97
+Bäcker  	3.19
+Norma   	2.37
+Kliver  	10.65
+Kliver  	9.70
+Fleischtheke	3.17
+Kliver  	11.64
+Fleischtheke	7.16
