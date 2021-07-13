@@ -35,18 +35,18 @@ vvvvvvvvvvvvvvvvvvvvv
 25	7	1996	Adrian Lück
 21	6	1997	Mahmoud AbuIsaac
 10	2	1985	Mohammed Al Ahmad
-4	12	0	Anas Asad
-13	11	0	Hadhemi Sekri
 9	3	1996	Pavel Boodo
-2	5	0	Boris Kamdem Taffo
-9	4	0	Orelle
 12	12	1997	Marcel Achner
 10	9	0	Lascha Lobjanidze
 3	11	1998	Meruna Yugarajah
 15	8	1995	Minh Quan Nguyen
 2	12	0	Hercules
+7	7	1995	Anton Görbing
+4	1	1997	Swenja Zühlsdorf
+11	5	0	Wolfgang Zühlsdorf
+7	2	0	Frau Huber
 31	8	1996	Eva Martens
 24	5	0	Dave Lüttmann
-13	7	0	Philipp Breuer
 14	7	1998	Nijat Dilshat
 22	12	2000	Simon Kolb
+10	7	1997	Malu

@@ -1,9 +1,7 @@
 +++++++++++++++++++++
-5_transport
+3_haushalt
 +++++++++++++++++++++
 
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
-DB      	25.00
-Voi     	2.65
-SWA CarSharing	7.57
+DM	4.40

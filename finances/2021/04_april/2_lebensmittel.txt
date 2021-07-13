@@ -1,0 +1,24 @@
++++++++++++++++++++++
+2_lebensmittel
++++++++++++++++++++++
+
+|||||||||||||||||||||
+vvvvvvvvvvvvvvvvvvvvv
+Aldi    	32.04
+Edeka   	2.68
+Araber  	5.49
+Russe   	18.06
+Lidl    	14.67
+Edeka   	15.54
+Kaufland	18.89
+Kaufland	18.43
+McDonalds	1.49
+Lidl    	16.55
+Lidl    	7.71
+Lidl    	12.25
+Üstel   	3.98
+Üstel   	1.80
+Lidl    	12.21
+Lidl    	7.22
+Yormas  	2.60
+Kliver  	3.48

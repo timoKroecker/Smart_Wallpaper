@@ -4,6 +4,12 @@
 
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
-DB      	25.00
-Voi     	2.65
-SWA CarSharing	7.57
+VGN	46.50
+DB	22.40
+VGN	37.20
+DB	22.40
+VGN	27.90
+VGN	0.35
+DB	25.00
+VGN	18.60
+VGN	2.05

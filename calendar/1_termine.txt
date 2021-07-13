@@ -8,8 +8,12 @@ vvvvvvvvvvvvvvvvvvvvv
 1	4	2022	Miete Dauerauftrag verlängern
 22	7	0	OEZ Amoklauf Jahrestag
 15	1	0	Zahnarzttermin vereinbaren
+5 	11	2021	<Mohammed DAAD Latex Hilfe>
+5 	11	2021	</Mohammed DAAD Latex Hilfe>
 15	7	2021	Bewerbungsschluss Uni Erlangen
 10	8	2021	Bewerbungsschluss Uni Augsburg
+31	8	2021	<JU6>
+10	9	2021	</JU6>
 7	1	2021	Studis Start
 18	1	2021	Studis Ende
 2	1	2021	Rückmeldung Start
@@ -25,7 +29,6 @@ vvvvvvvvvvvvvvvvvvvvv
 27	2	2021	Die Rückkehr des Königs
 9	2	2021	WG Zoom Meeting (Jenny)
 11	2	2021	WG Zoom Meeting (Annalena)
-27	4	2021	Von Beckerath Termin
 22	2	2021	BA Zoom
 2	3	2021	BA Zoom
 8	3	2021	BA Zoom
@@ -49,9 +52,83 @@ vvvvvvvvvvvvvvvvvvvvv
 1	9	2021	Perso erneuern
 28	3	2021	Matratze bestellen
 6	4	2021	Ba Zoom
-12	4	2021	Ba Zoom
+13	4	2021	Ba Zoom
 19	4	2021	Ba Zoom
-26	4	2021	Ba Zoom?
-5	4	2021	Ummeldung
+26	4	2021	Ba Zoom
+7	4	2021	Ummeldung
 30	3	2021	Bücherquellen besorgen
 1	4	2021	Umzug
+8	4	2021	Raphy Besuch
+12	4	2021	Flaschenpost Testjob
+23	5	2021	Micha auf Signal antworten
+21	4	2021	BA Zoom
+22	4	2021	Bolt Job
+23	4	2021	Bolt Job
+28	4	2021	BA Zoom
+30	4	2021	BA Abgabe
+2	5	2021	UNSer Zoom
+3	5	2021	Steuer ID Nr beantragen
+5	5	2021	Adobe kündigen
+3	5	2021	Bolt Job
+4	5	2021	Bolt Job
+5	5	2021	Bolt Job
+6	5	2021	Bolt Job
+7	5	2021	Bolt Job
+10	5	2021	Bolt Job
+11	5	2021	Bolt Job
+12	5	2021	Bolt Job
+14	5	2021	Bolt Job
+13	5	2021	Ein Donnerstag im Mai
+17	5	2021	Bolt Job
+20	5	2021	Bei Micha heimlich nackt sein
+16	5	2021	Raphy Zoom
+18	5	2021	Bolt Job
+19	5	2021	Bolt Job
+25	5	2021	Bolt Job
+26	5	2021	Bolt Job
+11	6	2021	KOLLOQUIUM
+30	5	2021	Grillen in Spardorf
+31	5	2021	Synlab Schulung in Weiden
+3	6	2021	GEZ klären
+2	6	2021	Bolt Job
+8	8	2021	<Kroatien>
+15	8	2021	</Kroatien>
+4	6	2021	Bolt Job
+6	6	2021	Mohammed Telefonat
+1	6	2021	Synlab Job
+7	6	2021	Synlab Job
+9	6	2021	Synlab Job
+12	6	2021	Synlab Job
+13	6	2021	Synlab Job
+15	6	2021	Synlab Job
+17	6	2021	Synlab Job
+18	6	2021	Synlab Job
+19	6	2021	Synlab Job
+20	6	2021	Synlab Job
+16	6	2021	Hiwi Zoom
+14	6	2021	Booktalk
+31	7	2021	<Zu Micha>
+1	8	2021	</Zu Micha>
+26	6	2021	Nelly babysitten
+22	6	2021	Bolt Job
+23	6	2021	Synlab Job
+24	6	2021	Synlab Job
+27	6	2021	Synlab Job
+20	6	2021	uni mails beantworten
+23	6	2021	Hiwi Unterlagen verschicken
+29	6	2021	Decathlon
+28	6	2021	Synlab Job
+30	6	2021	Synlab Job
+1	7	2021	Synlab Job
+10	7	2021	Malu's Geburtstagsfeier
+4	7	2021	BA Ergebnisfrist
+8	7	2021	Zara Job
+15	7	2021	Zara Job
+16	7	2021	Zara Job
+30	7	2021	Adris Geburtstagsfeier
+1	8	2021	<Salzburg>
+2	8	2021	</Salzburg>
+6	7	2021	Solomon FaceTime
+7	8	2021	Biergarten mit der WG
+13	7	2021	Email Krieg
+14	7	2021	SWA CarSharing abmelden

@@ -1,0 +1,15 @@
++++++++++++++++++++++
+5_transport
++++++++++++++++++++++
+
+|||||||||||||||||||||
+vvvvvvvvvvvvvvvvvvvvv
+VGN             	2.05
+Scouter Registrierung	29.00
+VGN             	9.30
+Scouter CarSharing	58.16
+DB              	10.00
+ESTW             	2.4
+DB              	10.00
+ESTW             	2.4
+DB              	24.65

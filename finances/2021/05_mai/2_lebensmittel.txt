@@ -1,0 +1,29 @@
++++++++++++++++++++++
+2_lebensmittel
++++++++++++++++++++++
+
+|||||||||||||||||||||
+vvvvvvvvvvvvvvvvvvvvv
+Lidl    	3.25
+Üstel   	3.60
+Üstel   	2.70
+Üstel   	2.40
+Üstel   	2.40
+Üstel   	3.20
+Üstel   	2.70
+Kaufland	5.31
+Üstel   	4.31
+Lidl    	3.16
+Üstel   	3.00
+Lidl    	1.58
+Lidl    	13.82
+Üstel   	3.19
+Lidl    	13.27
+Üstel   	3.00
+Lidl    	8.80
+Üstel   	3.19
+Lidl    	23.15
+Edeka   	1.29
+Lidl    	6.15
+Nahkauf 	4.13
+Subway  	7.59

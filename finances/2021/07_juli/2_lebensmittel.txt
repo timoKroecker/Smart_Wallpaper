@@ -1,0 +1,16 @@
++++++++++++++++++++++
+2_lebensmittel
++++++++++++++++++++++
+
+|||||||||||||||||||||
+vvvvvvvvvvvvvvvvvvvvv
+Bäcker	3.00
+Lidl	30.80
+Lidl	15.62
+Edeka	16.22
+Kaufland	13.15
+Bäcker	6.00
+Lidl	2.38
+Edeka	6.48
+Kaufland	3.87
+Lidl	13.08
