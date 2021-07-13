@@ -62,16 +62,10 @@ def get_daily_reminders(added_days, calendar_list, mothersday_list, fathersday_l
     num_events = 0
     if(is_mothersday(date, mothersday_list)):
         num_events = num_events + 1
-        entry = []
-        entry.append("Muttertag")
-        entry.append("")
-        output.append(entry)
+        output.append("Muttertag")
     if(is_fathersday(date, fathersday_list)):
         num_events = num_events + 1
-        entry = []
-        entry.append("Vatertag")
-        entry.append("")
-        output.append(entry)
+        output.append("Vatertag")
     for item in calendar_list:
         if(int(item[0]) == date.tm_mday and int(item[1]) == date.tm_mon and (int(item[2]) == date.tm_year or int(item[2]) == 0)):
             num_events = num_events + 1
