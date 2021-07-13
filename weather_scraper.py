@@ -19,7 +19,7 @@ def scrape_weather():
 def cook_weather_soup():
     req = None
     try:
-        req = requests.get("https://weather.com/de-DE/wetter/heute/l/adaf6ffddd7b1048f3e96218716384fb87b7ce06115f583819dc1196e34b577c")
+        req = requests.get("https://weather.com/de-DE/wetter/heute/l/3a290f5daf6568a77c79271dc2aa5fb217ceab85a1ba3c54c8d16efac932edfb")
     except:
         return None, None
     soup = BeautifulSoup(req.text, "lxml")
@@ -32,7 +32,7 @@ def cook_weather_soup():
 def cook_daylight_soup():
     req = None
     try:
-        req = requests.get("https://www.timeanddate.com/sun/germany/augsburg")
+        req = requests.get("https://www.timeanddate.com/sun/germany/erlangen")
     except:
         return None, None
     soup = BeautifulSoup(req.text, "lxml")
@@ -43,15 +43,22 @@ def cook_daylight_soup():
     return [sunrise_str, sunset_str]
 
 def get_current_temperature(soup):
-    return soup.find("span", class_="CurrentConditions--tempValue--3KcTQ").text
+    span = soup.find("span", class_="CurrentConditions--tempValue--3KcTQ")
+    if(span == None):
+        span = soup.find("span", class_="CurrentConditions--tempValue--1RYJJ")
+    return span.text
 
 def get_night_temperature(soup):
     div = soup.find("div", class_="CurrentConditions--tempHiLoValue--A4RQE")
+    if(div == None):
+        div = soup.find("div", class_="CurrentConditions--tempHiLoValue--1s05u")
     return div.find_all("span")[1].text
 
 def get_current_description(soup):
-    desc = soup.find("div", class_="CurrentConditions--phraseValue--2xXSr").text
-    return remove_secondary_descriptions(desc)
+    desc = soup.find("div", class_="CurrentConditions--phraseValue--2xXSr")
+    if(desc == None):
+        desc = soup.find("div", class_="CurrentConditions--phraseValue--17s79")
+    return remove_secondary_descriptions(desc.text)
 
 def remove_secondary_descriptions(description):
     for i in range(len(description)):
