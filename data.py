@@ -126,6 +126,8 @@ incidents_soup_broth =  "https://www.lgl.bayern.de/gesundheit/infektionsschutz/i
 
 incidents_soup_ingredients =    [
                                     ["Erlangen", "Erlangen Stadt"],
+                                    ["Nürnberg", "Nürnberg Stadt"],
+                                    ["Fürth", "Fürth Stadt"],
                                     ["Augsburg", "Augsburg Stadt"],
                                     ["München", "München Stadt"]
                                 ]

@@ -223,8 +223,8 @@ def draw_weather_widgets(img, weather_list):
 
 def draw_incidents_widgets(img, incidents_list):
     draw = ImageDraw.Draw(img)
-    draw_box(draw, (10.5, 1), (2.5, 2), colors[2], caption="Inzidenzen")
-    draw_box(draw, (10.6, 1.5), (2.3, 1.4), colors[3])
+    draw_box(draw, (10.5, 1), (2.5, 3), colors[2], caption="Inzidenzen")
+    draw_box(draw, (10.6, 1.5), (2.3, 2.4), colors[3])
 
     pos_x1 = 1085
     pos_x2 = 1265
