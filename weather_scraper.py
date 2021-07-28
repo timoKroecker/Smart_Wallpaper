@@ -46,18 +46,24 @@ def get_current_temperature(soup):
     span = soup.find("span", class_="CurrentConditions--tempValue--3KcTQ")
     if(span == None):
         span = soup.find("span", class_="CurrentConditions--tempValue--1RYJJ")
+    if(span == None):
+        span = soup.find("span", class_="CurrentConditions--tempValue--3a50n")
     return span.text
 
 def get_night_temperature(soup):
     div = soup.find("div", class_="CurrentConditions--tempHiLoValue--A4RQE")
     if(div == None):
         div = soup.find("div", class_="CurrentConditions--tempHiLoValue--1s05u")
+    if(div == None):
+        div = soup.find("div", class_="CurrentConditions--tempHiLoValue--3SUHy")
     return div.find_all("span")[1].text
 
 def get_current_description(soup):
     desc = soup.find("div", class_="CurrentConditions--phraseValue--2xXSr")
     if(desc == None):
         desc = soup.find("div", class_="CurrentConditions--phraseValue--17s79")
+    if(desc == None):
+        desc = soup.find("div", class_="CurrentConditions--phraseValue--2Z18W")
     return remove_secondary_descriptions(desc.text)
 
 def remove_secondary_descriptions(description):

@@ -8,7 +8,8 @@ positive_keywords_1 =   [
                             "wahl", "flüchtlinge", "flüchtlingslager", "schock", "terror", "angriff", "angst",
                             "klima", "biden", "harris", "niederlande", "trump", "präsident",
                             "militär", "krieg", "syrien", "feuer", "brand", "obama", "unfall", "trauer", "lockdown",
-                            "kliniken", "krankenhäuser", "pfleger", "proteste", "inzidenz"
+                            "kliniken", "krankenhäuser", "pfleger", "proteste", "inzidenz",
+                            "flut", "überflutung"
                         ]
 
 positive_keywords_2 =   [
@@ -125,9 +126,9 @@ text_file_header =      [
 incidents_soup_broth =  "https://www.lgl.bayern.de/gesundheit/infektionsschutz/infektionskrankheiten_a_z/coronavirus/karte_coronavirus/#uebersicht"
 
 incidents_soup_ingredients =    [
-                                    ["Erlangen", "Erlangen Stadt"],
-                                    ["Nürnberg", "Nürnberg Stadt"],
-                                    ["Fürth", "Fürth Stadt"],
-                                    ["Augsburg", "Augsburg Stadt"],
-                                    ["München", "München Stadt"]
+                                    ["Erlangen", "ErlangenStadt"],
+                                    ["Nürnberg", "NürnbergStadt"],
+                                    ["Fürth", "FürthStadt"],
+                                    ["Augsburg", "AugsburgStadt"],
+                                    ["München", "MünchenStadt"]
                                 ]

@@ -27,9 +27,17 @@ def cook_soup():
         for j in range(len(table_rows)):
             table_columns = table_rows[j].find_all("td")
             if(len(table_columns) > 0):
-                if(table_columns[0].text == ingr[i][1]):
+                if(trim_string(table_columns[0].text) == ingr[i][1]):
                     new_entry = []
                     new_entry.append(ingr[i][0])
-                    new_entry.append(table_columns[5].text.replace(",", "."))
+                    trimmed_incidence = trim_string(table_columns[5].text)
+                    new_entry.append(trimmed_incidence)
                     incidents_list.append(new_entry)
     return incidents_list
+
+def trim_string(string):
+    string = string.replace("\r", "")
+    string = string.replace("\n", "")
+    string = string.replace(" ", "")
+    string = string.replace(",", ".")
+    return string
