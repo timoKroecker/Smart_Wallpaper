@@ -5,11 +5,14 @@ tt<TAB>mm<TAB>jj<TAB>Name<ENTER>
 
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
+2	6	2023	Neuen Reisepass beantragen
+14	1	2022	Prime kündigen
 1	4	2022	Miete Dauerauftrag verlängern
 22	7	0	OEZ Amoklauf Jahrestag
 15	1	0	Zahnarzttermin vereinbaren
+5	11	2021	SWA CarSharing abmelden
 5 	11	2021	<Mohammed DAAD Latex Hilfe>
-5 	11	2021	</Mohammed DAAD Latex Hilfe>
+7 	11	2021	</Mohammed DAAD Latex Hilfe>
 15	7	2021	Bewerbungsschluss Uni Erlangen
 10	8	2021	Bewerbungsschluss Uni Augsburg
 31	8	2021	<JU6>
@@ -91,8 +94,6 @@ vvvvvvvvvvvvvvvvvvvvv
 31	5	2021	Synlab Schulung in Weiden
 3	6	2021	GEZ klären
 2	6	2021	Bolt Job
-8	8	2021	<Kroatien>
-15	8	2021	</Kroatien>
 4	6	2021	Bolt Job
 6	6	2021	Mohammed Telefonat
 1	6	2021	Synlab Job
@@ -107,8 +108,7 @@ vvvvvvvvvvvvvvvvvvvvv
 20	6	2021	Synlab Job
 16	6	2021	Hiwi Zoom
 14	6	2021	Booktalk
-31	7	2021	<Zu Micha>
-1	8	2021	</Zu Micha>
+31	7	2021	Zu Micha
 26	6	2021	Nelly babysitten
 22	6	2021	Bolt Job
 23	6	2021	Synlab Job
@@ -126,9 +126,16 @@ vvvvvvvvvvvvvvvvvvvvv
 15	7	2021	Zara Job
 16	7	2021	Zara Job
 30	7	2021	Adris Geburtstagsfeier
-1	8	2021	<Salzburg>
-2	8	2021	</Salzburg>
+1	8	2021	Salzburg
 6	7	2021	Solomon FaceTime
 7	8	2021	Biergarten mit der WG
 13	7	2021	Email Krieg
-14	7	2021	SWA CarSharing abmelden
+25	7	2021	Grillen in Spardorf
+29	7	2021	Flink Job
+27	7	2021	Hiwi Zoom
+22	8	2021	Neuen Perso beantragen
+14	8	2021	Raphy nach Amerika
+10	8	2021	Hiwi Zoom
+17	8	2021	Hiwi Zoom
+24	8	2021	Hiwi Zoom
+31	8	2021	Hiwi Zoom

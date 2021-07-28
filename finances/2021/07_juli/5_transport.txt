@@ -5,3 +5,5 @@
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
 VGN	6.85
+DB	20.90
+VGN	2.05

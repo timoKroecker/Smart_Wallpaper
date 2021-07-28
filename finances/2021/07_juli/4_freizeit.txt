@@ -13,3 +13,7 @@ Kaufland	1.47
 Tedi	3.00
 Tedi	1.10
 Kaufland	6.77
+Westbad	2.50
+Solomon Geschenk Versandt	34.48
+Druckladen	6.00
+Edeka	1.04

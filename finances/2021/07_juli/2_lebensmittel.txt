@@ -14,3 +14,17 @@ Lidl	2.38
 Edeka	6.48
 Kaufland	3.87
 Lidl	13.08
+Lidl	11.29
+Edeka	2.08
+Lidl	3.51
+Lidl	12.76
+Edeka	2.30
+Kaufland	14.84
+Lidl	14.77
+Lidl	2.89
+Lidl	9.68
+Lidl	12.68
+Lidl	4.08
+Kaufland	12.55
+Lidl	3.02
+Lidl	15.52
