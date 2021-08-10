@@ -28,3 +28,7 @@ Lidl	4.08
 Kaufland	12.55
 Lidl	3.02
 Lidl	15.52
+Edeka	1.10
+Restaurant	27.00
+Pizzeria	13.11
+Aldi	6.95

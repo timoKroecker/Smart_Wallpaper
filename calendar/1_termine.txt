@@ -6,6 +6,9 @@ tt<TAB>mm<TAB>jj<TAB>Name<ENTER>
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
 2	6	2023	Neuen Reisepass beantragen
+1	2	2022	<Rückmeldefrist SoSe>
+8	2	2022	</Rückmeldefrist SoSe>
+1	3	2022	Bachelorzeugnis zur FAU
 14	1	2022	Prime kündigen
 1	4	2022	Miete Dauerauftrag verlängern
 22	7	0	OEZ Amoklauf Jahrestag
@@ -14,7 +17,6 @@ vvvvvvvvvvvvvvvvvvvvv
 5 	11	2021	<Mohammed DAAD Latex Hilfe>
 7 	11	2021	</Mohammed DAAD Latex Hilfe>
 15	7	2021	Bewerbungsschluss Uni Erlangen
-10	8	2021	Bewerbungsschluss Uni Augsburg
 31	8	2021	<JU6>
 10	9	2021	</JU6>
 7	1	2021	Studis Start
@@ -128,7 +130,7 @@ vvvvvvvvvvvvvvvvvvvvv
 30	7	2021	Adris Geburtstagsfeier
 1	8	2021	Salzburg
 6	7	2021	Solomon FaceTime
-7	8	2021	Biergarten mit der WG
+8	8	2021	Biergarten mit der WG
 13	7	2021	Email Krieg
 25	7	2021	Grillen in Spardorf
 29	7	2021	Flink Job
@@ -139,3 +141,20 @@ vvvvvvvvvvvvvvvvvvvvv
 17	8	2021	Hiwi Zoom
 24	8	2021	Hiwi Zoom
 31	8	2021	Hiwi Zoom
+4	8	2021	Flink Job
+5	8	2021	Flink Job
+7	8	2021	Flink Job
+9	8	2021	Arzttermin vereinbaren
+10	8	2021	Barmer klären und immatrikulieren
+13	8	2021	SWA Carsharing klären
+1	9	2021	<Holland>
+13	9	2021	</Holland>
+14	9	2021	<München>
+21	9	2021	</München>
+17	9	2021	Bachelor Zeugnis da?
+11	8	2021	2. Impfung
+11	8	2021	Flink Job
+12	8	2021	Flink Job
+13	8	2021	Flink Job
+14	8	2021	Flink Job
+23	8	2021	Schweißer kontaktieren

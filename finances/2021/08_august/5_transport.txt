@@ -1,8 +1,8 @@
 +++++++++++++++++++++
-1_fixkosten
+5_transport
 +++++++++++++++++++++
 
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
-Miete	325.00
-Semesterbeitrag	21.17
+Salzburger Bus	4.00
+Spritpauschale	5.00

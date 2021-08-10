@@ -1,8 +1,10 @@
 +++++++++++++++++++++
-1_fixkosten
+4_freizeit
 +++++++++++++++++++++
 
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
-Miete	325.00
-Semesterbeitrag	21.17
+Spotify	2.50
+Bar	10.00
+Bar	11.00
+Museum	10.00

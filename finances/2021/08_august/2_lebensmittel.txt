@@ -1,0 +1,16 @@
++++++++++++++++++++++
+2_lebensmittel
++++++++++++++++++++++
+
+|||||||||||||||||||||
+vvvvvvvvvvvvvvvvvvvvv
+Almessen	14.00
+Restaurant	13.00
+Restaurant	25.00
+Lidl	13.01
+Edeka	1.49
+Lidl	7.74
+Aldi	4.38
+Aldi	5.33
+Biergarten	16.00
+Rewe	10.75
