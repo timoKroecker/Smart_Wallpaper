@@ -17,8 +17,6 @@ vvvvvvvvvvvvvvvvvvvvv
 5 	11	2021	<Mohammed DAAD Latex Hilfe>
 7 	11	2021	</Mohammed DAAD Latex Hilfe>
 15	7	2021	Bewerbungsschluss Uni Erlangen
-31	8	2021	<JU6>
-10	9	2021	</JU6>
 7	1	2021	Studis Start
 18	1	2021	Studis Ende
 2	1	2021	Rückmeldung Start
@@ -135,7 +133,7 @@ vvvvvvvvvvvvvvvvvvvvv
 25	7	2021	Grillen in Spardorf
 29	7	2021	Flink Job
 27	7	2021	Hiwi Zoom
-22	8	2021	Neuen Perso beantragen
+23	8	2021	Neuen Perso beantragen
 14	8	2021	Raphy nach Amerika
 10	8	2021	Hiwi Zoom
 17	8	2021	Hiwi Zoom
