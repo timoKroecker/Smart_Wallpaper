@@ -52,7 +52,6 @@ vvvvvvvvvvvvvvvvvvvvv
 19	3	2021	BA Zoom
 19	4	2021	Pneumologie Erlangen Termin
 31	3	2021	Schlüsselabgabe
-1	9	2021	Perso erneuern
 28	3	2021	Matratze bestellen
 6	4	2021	Ba Zoom
 13	4	2021	Ba Zoom
@@ -133,11 +132,11 @@ vvvvvvvvvvvvvvvvvvvvv
 25	7	2021	Grillen in Spardorf
 29	7	2021	Flink Job
 27	7	2021	Hiwi Zoom
-23	8	2021	Neuen Perso beantragen
+26	8	2021	Neuen Perso beantragen
 14	8	2021	Raphy nach Amerika
 10	8	2021	Hiwi Zoom
 17	8	2021	Hiwi Zoom
-24	8	2021	Hiwi Zoom
+25	8	2021	Hiwi Zoom
 31	8	2021	Hiwi Zoom
 4	8	2021	Flink Job
 5	8	2021	Flink Job
@@ -155,4 +154,9 @@ vvvvvvvvvvvvvvvvvvvvv
 12	8	2021	Flink Job
 13	8	2021	Flink Job
 14	8	2021	Flink Job
-23	8	2021	Schweißer kontaktieren
+26	8	2021	Schweißer kontaktieren
+21	8	2021	Flink Job
+23	8	2021	Frör Job
+27	8	2021	Flink Job
+28	8	2021	Flink Job
+25	8	2021	Frör Job

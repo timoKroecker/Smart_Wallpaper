@@ -22,7 +22,6 @@ vvvvvvvvvvvvvvvvvvvvv
 16	5	1986	Larissa Schulze
 3	1	1996	Raphy Beldzik
 21	12	1995	Micha Kolb
-20	9	1999	Amelie Sengbusch
 9	2	1997	Sarah Plenio
 16	5	1992	Johannes Stabenow
 20	9	1996	Anni Schütz

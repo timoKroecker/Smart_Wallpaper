@@ -4,3 +4,7 @@
 
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
+DM	7.10
+Druckladen	2.70
+Edeka	3.99
+Post	1.60

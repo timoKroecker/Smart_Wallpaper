@@ -14,3 +14,11 @@ Aldi	4.38
 Aldi	5.33
 Biergarten	16.00
 Rewe	10.75
+Aldi	7.51
+Lidl	13.85
+Lidl	14.56
+Lidl	8.52
+Lidl	6.56
+Lidl	2.06
+Edeka	0.59
+Lidl	19.02
