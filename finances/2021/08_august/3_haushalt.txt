@@ -8,3 +8,7 @@ DM	7.10
 Druckladen	2.70
 Edeka	3.99
 Post	1.60
+Reisepasstasche	16.98
+DM	7.45
+Kaufland	0.65
+Lidl	4.55

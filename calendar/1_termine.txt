@@ -132,7 +132,6 @@ vvvvvvvvvvvvvvvvvvvvv
 25	7	2021	Grillen in Spardorf
 29	7	2021	Flink Job
 27	7	2021	Hiwi Zoom
-26	8	2021	Neuen Perso beantragen
 14	8	2021	Raphy nach Amerika
 10	8	2021	Hiwi Zoom
 17	8	2021	Hiwi Zoom
@@ -148,7 +147,7 @@ vvvvvvvvvvvvvvvvvvvvv
 13	9	2021	</Holland>
 14	9	2021	<München>
 21	9	2021	</München>
-17	9	2021	Bachelor Zeugnis da?
+1	11	2021	Bachelor Zeugnis einreichen
 11	8	2021	2. Impfung
 11	8	2021	Flink Job
 12	8	2021	Flink Job
@@ -160,3 +159,12 @@ vvvvvvvvvvvvvvvvvvvvv
 27	8	2021	Flink Job
 28	8	2021	Flink Job
 25	8	2021	Frör Job
+26	9	2021	Wahltag
+31	8	2021	Neuen Perso beantragen
+31	8	2021	Biometrisches Bild machen
+30	8	2021	Copyshop
+31	8	2021	Zum Schweißer
+30	8	2021	Grillen mit Basti
+29	8	2021	Kirche und Mohammed Telefonat
+14	9	2021	<München>
+21	9	2021	</München>

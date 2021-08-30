@@ -22,3 +22,9 @@ Lidl	6.56
 Lidl	2.06
 Edeka	0.59
 Lidl	19.02
+Döner	4.50
+Lidl	5.66
+Tahina	12.69
+Kaufland	4.14
+Lidl	5.84
+Lidl	8.93
