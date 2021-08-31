@@ -28,3 +28,4 @@ Tahina	12.69
 Kaufland	4.14
 Lidl	5.84
 Lidl	8.93
+Lidl	8.55

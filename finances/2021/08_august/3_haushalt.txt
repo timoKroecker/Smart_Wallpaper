@@ -13,3 +13,4 @@ DM	7.45
 Kaufland	0.65
 Lidl	4.55
 Copyshop	2.00
+Post	0.80
