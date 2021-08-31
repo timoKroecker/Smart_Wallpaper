@@ -11,6 +11,8 @@ vvvvvvvvvvvvvvvvvvvvv
 1	3	2022	Bachelorzeugnis zur FAU
 14	1	2022	Prime kündigen
 1	4	2022	Miete Dauerauftrag verlängern
+18	9	2022	<Urlaub mit dem Schuljungs>
+25	9	2022	</Urlaub mit den Schuljungs>
 22	7	0	OEZ Amoklauf Jahrestag
 15	1	0	Zahnarzttermin vereinbaren
 5	11	2021	SWA CarSharing abmelden
@@ -145,8 +147,6 @@ vvvvvvvvvvvvvvvvvvvvv
 13	8	2021	SWA Carsharing klären
 1	9	2021	<Holland>
 13	9	2021	</Holland>
-14	9	2021	<München>
-21	9	2021	</München>
 1	11	2021	Bachelor Zeugnis einreichen
 11	8	2021	2. Impfung
 11	8	2021	Flink Job
@@ -160,11 +160,18 @@ vvvvvvvvvvvvvvvvvvvvv
 28	8	2021	Flink Job
 25	8	2021	Frör Job
 26	9	2021	Wahltag
-31	8	2021	Neuen Perso beantragen
-31	8	2021	Biometrisches Bild machen
 30	8	2021	Copyshop
 31	8	2021	Zum Schweißer
 30	8	2021	Grillen mit Basti
 29	8	2021	Kirche und Mohammed Telefonat
 14	9	2021	<München>
 21	9	2021	</München>
+21	9	2021	<Mom zu Besuch>
+23	9	2021	</Mom zu Besuch>
+23	9	2021	<Augsburg>
+30	9	2021	</Augsburg>
+30	9	2021	<KonfiCamp?>
+3	10	2021	</KonfiCamp?>
+5	10	2021	Neuen Perso beantragen
+7	10	2021	<Minga in Erlangen>
+10	10	2021	</Minga in Erlangen>
