@@ -1,11 +1,6 @@
 +++++++++++++++++++++
-5_transport
+2_lebensmittel
 +++++++++++++++++++++
 
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
-Salzburger Bus	4.00
-Spritpauschale	5.00
-VGN	9.30
-DB	37.25
-VGN	9.30

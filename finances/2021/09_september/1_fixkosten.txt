@@ -1,11 +1,8 @@
 +++++++++++++++++++++
-5_transport
+1_fixkosten
 +++++++++++++++++++++
 
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
-Salzburger Bus	4.00
-Spritpauschale	5.00
-VGN	9.30
-DB	37.25
-VGN	9.30
+Miete	325.00
+Semesterbeitrag	21.17
