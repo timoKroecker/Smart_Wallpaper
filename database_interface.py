@@ -36,36 +36,6 @@ def create_tables():
     connection.commit()
     connection.close()
 
-def add_expenditures_from_recurring_expenditure(added_days):
-    rec_exp_matrix = select_all_recurring_expenditure()
-    for row in rec_exp_matrix:
-        title = row[0]
-        category = row[1]
-        start_month = row[2]
-        start_year = row[3]
-        amount = row[4]
-        if(check_recurring_expenditure(title, category, start_month, start_year, amount)):
-            date = get_localtime(added_days)
-            insert_into_expenditure(title, date.tm_mday, date.tm_mon, date.tm_year, category, amount)
-
-def check_recurring_expenditure(title, category, start_month, start_year, amount):
-    pass
-
-def insert_into_expenditure(title, day, month, year, category, amount):
-    pass
-
-def select_all_recurring_expenditure():
-    connection = sqlite3.connect("smart_wallpaper.db")
-    cursor = connection.cursor()
-    cursor.execute("""
-        SELECT *
-        FROM recurring_expenditure
-        """)
-    fetch = cursor.fetchall()
-    connection.commit()
-    connection.close()
-    return fetch
-
 def read_finance_directory(year_str):
     connection = sqlite3.connect("smart_wallpaper.db")
     cursor = connection.cursor()
@@ -111,86 +81,64 @@ def read_txt_file_contents(file_dir):
         index = index + 1
     return txt_str[index:len(txt_str)]
 
-def get_monthly_total_expenditure(month_str, year_str):
+#------------------------------------------------------------------------------------
+#Insert into functions
+
+def insert_into_expenditure(title, day_str, month_str, year_str, category, amount):
     connection = sqlite3.connect("smart_wallpaper.db")
     cursor = connection.cursor()
     cursor.execute("""
-        SELECT sum(amount)
-        FROM expenditure
-        WHERE year = """ + year_str + """
-        AND month = """ + month_str + """
+        INSERT INTO expenditure
+        VALUES('""" + title + """', """ + day_str + """, """ + month_str + """, 
+        """ + year_str + """, '""" + category + "', """ + amount + """)
         """)
-    fetch = cursor.fetchall()[0][0]
     connection.commit()
     connection.close()
-    if(fetch == None):
-        return "0.00"
-    return check_two_decimals(str(round(fetch, 2)))
-
-def get_monthly_category_expenditure(month_str, year_str, category):
-    connection = sqlite3.connect("smart_wallpaper.db")
-    cursor = connection.cursor()
-    cursor.execute("""
-        SELECT sum(amount)
-        FROM expenditure
-        WHERE year = """ + year_str + """
-        AND month = """ + month_str + """
-        AND category = '""" + category + """'
-        """)
-    fetch = cursor.fetchall()[0][0]
-    connection.commit()
-    connection.close()
-    if(fetch == None):
-        return "0.00"
-    return check_two_decimals(str(round(fetch, 2)))
-
-def get_yearly_total_expenditure(year_str):
-    connection = sqlite3.connect("smart_wallpaper.db")
-    cursor = connection.cursor()
-    cursor.execute("""
-        SELECT sum(amount)
-        FROM expenditure
-        WHERE year = """ + year_str + """
-        """)
-    fetch = cursor.fetchall()[0][0]
-    connection.commit()
-    connection.close()
-    if(fetch == None):
-        return "0.00"
-    return check_two_decimals(str(round(fetch, 2)))
-
-def get_yearly_category_expenditure(year_str, category):
-    connection = sqlite3.connect("smart_wallpaper.db")
-    cursor = connection.cursor()
-    cursor.execute("""
-        SELECT sum(amount)
-        FROM expenditure
-        WHERE year = """ + year_str + """
-        AND category = '""" + category + """'
-        """)
-    fetch = cursor.fetchall()[0][0]
-    connection.commit()
-    connection.close()
-    if(fetch == None):
-        return "0.00"
-    return check_two_decimals(str(round(fetch, 2)))
-
-def check_two_decimals(string):
-    if(string[-2] == "."):
-        return string + "0"
-    return string
 
 def insert_into_recuuring_expenditure(title, category, start_month, start_year, amount):
     connection = sqlite3.connect("smart_wallpaper.db")
     cursor = connection.cursor()
     cursor.execute("""
         INSERT INTO recurring_expenditure
-        VALUES('""" + title + """', '""" + category + "', """ + start_month + """, """ + start_year + """, """ + amount + """)
+        VALUES('""" + title + """', '""" + category + "', """ + start_month + """, 
+        """ + start_year + """, """ + amount + """)
         """)
     connection.commit()
     connection.close()
 
-def test_query():
+def insert_into_expenditures_from_recurring_expenditure(added_days):
+    rec_exp_matrix = select_recurring_expenditure()
+    for row in rec_exp_matrix:
+        title = row[0]
+        category = row[1]
+        start_month = row[2]
+        start_year = row[3]
+        amount = row[4]
+        if(check_recurring_expenditure(added_days, title, category, start_month, start_year, amount)):
+            date = get_localtime(added_days)
+            insert_into_expenditure(title, "1", str(date.tm_mon), str(date.tm_year), category, str(amount))
+
+#------------------------------------------------------------------------------------
+#Select functions
+
+def select_expenditure(title, category, month_str, year_str, amount):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT *
+        FROM expenditure
+        WHERE title = '""" + title + """'
+        AND year = """ + year_str + """
+        AND month = """ + month_str + """
+        AND category = '""" + category + """'
+        AND amount = """ + amount + """
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
+
+def select_recurring_expenditure():
     connection = sqlite3.connect("smart_wallpaper.db")
     cursor = connection.cursor()
     cursor.execute("""
@@ -198,10 +146,111 @@ def test_query():
         FROM recurring_expenditure
         """)
     fetch = cursor.fetchall()
-    for elem in fetch:
-        print(elem)
     connection.commit()
     connection.close()
+    return fetch
+
+def select_monthly_total_expenditure(month_str, year_str):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT sum(amount)
+        FROM expenditure
+        WHERE year = """ + year_str + """
+        AND month = """ + month_str + """
+        """)
+    fetch = cursor.fetchall()[0][0]
+    connection.commit()
+    connection.close()
+    if(fetch == None):
+        return "0.00"
+    return check_two_decimals(str(round(fetch, 2)))
+
+def select_monthly_category_expenditure(month_str, year_str, category):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT sum(amount)
+        FROM expenditure
+        WHERE year = """ + year_str + """
+        AND month = """ + month_str + """
+        AND category = '""" + category + """'
+        """)
+    fetch = cursor.fetchall()[0][0]
+    connection.commit()
+    connection.close()
+    if(fetch == None):
+        return "0.00"
+    return check_two_decimals(str(round(fetch, 2)))
+
+def select_yearly_total_expenditure(year_str):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT sum(amount)
+        FROM expenditure
+        WHERE year = """ + year_str + """
+        """)
+    fetch = cursor.fetchall()[0][0]
+    connection.commit()
+    connection.close()
+    if(fetch == None):
+        return "0.00"
+    return check_two_decimals(str(round(fetch, 2)))
+
+def select_yearly_category_expenditure(year_str, category):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT sum(amount)
+        FROM expenditure
+        WHERE year = """ + year_str + """
+        AND category = '""" + category + """'
+        """)
+    fetch = cursor.fetchall()[0][0]
+    connection.commit()
+    connection.close()
+    if(fetch == None):
+        return "0.00"
+    return check_two_decimals(str(round(fetch, 2)))
+
+#------------------------------------------------------------------------------------
+#Check functions
+
+def check_recurring_expenditure(added_days, title, category, start_month, start_year, amount):
+    month = get_localtime(added_days).tm_mon
+    year = get_localtime(added_days).tm_year
+    if(year < start_year or (year == start_year and month < start_month)):
+        return False
+    if(len(select_expenditure(title, category, str(month), str(year), str(amount))) != 0):
+        return False
+    return True
+
+def check_two_decimals(string):
+    if(string[-2] == "."):
+        return string + "0"
+    return string
+
+#------------------------------------------------------------------------------------
+#Get functions
 
 def get_localtime(added_days):
     return time.localtime(time.time() + added_days * 86400)
+
+#------------------------------------------------------------------------------------
+#Test functions
+
+def test_query():
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT rowid, *
+        FROM recurring_expenditure
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    for row in fetch:
+        print(row)
+
+test_query()
