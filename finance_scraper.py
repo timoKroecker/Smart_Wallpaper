@@ -6,6 +6,8 @@ from data import months as mnths
 from data import expence_categories as ec
 
 def scrape_finances(added_days):
+    dbi.create_finance_tables()
+    dbi.insert_into_expenditures_from_recurring_expenditure(added_days)
     return [get_months_expences(added_days), get_years_expences(added_days)]
 
 def get_months_expences(added_days):
@@ -15,12 +17,12 @@ def get_months_expences(added_days):
     expences = []
     total = ["Gesamt:"]
 
-    fetch = dbi.get_monthly_total_expenditure(month_str, year_str)
+    fetch = dbi.select_monthly_total_expenditure(month_str, year_str)
     total.append(fetch)
     for i in range(len(ec)):
         category = ec[i][1]
         category_array = [category + ":"]
-        fetch = dbi.get_monthly_category_expenditure(month_str, year_str, category)
+        fetch = dbi.select_monthly_category_expenditure(month_str, year_str, category)
         category_array.append(fetch)
         category_array.append(get_percentage(category_array[1], total[1]))
         expences.append(category_array)
@@ -31,12 +33,12 @@ def get_years_expences(added_days):
     expences = []
     total = ["Gesamt:"]
 
-    fetch = dbi.get_yearly_total_expenditure(year_str)
+    fetch = dbi.select_yearly_total_expenditure(year_str)
     total.append(fetch)
     for i in range(len(ec)):
         category = ec[i][1]
         category_array = [category + ":"]
-        fetch = dbi.get_yearly_category_expenditure(year_str, category)
+        fetch = dbi.select_yearly_category_expenditure(year_str, category)
         category_array.append(fetch)
         category_array.append(get_percentage(category_array[1], total[1]))
         expences.append(category_array)

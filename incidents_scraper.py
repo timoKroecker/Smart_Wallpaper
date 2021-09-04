@@ -1,11 +1,16 @@
 from bs4 import BeautifulSoup
 import requests
+import time
+
+import database_interface as dbi
 
 from data import incidents_soup_broth as broth
 from data import incidents_soup_ingredients as ingr
 
 def scrape_incidents():
+    dbi.create_incidents_tables()
     incidents_list = cook_soup()
+    update_database(incidents_list)
     return incidents_list
 
 def cook_soup():
@@ -41,3 +46,14 @@ def trim_string(string):
     string = string.replace(" ", "")
     string = string.replace(",", ".")
     return string
+
+def update_database(incidents_list):
+    date = get_localtime(0)
+    day_str = str(date.tm_mday)
+    month_str = str(date.tm_mon)
+    year_str = str(date.tm_year)
+    for array in incidents_list:
+        dbi.insert_into_incidents(array[0], day_str, month_str, year_str, array[1])
+
+def get_localtime(added_days):
+    return time.localtime(time.time() + added_days * 86400)
