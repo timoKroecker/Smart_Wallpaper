@@ -85,10 +85,11 @@ birthdays_categories =  [
 news_soup_ingredients = [
                             ["https://focus.de", "h4", "vr", " -Focus", 30],
                             ["https://www.spiegel.de/", "span", "hover:opacity-moderate focus:opacity-moderate", " -Spiegel", 30],
-                            ["https://www.tagesschau.de/", "span", "teaser__headline", " -Tagesschau", 30],
                             ["https://n-tv.de", "span", "teaser__headline", " -ntv", 30],
                             ["https://www.welt.de/", "div", "o-headline o-teaser__headline c-dreifaltigkeit__headline c-teaser-default__headline", " -Welt", 30]
                         ]
+
+backup = ["https://www.tagesschau.de/", "span", "teaser__headline", " -Tagesschau", 30]
 
 unwanted_characters =   ["\n", "+"]
 

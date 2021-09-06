@@ -1,9 +1,14 @@
 import sqlite3
+#from sqlite3.dbapi2 import connect
 import time
 import os
 
 from data import months as mnths
 from data import expence_categories as ec
+from data import positive_keywords_1 as pk1
+from data import positive_keywords_2 as pk2
+from data import negative_keywords_1 as nk1
+from data import negative_keywords_2 as nk2
 
 def create_finance_tables():
     connection = sqlite3.connect("smart_wallpaper.db")
@@ -17,6 +22,13 @@ def create_incidents_tables():
     connection = sqlite3.connect("smart_wallpaper.db")
     cursor = connection.cursor()
     create_incidents(cursor)
+    connection.commit()
+    connection.close()
+
+def create_news_tables():
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    create_keywords(cursor)
     connection.commit()
     connection.close()
 
@@ -58,6 +70,17 @@ def create_incidents(cursor):
                 month intgeger,
                 year integer,
                 value real
+            )
+            """)
+    except:
+        pass
+
+def create_keywords(cursor):
+    try:
+        cursor.execute("""
+            CREATE TABLE keywords(
+                word text,
+                score real
             )
             """)
     except:
@@ -108,6 +131,17 @@ def insert_into_incidents(name, day_str, month_str, year_str, value_str):
             INSERT INTO incidents
             VALUES ('""" + name + """', """ + day_str + """, """ + month_str + """, 
             """ + year_str + """, """ + value_str + """)
+            """)
+        connection.commit()
+        connection.close()
+
+def insert_into_keywords(word, score_str):
+    if(check_keywords(word)):
+        connection = sqlite3.connect("smart_wallpaper.db")
+        cursor = connection.cursor()
+        cursor.execute("""
+            INSERT INTO keywords
+            VALUES ('""" + word + """', """ + score_str + """)
             """)
         connection.commit()
         connection.close()
@@ -224,6 +258,33 @@ def select_incidents(name, day_str, month_str, year_str):
     connection.close()
     return fetch
 
+def select_keywords(word):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT  *
+        FROM keywords
+        WHERE word = '""" + word + """'
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
+
+def select_score(word):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT  score
+        FROM keywords
+        WHERE word = '""" + word + """'
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    if(len(fetch) == 0): return "0.0"
+    return fetch[0][0]
+
 #------------------------------------------------------------------------------------
 #Check functions
 
@@ -243,6 +304,9 @@ def check_two_decimals(string):
 
 def check_incidents(name, day_str, month_str, year_str):
     return len(select_incidents(name, day_str, month_str, year_str)) == 0
+
+def check_keywords(word):
+    return len(select_keywords(word)) == 0
 
 #------------------------------------------------------------------------------------
 #Get functions
@@ -299,6 +363,9 @@ def read_txt_file_contents(file_dir):
     return txt_str[index:len(txt_str)]
 
 #------------------------------------------------------------------------------------
+#In case of dropping keywords table
+
+#------------------------------------------------------------------------------------
 #Test functions
 
 def test_query():
@@ -313,5 +380,3 @@ def test_query():
     connection.close()
     for row in fetch:
         print(row)
-
-test_query()
