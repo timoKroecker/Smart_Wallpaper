@@ -169,8 +169,8 @@ vvvvvvvvvvvvvvvvvvvvv
 21	9	2021	</München>
 21	9	2021	<Mom zu Besuch>
 23	9	2021	</Mom zu Besuch>
-4	10	2021	<Augsburg>
-10	10	2021	</Augsburg>
+27	9	2021	<Augsburg>
+29	9	2021	</Augsburg>
 30	9	2021	<KonfiCamp?>
 3	10	2021	</KonfiCamp?>
 5	10	2021	Neuen Perso beantragen
