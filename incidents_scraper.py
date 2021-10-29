@@ -10,6 +10,10 @@ from data import incidents_soup_ingredients as ingr
 def scrape_incidents():
     dbi.create_incidents_tables()
     incidents_list = cook_soup()
+    if(incidents_list == None):
+        incidents_list = dbi.select_incidents_by_date(get_localtime(0))
+        if(len(incidents_list) == 0): return
+        return reformat_incidents_selection(incidents_list)
     update_database(incidents_list)
     return incidents_list
 
@@ -52,8 +56,18 @@ def update_database(incidents_list):
     day_str = str(date.tm_mday)
     month_str = str(date.tm_mon)
     year_str = str(date.tm_year)
+    if(incidents_list == None): return
     for array in incidents_list:
         dbi.insert_into_incidents(array[0], day_str, month_str, year_str, array[1])
+
+def reformat_incidents_selection(incidents_list):
+    list_reformatted = []
+    for row in incidents_list:
+        row_reformatted = []
+        row_reformatted.append(str(row[0]))
+        row_reformatted.append(str(row[1]))
+        list_reformatted.append(row_reformatted)
+    return list_reformatted
 
 def get_localtime(added_days):
     return time.localtime(time.time() + added_days * 86400)
