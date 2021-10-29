@@ -15,9 +15,8 @@ vvvvvvvvvvvvvvvvvvvvv
 25	9	2022	</Urlaub mit den Schuljungs>
 22	7	0	OEZ Amoklauf Jahrestag
 15	1	0	Zahnarzttermin vereinbaren
-5	11	2021	SWA CarSharing abmelden
 5 	11	2021	<Mohammed DAAD Latex Hilfe>
-7 	11	2021	</Mohammed DAAD Latex Hilfe>
+6 	11	2021	</Mohammed DAAD Latex Hilfe>
 15	7	2021	Bewerbungsschluss Uni Erlangen
 7	1	2021	Studis Start
 18	1	2021	Studis Ende
@@ -164,15 +163,50 @@ vvvvvvvvvvvvvvvvvvvvv
 31	8	2021	Zum Schweißer
 30	8	2021	Grillen mit Basti
 29	8	2021	Kirche und Mohammed Telefonat
-14	9	2021	Zum Schweißer
+21	9	2021	Zum Schweißer
 14	9	2021	<München>
 21	9	2021	</München>
 21	9	2021	<Mom zu Besuch>
 23	9	2021	</Mom zu Besuch>
 27	9	2021	<Augsburg>
-29	9	2021	</Augsburg>
+30	9	2021	</Augsburg>
 30	9	2021	<KonfiCamp?>
 3	10	2021	</KonfiCamp?>
 5	10	2021	Neuen Perso beantragen
 7	10	2021	<Minga in Erlangen>
 10	10	2021	</Minga in Erlangen>
+2	11	2021	Micha's BA Abgabe
+24	9	2021	Flink Job
+25	9	2021	Flink Job
+23	9	2021	Adri Paper Suche (UNIA&FAU)
+4	12	2021	Flohmarkt Bohlenplatz
+31	10	2021	Flohmarkt Rudeltplatz
+28	11	2021	Flohmarkt Rudeltplatz
+12	12	2021	Flohmarkt Rudeltplatz
+4	10	2021	Flink Job
+5	10	2021	Flink Job
+6	10	2021	Flink Job
+12	10	2021	Carmen Oper
+17	10	2021	Triantafiludis Ausstellung
+14	10	2021	Nelly babysitten
+11	10	2021	Flink Job
+13	10	2021	Flink Job
+15	10	2021	Flink Job
+16	10	2021	Flink Job
+18	10	2021	Flink Job
+19	10	2021	Flink Job
+20	10	2021	Flink Job
+21	10	2021	UNS Zoom
+29	10	2021	Hausrat & Haftpflicht klären
+25	10	2021	Flink Job
+28	10	2021	Flink Job
+29	10	2021	Flink Job
+30	10	2021	Flink Job
+4	11	2021	Flink Job
+8	11	2021	Flink Job
+11	11	2021	Flink Job
+12	11	2021	Flink Job
+13	11	2021	Flink Job
+20	11	2021	Flink Job
+15	11	2021	Nelly abholen
+7	11	2021	Jan's Geburtstagsfeier

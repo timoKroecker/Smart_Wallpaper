@@ -13,3 +13,4 @@ Leichter Regen
 Regenschauer
 Regen
 Schauer in der Nähe
+Sprühregen

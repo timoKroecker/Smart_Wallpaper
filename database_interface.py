@@ -258,6 +258,24 @@ def select_incidents(name, day_str, month_str, year_str):
     connection.close()
     return fetch
 
+def select_incidents_by_date(date):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    day_str = str(date.tm_mday)
+    month_str = str(date.tm_mon)
+    year_str = str(date.tm_year)
+    cursor.execute("""
+        SELECT name, value
+        FROM incidents
+        WHERE day = """ + day_str + """
+        AND month = """ + month_str + """
+        AND year = """ + year_str + """
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
+
 def select_keywords(word):
     connection = sqlite3.connect("smart_wallpaper.db")
     cursor = connection.cursor()
@@ -373,10 +391,12 @@ def test_query():
     cursor = connection.cursor()
     cursor.execute("""
         SELECT rowid, *
-        FROM incidents
+        FROM expenditure
         """)
     fetch = cursor.fetchall()
     connection.commit()
     connection.close()
     for row in fetch:
         print(row)
+
+#test_query()
