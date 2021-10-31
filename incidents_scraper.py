@@ -15,7 +15,8 @@ def scrape_incidents():
         if(len(incidents_list) == 0): return
         return reformat_incidents_selection(incidents_list)
     update_database(incidents_list)
-    return incidents_list
+    incidents_plot_cube = dbi.select_incidents_plot_cube()
+    return incidents_list, incidents_plot_cube
 
 def cook_soup():
     req = None

@@ -276,6 +276,30 @@ def select_incidents_by_date(date):
     connection.close()
     return fetch
 
+def select_incidents_plot_cube():
+    cube = []
+    range_of_days = 62
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    for i in range(range_of_days):
+        added_days = -(range_of_days - 1) + i
+        date = get_localtime(added_days)
+        day_str = str(date.tm_mday)
+        month_str = str(date.tm_mon)
+        year_str = str(date.tm_year)
+        cursor.execute("""
+            SELECT *
+            FROM incidents
+            WHERE day = """ + day_str + """
+            AND month = """ + month_str + """
+            AND year = """ + year_str + """
+        """)
+        fetch = cursor.fetchall()
+        cube.append(fetch)
+    connection.commit()
+    connection.close()
+    return cube
+
 def select_keywords(word):
     connection = sqlite3.connect("smart_wallpaper.db")
     cursor = connection.cursor()

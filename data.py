@@ -65,17 +65,25 @@ months =        [
                     ["12_dezember", "DEZ"]
                 ]
 
-colors =        [
+backup_colors =        [
                     (38, 38, 38),               #background
                     (10, 10, 10),               #icon_frames
                     (0, 45, 90),                #darkblue
                     (0, 68, 136)                #mediumblue
                 ]
 
+colors =        [
+                    (10, 10, 30),               #background
+                    (20, 20, 60),               #icon_frames
+                    (30, 30, 90),               #icon_frames_2
+                    (15, 15, 45)                #icon_frames_3
+                ]
+
 font_colors =   [
                     (200, 200, 200),            #white/ish
-                    (0, 45, 90),                #blue
-                    (255,215,0)                 #gold
+                    (0, 0, 0),                  #background
+                    (255,215,0),                #gold
+                    (40, 40, 120)                #icon_frames_2
                 ]
 
 birthdays_categories =  [
@@ -133,3 +141,11 @@ incidents_soup_ingredients =    [
                                     ["Augsburg", "AugsburgStadt"],
                                     ["München", "MünchenStadt"]
                                 ]
+
+incidents_colors =      [
+                            (255, 90, 90),    #red
+                            (223, 90, 255),    #purple
+                            (70, 219, 255),    #cyan
+                            (70, 255, 82),    #green
+                            (255, 238, 75)     #yellow
+                        ]

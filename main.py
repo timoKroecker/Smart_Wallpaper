@@ -1,7 +1,7 @@
 import os
 import time
 
-import image_design as dsgn
+import image_design_2 as dsgn
 import calendar_scraper as cs
 import birthday_scraper as bs
 import finance_scraper as fs
@@ -111,9 +111,9 @@ def scrape_n_draw_weather(img):
 
 def scrape_n_draw_incidents(img):
     op.incidents_intro()
-    incidents_list = ins.scrape_incidents()
+    incidents_list, incidents_plot_cube = ins.scrape_incidents()
     if(incidents_list != None):
-        img = dsgn.draw_incidents_widgets(img, incidents_list)
+        img = dsgn.draw_incidents_widgets(img, incidents_list, incidents_plot_cube)
         op.visible()
     else:
         op.hidden()
