@@ -146,7 +146,7 @@ vvvvvvvvvvvvvvvvvvvvv
 13	8	2021	SWA Carsharing klären
 1	9	2021	<Holland>
 13	9	2021	</Holland>
-1	11	2021	Bachelor Zeugnis einreichen
+3	11	2021	Bachelor Zeugnis einreichen
 11	8	2021	2. Impfung
 11	8	2021	Flink Job
 12	8	2021	Flink Job
@@ -197,7 +197,7 @@ vvvvvvvvvvvvvvvvvvvvv
 19	10	2021	Flink Job
 20	10	2021	Flink Job
 21	10	2021	UNS Zoom
-29	10	2021	Hausrat & Haftpflicht klären
+2	11	2021	Hausrat & Haftpflicht klären
 25	10	2021	Flink Job
 28	10	2021	Flink Job
 29	10	2021	Flink Job
@@ -210,3 +210,4 @@ vvvvvvvvvvvvvvvvvvvvv
 20	11	2021	Flink Job
 15	11	2021	Nelly abholen
 7	11	2021	Jan's Geburtstagsfeier
+5	11	2021	Pavel BA Abgabe
