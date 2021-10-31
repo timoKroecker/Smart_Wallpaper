@@ -58,8 +58,12 @@ def update_database(incidents_list):
     month_str = str(date.tm_mon)
     year_str = str(date.tm_year)
     if(incidents_list == None): return
-    for array in incidents_list:
-        dbi.insert_into_incidents(array[0], day_str, month_str, year_str, array[1])
+    if(len(dbi.select_incidents_by_date(date)) == 0):
+        for array in incidents_list:
+            dbi.insert_into_incidents(array[0], day_str, month_str, year_str, array[1])
+    else:
+        for array in incidents_list:
+            dbi.update_incidents(array[0], day_str, month_str, year_str, array[1])
 
 def reformat_incidents_selection(incidents_list):
     list_reformatted = []

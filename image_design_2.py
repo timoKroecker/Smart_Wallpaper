@@ -216,10 +216,10 @@ def draw_incidents_widgets(img, incidents_list, incidents_plot_cube):
 
     pos_x1 = 995
     pos_x2 = 1155
-    pos_y = 498
+    pos_y = 502
     iterator = 0
     for entry in incidents_list:
-        draw.text((pos_x1, pos_y), entry[0], font= FOURTH_FONT, fill=incidents_colors[iterator])
+        draw.text((pos_x1, pos_y), entry[0], font= FOURTH_FONT, fill=incidents_colors[iterator][1])
         draw_expence_value(draw, entry[1], pos_x2, pos_y - 5, 8, GEORGIA_14, "")
         pos_y = pos_y + 40
         iterator = iterator + 1
@@ -253,8 +253,7 @@ def plot_incidences(draw, pos, size, incidents_plot_cube, max_y):
                 bottom_bound = bottom - incidents_height + radius
                 top_bound = bottom_bound - radius * 2
                 right_bound = left_bound + radius * 2
-                plot_partial_line(draw, [left_bound, top_bound, right_bound, bottom_bound], prev_bounds, incidents_colors[len(matrix) - city_iterator - 1])
-                #draw.ellipse((left_bound, top_bound, right_bound, bottom_bound), fill=incidents_colors[len(matrix) - city_iterator - 1])
+                plot_partial_line(draw, [left_bound, top_bound, right_bound, bottom_bound], prev_bounds, incidents_colors[len(matrix) - city_iterator - 1][0])
                 prev_bounds = [left_bound, top_bound, right_bound, bottom_bound]
             day_iterator = day_iterator + 1
 

@@ -357,6 +357,23 @@ def get_localtime(added_days):
     return time.localtime(time.time() + added_days * 86400)
 
 #------------------------------------------------------------------------------------
+#Update functions
+
+def update_incidents(name, day_str, month_str, year_str, value_str):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        UPDATE incidents
+        SET value = """ + value_str + """
+        WHERE name = '""" + name + """'
+        AND day = """ + day_str + """
+        AND month = """ + month_str + """
+        AND year = """ + year_str + """
+        """)
+    connection.commit()
+    connection.close()
+
+#------------------------------------------------------------------------------------
 #In case of dropping finance tables
 
 def read_finance_directory(year_str):
@@ -415,7 +432,7 @@ def test_query():
     cursor = connection.cursor()
     cursor.execute("""
         SELECT rowid, *
-        FROM expenditure
+        FROM incidents
         """)
     fetch = cursor.fetchall()
     connection.commit()
