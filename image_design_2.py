@@ -241,8 +241,8 @@ def plot_incidences(draw, pos, size, incidents_plot_cube, max_y):
     height_partition = height / (max_y - 1)
     width_partition = width / (len(incidents_plot_cube) - 1)
     radius = 1
-    prev_bounds = None
     for city_iterator in range(5):
+        prev_bounds = None
         day_iterator = 0
         for matrix in incidents_plot_cube:
             if(len(matrix) == 0):
@@ -260,7 +260,7 @@ def plot_incidences(draw, pos, size, incidents_plot_cube, max_y):
 def plot_partial_line(draw, current_bounds, prev_bounds, color):
     if(prev_bounds == None):
         return
-    steps = 20
+    steps = 100
     left_step = (current_bounds[0] - prev_bounds[0]) / steps
     top_step = (current_bounds[1] - prev_bounds[1]) / steps
     right_step = (current_bounds[2] - prev_bounds[2]) / steps
