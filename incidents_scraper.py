@@ -10,12 +10,12 @@ from data import incidents_soup_ingredients as ingr
 def scrape_incidents():
     dbi.create_incidents_tables()
     incidents_list = cook_soup()
+    incidents_plot_cube = dbi.select_incidents_plot_cube()
     if(incidents_list == None):
         incidents_list = dbi.select_incidents_by_date(get_localtime(0))
-        if(len(incidents_list) == 0): return
-        return reformat_incidents_selection(incidents_list)
+        if(len(incidents_list) == 0): return None, None
+        return reformat_incidents_selection(incidents_list), incidents_plot_cube
     update_database(incidents_list)
-    incidents_plot_cube = dbi.select_incidents_plot_cube()
     return incidents_list, incidents_plot_cube
 
 def cook_soup():
