@@ -432,7 +432,7 @@ def test_query():
     cursor = connection.cursor()
     cursor.execute("""
         SELECT rowid, *
-        FROM incidents
+        FROM expenditure
         """)
     fetch = cursor.fetchall()
     connection.commit()
