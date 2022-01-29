@@ -1,14 +1,11 @@
 import sqlite3
-#from sqlite3.dbapi2 import connect
 import time
 import os
 
+from numpy import insert
+
 from data import months as mnths
 from data import expence_categories as ec
-from data import positive_keywords_1 as pk1
-from data import positive_keywords_2 as pk2
-from data import negative_keywords_1 as nk1
-from data import negative_keywords_2 as nk2
 
 def create_finance_tables():
     connection = sqlite3.connect("smart_wallpaper.db")
@@ -55,6 +52,8 @@ def create_recurring_expenditure(cursor):
                 category text,
                 start_month intgeger,
                 start_year integer,
+                end_month integer,
+                end_year integer,
                 amount real
             )
             """)
@@ -100,13 +99,13 @@ def insert_into_expenditure(name, day_str, month_str, year_str, category, amount
     connection.commit()
     connection.close()
 
-def insert_into_recuuring_expenditure(name, category, start_month, start_year, amount_str):
+def insert_into_recurring_expenditure(name, category, start_month, start_year, end_month, end_year, amount_str):
     connection = sqlite3.connect("smart_wallpaper.db")
     cursor = connection.cursor()
     cursor.execute("""
         INSERT INTO recurring_expenditure
         VALUES('""" + name + """', '""" + category + "', """ + start_month + """, 
-        """ + start_year + """, """ + amount_str + """)
+        """ + start_year + """, """ + end_month + """, """ + end_year + """, """ + amount_str + """)
         """)
     connection.commit()
     connection.close()
@@ -118,8 +117,10 @@ def insert_into_expenditures_from_recurring_expenditure(added_days):
         category = row[1]
         start_month = row[2]
         start_year = row[3]
-        amount = row[4]
-        if(check_recurring_expenditure(added_days, name, category, start_month, start_year, amount)):
+        end_month = row[4]
+        end_year = row[5]
+        amount = row[6]
+        if(check_recurring_expenditure(added_days, name, category, start_month, start_year, end_month, end_year, amount)):
             date = get_localtime(added_days)
             insert_into_expenditure(name, "1", str(date.tm_mon), str(date.tm_year), category, str(amount))
 
@@ -276,9 +277,8 @@ def select_incidents_by_date(date):
     connection.close()
     return fetch
 
-def select_incidents_plot_cube():
+def select_incidents_plot_cube(range_of_days):
     cube = []
-    range_of_days = 62
     connection = sqlite3.connect("smart_wallpaper.db")
     cursor = connection.cursor()
     for i in range(range_of_days):
@@ -330,10 +330,11 @@ def select_score(word):
 #------------------------------------------------------------------------------------
 #Check functions
 
-def check_recurring_expenditure(added_days, name, category, start_month, start_year, amount):
+def check_recurring_expenditure(added_days, name, category, start_month, start_year, end_month, end_year, amount):
     month = get_localtime(added_days).tm_mon
     year = get_localtime(added_days).tm_year
-    if(year < start_year or (year == start_year and month < start_month)):
+    if( year < start_year or (year == start_year and month < start_month) or
+        year > end_year or (year == end_year and month > end_month)):
         return False
     if(len(select_expenditure(name, category, str(month), str(year), str(amount))) != 0):
         return False
@@ -420,9 +421,6 @@ def read_txt_file_contents(file_dir):
             num_caption_lines = num_caption_lines - 1
         index = index + 1
     return txt_str[index:len(txt_str)]
-
-#------------------------------------------------------------------------------------
-#In case of dropping keywords table
 
 #------------------------------------------------------------------------------------
 #Test functions

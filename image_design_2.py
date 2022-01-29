@@ -45,8 +45,6 @@ def draw_primer_widgets(img, added_days):
     draw.text((1240 - (len(time_string) + 1) * 2, 870), "Letzter reload: " + time_string, font=SECOND_FONT, fill=font_colors[0])
     #main folders
     draw_box(draw, (5, 8), (6, 1), colors[1]) 
-    #trash
-    draw_box(draw, (15, 8), (1, 1), colors[1]) 
 
 def draw_calendar_widgets(img, todays_list, num_events_today, months_list):
     draw = ImageDraw.Draw(img)
@@ -210,9 +208,11 @@ def draw_weather_widgets(img, weather_list):
 
 def draw_incidents_widgets(img, incidents_list, incidents_plot_cube):
     draw = ImageDraw.Draw(img)
+    max_y = get_max_y_from_incidents(incidents_plot_cube)
+    rows = int(max_y // 200)
     draw_content_box(draw, (4, 4.5), (8, 3.5), "Inzidenzen")
-    draw_plot_box(draw, (4.2, 5.125), (5.5, 2.650), 5, colors[3], colors[2])
-    plot_incidences(draw, (4.2, 5.125), (5.5, 2.650), incidents_plot_cube, 250)
+    draw_plot_box(draw, (4.2, 5.125), (5.5, 2.650), rows, colors[3], colors[2])
+    plot_incidences(draw, (4.2, 5.125), (5.5, 2.650), incidents_plot_cube, max_y)
 
     pos_x1 = 995
     pos_x2 = 1155
@@ -225,6 +225,14 @@ def draw_incidents_widgets(img, incidents_list, incidents_plot_cube):
         iterator = iterator + 1
     
     return img
+
+def get_max_y_from_incidents(incidents_plot_cube):
+    max_value = 0.0
+    for matrix in incidents_plot_cube:
+        for row in matrix:
+            if(max_value < row[4]):
+                max_value = row[4]
+    return (max_value // 200 + 1) * 200
 
 def draw_content_box(draw, pos, size, caption = None):
     draw_box(draw, pos, size, colors[1], caption=caption)
@@ -242,24 +250,28 @@ def plot_incidences(draw, pos, size, incidents_plot_cube, max_y):
     width_partition = width / (len(incidents_plot_cube) - 1)
     radius = 1
     for city_iterator in range(5):
+        is_successor = True
         prev_bounds = None
         day_iterator = 0
         for matrix in incidents_plot_cube:
             if(len(matrix) == 0):
-                prev_bounds = None
+                is_successor = False
             else:
                 incidents_height = int(matrix[len(matrix) - city_iterator - 1][4]) * height_partition - 2
                 left_bound = left + day_iterator * width_partition - radius
                 bottom_bound = bottom - incidents_height + radius
                 top_bound = bottom_bound - radius * 2
                 right_bound = left_bound + radius * 2
-                plot_partial_line(draw, [left_bound, top_bound, right_bound, bottom_bound], prev_bounds, incidents_colors[len(matrix) - city_iterator - 1][0])
+                plot_partial_line(draw, [left_bound, top_bound, right_bound, bottom_bound], prev_bounds, incidents_colors[len(matrix) - city_iterator - 1][0], is_successor)
                 prev_bounds = [left_bound, top_bound, right_bound, bottom_bound]
+                is_successor = True
             day_iterator = day_iterator + 1
 
-def plot_partial_line(draw, current_bounds, prev_bounds, color):
+def plot_partial_line(draw, current_bounds, prev_bounds, color, is_successor):
     if(prev_bounds == None):
         return
+    if(not is_successor):
+        color = (150, 150, 150)
     steps = 100
     left_step = (current_bounds[0] - prev_bounds[0]) / steps
     top_step = (current_bounds[1] - prev_bounds[1]) / steps

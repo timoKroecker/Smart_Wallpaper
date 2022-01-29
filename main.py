@@ -1,5 +1,4 @@
 import os
-import time
 
 import image_design_2 as dsgn
 import calendar_scraper as cs
@@ -10,8 +9,6 @@ import weather_scraper as ws
 import incidents_scraper as ins
 import change_wallpaper as cw
 import output as op
-
-import database_interface as dbi
 
 DAY_OFFSET = 0
 PATH = os.path.dirname(os.path.realpath(__file__))
