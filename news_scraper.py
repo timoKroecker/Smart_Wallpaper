@@ -2,10 +2,8 @@ from bs4 import BeautifulSoup
 import requests
 import re
 
-from data import positive_keywords_1 as pk1
-from data import positive_keywords_2 as pk2
-from data import negative_keywords_1 as nk1
-from data import negative_keywords_2 as nk2
+import database_interface as dbi
+
 from data import news_soup_ingredients as ingr
 from data import unwanted_characters as unwntd
 
@@ -64,24 +62,11 @@ def get_scored_selection(matches, source, num_headlines):
     return selection
 
 def calculate_headline_score(headline):
-    score = 0
+    score = 0.0
     splitted_headline = re.findall(r"[\w']+", headline)
     for word in splitted_headline:
-        if(contains_word(word, pk1)):
-            score = score + 3
-        elif(contains_word(word, pk2)):
-            score = score + 1
-        elif(contains_word(word, nk1)):
-            score = score - 3
-        elif(contains_word(word, nk2)):
-            score = score - 1
+        score = score + float(dbi.select_score(word))
     return score
-
-def contains_word(elem, array):
-    for entry in array:
-        if(elem == entry):
-            return True
-    return False
 
 def contains_headline(elem, array, source):
     for entry in array:

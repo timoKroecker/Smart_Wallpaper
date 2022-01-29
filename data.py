@@ -1,45 +1,3 @@
-#----------------------------------------------------------------
-#                          VARIABLE DATA
-#----------------------------------------------------------------
-
-positive_keywords_1 =   [
-                            "münchen", "gießen", "amsterdam", "ludwigsburg", "nürnberg", "erlangen",
-                            "amok", "amoklauf", "unfall", "katastrophe", "tote", "impfpflicht", "putin",
-                            "wahl", "flüchtlinge", "flüchtlingslager", "schock", "terror", "angriff", "angst",
-                            "klima", "biden", "harris", "niederlande", "trump", "präsident",
-                            "militär", "krieg", "syrien", "feuer", "brand", "obama", "unfall", "trauer", "lockdown",
-                            "kliniken", "krankenhäuser", "pfleger", "proteste", "inzidenz",
-                            "flut", "überflutung"
-                        ]
-
-positive_keywords_2 =   [
-                            "streik", "rekord", "pflicht", "studium", "eu", "europa", "nato", "un", "truppen",
-                            "impfstoff", "impfung", "impfen", "schwer", "verletzt", "verletzte",
-                            "rassismus", "rasse", "demonstration", "demonstrationen", "gesetz", "corona",
-                            "empörung", "elon", "musk", "geld", "tesla", "spacex", "hyperloop", "söder",
-                            "polizei", "polizist", "gesundheit", "verwirrung", "usa", "us", "krise",
-                            "kohle", "antisemitismus", "extremismus", "b17", "a8", "merkel", "spahn", "virus"
-                        ]
-
-negative_keywords_1 =   [
-                            "chance", "gewinnen", "angebot", "preis", "preise", "billig", "shopping", "shoppen"
-                            "günstig", "günstige", "günstiger", "dreamdate", "bachelor", "bachelorette", "gutschein",
-                            "gutscheine", "schnäppchen", "schnäppchenjagd", "sparen", "bvb", "fc", "fußball",
-                            "club", "gewinnt", "tore", "spiel", "liga", "championsleague", "zutaten", "reiseziele",
-                            "sat1", "pro7", "rtl", "tv", "flirt", "beziehung", "porno", "sex", "dhl", "wm", "em",
-                            "flat", "trainer", "bundesliga", "tipps", "deals", "tricks", "treffer", "geschenk", "geschenke",
-                            "bayern", "rabatt"
-                        ]
-
-negative_keywords_2 =   [
-                            "verliert", "empfehlung", "empfehlungen", "test", "finden", "live", "lanz",
-                            "aktie", "aktien", "wetter", "euro", "fit", "führt"
-                        ]
-
-#----------------------------------------------------------------
-#                            FIXED DATA
-#----------------------------------------------------------------
-
 weekdays =      [
                     ["MO", "Montag"],
                     ["DI", "Dienstag"],
@@ -65,17 +23,25 @@ months =        [
                     ["12_dezember", "DEZ"]
                 ]
 
-colors =        [
+backup_colors =        [
                     (38, 38, 38),               #background
                     (10, 10, 10),               #icon_frames
                     (0, 45, 90),                #darkblue
                     (0, 68, 136)                #mediumblue
                 ]
 
+colors =        [
+                    (10, 10, 30),               #background
+                    (20, 20, 60),               #icon_frames
+                    (30, 30, 90),               #icon_frames_2
+                    (15, 15, 45)                #icon_frames_3
+                ]
+
 font_colors =   [
                     (200, 200, 200),            #white/ish
-                    (0, 45, 90),                #blue
-                    (255,215,0)                 #gold
+                    (0, 0, 0),                  #background
+                    (255,215,0),                #gold
+                    (40, 40, 120)                #icon_frames_2
                 ]
 
 birthdays_categories =  [
@@ -85,10 +51,11 @@ birthdays_categories =  [
 news_soup_ingredients = [
                             ["https://focus.de", "h4", "vr", " -Focus", 30],
                             ["https://www.spiegel.de/", "span", "hover:opacity-moderate focus:opacity-moderate", " -Spiegel", 30],
-                            ["https://www.tagesschau.de/", "span", "teaser__headline", " -Tagesschau", 30],
                             ["https://n-tv.de", "span", "teaser__headline", " -ntv", 30],
                             ["https://www.welt.de/", "div", "o-headline o-teaser__headline c-dreifaltigkeit__headline c-teaser-default__headline", " -Welt", 30]
                         ]
+
+backup = ["https://www.tagesschau.de/", "span", "teaser__headline", " -Tagesschau", 30]
 
 unwanted_characters =   ["\n", "+"]
 
@@ -132,3 +99,11 @@ incidents_soup_ingredients =    [
                                     ["Augsburg", "AugsburgStadt"],
                                     ["München", "MünchenStadt"]
                                 ]
+
+incidents_colors =      [
+                            [(170, 60, 60), (255, 90, 90)],      #red
+                            [(149, 60, 170), (224, 90, 255)],    #purple
+                            [(47, 146, 170), (71, 219, 255)],    #cyan
+                            [(47, 170, 52), (71, 255, 78)],      #green
+                            [(170, 159, 50), (255, 239, 75)]     #yellow
+                        ]

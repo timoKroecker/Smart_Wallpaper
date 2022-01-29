@@ -4,7 +4,7 @@
 
 |||||||||||||||||||||
 vvvvvvvvvvvvvvvvvvvvv
-McDonalds?	20.74
+McDonalds	20.74
 Fleischtheke	3.98
 Kliver  	11.60
 Fleischtheke	3.45
