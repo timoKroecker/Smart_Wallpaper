@@ -7,6 +7,15 @@ from numpy import insert
 from data import months as mnths
 from data import expence_categories as ec
 
+def create_calendar_tables():
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    create_calendar(cursor)
+    create_mothersdays(cursor)
+    create_fathersdays(cursor)
+    connection.commit()
+    connection.close()
+
 def create_finance_tables():
     connection = sqlite3.connect("smart_wallpaper.db")
     cursor = connection.cursor()
@@ -28,6 +37,43 @@ def create_news_tables():
     create_keywords(cursor)
     connection.commit()
     connection.close()
+
+def create_calendar(cursor):
+    try:
+        cursor.execute("""
+            CREATE TABLE calendar(
+                name text,
+                day integer,
+                month integer,
+                year integer
+            )
+            """)
+    except:
+        pass
+
+def create_mothersdays(cursor):
+    try:
+        cursor.execute("""
+            CREATE TABLE mothersdays(
+                day integer,
+                month integer,
+                year integer
+            )
+            """)
+    except:
+        pass
+
+def create_fathersdays(cursor):
+    try:
+        cursor.execute("""
+            CREATE TABLE fathersdays(
+                day integer,
+                month integer,
+                year integer
+            )
+            """)
+    except:
+        pass
 
 def create_expenditure(cursor):
     try:
@@ -87,6 +133,45 @@ def create_keywords(cursor):
 
 #------------------------------------------------------------------------------------
 #Insert into functions
+
+def insert_into_calendar(name, day_str, month_str, year_str):
+    if(check_calendar(name, day_str, month_str, year_str)):
+        connection = sqlite3.connect("smart_wallpaper.db")
+        cursor = connection.cursor()
+        cursor.execute("""
+            INSERT INTO calendar
+            VALUES('""" + name + """', """ + day_str + """, """ + month_str + """, 
+            """ + year_str + """)""")
+        connection.commit()
+        connection.close()
+        return True
+    return False
+
+def insert_into_mothersdays(day_str, month_str, year_str):
+    if(check_mothersdays(day_str, month_str, year_str)):
+        connection = sqlite3.connect("smart_wallpaper.db")
+        cursor = connection.cursor()
+        cursor.execute("""
+            INSERT INTO mothersdays
+            VALUES(""" + day_str + """, """ + month_str + """, 
+            """ + year_str + """)""")
+        connection.commit()
+        connection.close()
+        return True
+    return False
+
+def insert_into_fathersdays(day_str, month_str, year_str):
+    if(check_fathersdays(day_str, month_str, year_str)):
+        connection = sqlite3.connect("smart_wallpaper.db")
+        cursor = connection.cursor()
+        cursor.execute("""
+            INSERT INTO fathersdays
+            VALUES(""" + day_str + """, """ + month_str + """, 
+            """ + year_str + """)""")
+        connection.commit()
+        connection.close()
+        return True
+    return False
 
 def insert_into_expenditure(name, day_str, month_str, year_str, category, amount_str):
     connection = sqlite3.connect("smart_wallpaper.db")
@@ -157,6 +242,68 @@ def insert_into_keywords(word, score_str):
 
 #------------------------------------------------------------------------------------
 #Select functions
+
+def select_calendar(name, day_str, month_str, year_str):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT *
+        FROM calendar
+        WHERE name = '""" + name + """'
+        AND year = """ + year_str + """
+        AND month = """ + month_str + """
+        AND day = """ + day_str + """
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
+
+def select_calendar_by_date(day_str, month_str, year_str):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT *
+        FROM calendar
+        WHERE day = """ + day_str + """
+        AND month = """ + month_str + """
+        AND (year = """ + year_str + """
+        OR year = 0)
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
+
+def select_mothersdays(day_str, month_str, year_str):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT *
+        FROM mothersdays
+        WHERE year = """ + year_str + """
+        AND month = """ + month_str + """
+        AND day = """ + day_str + """
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
+
+def select_fathersdays(day_str, month_str, year_str):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT *
+        FROM fathersdays
+        WHERE year = """ + year_str + """
+        AND month = """ + month_str + """
+        AND day = """ + day_str + """
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
 
 def select_expenditure(name, category, month_str, year_str, amount):
     connection = sqlite3.connect("smart_wallpaper.db")
@@ -363,6 +510,15 @@ def select_by_rowid(rowid, tablename):
 #------------------------------------------------------------------------------------
 #Check functions
 
+def check_calendar(name, day_str, month_str, year_str):
+    return len(select_calendar(name, day_str, month_str, year_str)) == 0
+
+def check_mothersdays(day_str, month_str, year_str):
+    return len(select_mothersdays(day_str, month_str, year_str)) == 0
+
+def check_fathersdays(day_str, month_str, year_str):
+    return len(select_fathersdays(day_str, month_str, year_str)) == 0
+
 def check_recurring_expenditure(added_days, name, category, start_month, start_year, end_month, end_year, amount):
     month = get_localtime(added_days).tm_mon
     year = get_localtime(added_days).tm_year
@@ -463,7 +619,7 @@ def read_txt_file_contents(file_dir):
         return None
     txt_file = open(file_dir, "r")
     txt_str = txt_file.read()
-    num_caption_lines = 6
+    num_caption_lines = 7
     index = 0
     while(num_caption_lines > 0):
         if(txt_str[index] == "\n"):
@@ -479,12 +635,7 @@ def test_function():
     cursor = connection.cursor()
     cursor.execute("""
         SELECT rowid, *
-        FROM expenditure
-        WHERE NOT category = 'Fixkosten'
-        AND NOT category = 'Lebensmittel'
-        AND NOT category = 'Haushalt'
-        AND NOT category = 'Freizeit'
-        AND NOT category = 'Transport'
+        FROM fathersdays
         """)
     fetch = cursor.fetchall()
     connection.commit()
@@ -493,3 +644,7 @@ def test_function():
         print(row)
 
 #test_function()
+#calendar_list = extract_content_list(os.path.dirname(os.path.abspath(__file__)) + "/calendar/3_vatertage.txt")
+#print(calendar_list)
+#for row in calendar_list:
+#    insert_into_fathersdays(row[0], row[1], row[2])

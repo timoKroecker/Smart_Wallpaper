@@ -60,6 +60,16 @@ def home(pre = 1, post = 1):
     print("~home")
     tab(post)
 
+def mothersdays_intro(pre = 1, post = 0):
+    tab(pre)
+    print("~mothersdays")
+    tab(post)
+
+def fathersdays_intro(pre = 1, post = 0):
+    tab(pre)
+    print("~fathersdays")
+    tab(post)
+
 def recurring_expenditure_intro(pre = 1, post = 0):
     tab(pre)
     print("~recurring expenditure")
