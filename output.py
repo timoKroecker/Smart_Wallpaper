@@ -16,7 +16,7 @@ def birthday_intro(pre = 1, post = 0):
     print("~birthday")
     tab(post)
 
-def finance_intro(pre = 1, post = 0):
+def expenditure_intro(pre = 1, post = 0):
     tab(pre)
     print("~expenditure")
     tab(post)
@@ -63,6 +63,11 @@ def home(pre = 1, post = 1):
 def recurring_expenditure_intro(pre = 1, post = 0):
     tab(pre)
     print("~recurring expenditure")
+    tab(post)
+
+def keywords_intro(pre = 1, post = 0):
+    tab(pre)
+    print("~keywords")
     tab(post)
 
 def table(table, tabs = 0):

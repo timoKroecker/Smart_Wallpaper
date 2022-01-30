@@ -98,6 +98,7 @@ def insert_into_expenditure(name, day_str, month_str, year_str, category, amount
         """)
     connection.commit()
     connection.close()
+    return True
 
 def insert_into_recurring_expenditure(name, category, start_month, start_year, end_month, end_year, amount_str):
     connection = sqlite3.connect("smart_wallpaper.db")
@@ -109,6 +110,7 @@ def insert_into_recurring_expenditure(name, category, start_month, start_year, e
         """)
     connection.commit()
     connection.close()
+    return True
 
 def insert_into_expenditures_from_recurring_expenditure(added_days):
     rec_exp_matrix = select_recurring_expenditure()
@@ -123,6 +125,8 @@ def insert_into_expenditures_from_recurring_expenditure(added_days):
         if(check_recurring_expenditure(added_days, name, category, start_month, start_year, end_month, end_year, amount)):
             date = get_localtime(added_days)
             insert_into_expenditure(name, "1", str(date.tm_mon), str(date.tm_year), category, str(amount))
+            return True
+    return False
 
 def insert_into_incidents(name, day_str, month_str, year_str, value_str):
     if(check_incidents(name, day_str, month_str, year_str)):
@@ -135,6 +139,8 @@ def insert_into_incidents(name, day_str, month_str, year_str, value_str):
             """)
         connection.commit()
         connection.close()
+        return True
+    return False
 
 def insert_into_keywords(word, score_str):
     if(check_keywords(word)):
@@ -146,6 +152,8 @@ def insert_into_keywords(word, score_str):
             """)
         connection.commit()
         connection.close()
+        return True
+    return False
 
 #------------------------------------------------------------------------------------
 #Select functions
