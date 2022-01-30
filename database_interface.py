@@ -327,6 +327,31 @@ def select_score(word):
     if(len(fetch) == 0): return "0.0"
     return fetch[0][0]
 
+def select_table(table):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT rowid, *
+        FROM """ + table + """
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
+
+def select_by_rowid(rowid, tablename):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT rowid, *
+        FROM """ + tablename + """
+        WHERE rowid = """ + rowid + """
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
+
 #------------------------------------------------------------------------------------
 #Check functions
 
@@ -373,6 +398,22 @@ def update_incidents(name, day_str, month_str, year_str, value_str):
         """)
     connection.commit()
     connection.close()
+
+#------------------------------------------------------------------------------------
+#Delete functions functions
+
+def delete_by_rowid(rowid, tablename):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        DELETE
+        FROM """ + tablename + """
+        WHERE rowid = """ + rowid + """
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
 
 #------------------------------------------------------------------------------------
 #In case of dropping finance tables
@@ -425,12 +466,17 @@ def read_txt_file_contents(file_dir):
 #------------------------------------------------------------------------------------
 #Test functions
 
-def test_query():
+def test_function():
     connection = sqlite3.connect("smart_wallpaper.db")
     cursor = connection.cursor()
     cursor.execute("""
         SELECT rowid, *
         FROM expenditure
+        WHERE NOT category = 'Fixkosten'
+        AND NOT category = 'Lebensmittel'
+        AND NOT category = 'Haushalt'
+        AND NOT category = 'Freizeit'
+        AND NOT category = 'Transport'
         """)
     fetch = cursor.fetchall()
     connection.commit()
@@ -438,4 +484,4 @@ def test_query():
     for row in fetch:
         print(row)
 
-#test_query()
+#test_function()
