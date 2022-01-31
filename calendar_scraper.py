@@ -1,6 +1,4 @@
 import time
-import os
-import codecs
 
 from data import calendar_categories as cc
 from data import text_file_header as header

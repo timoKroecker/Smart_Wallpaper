@@ -16,6 +16,13 @@ def create_calendar_tables():
     connection.commit()
     connection.close()
 
+def create_birthday_tables():
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    create_birthdays(cursor)
+    connection.commit()
+    connection.close()
+
 def create_finance_tables():
     connection = sqlite3.connect("smart_wallpaper.db")
     cursor = connection.cursor()
@@ -67,6 +74,19 @@ def create_fathersdays(cursor):
     try:
         cursor.execute("""
             CREATE TABLE fathersdays(
+                day integer,
+                month integer,
+                year integer
+            )
+            """)
+    except:
+        pass
+
+def create_birthdays(cursor):
+    try:
+        cursor.execute("""
+            CREATE TABLE birthdays(
+                name text,
                 day integer,
                 month integer,
                 year integer
@@ -134,64 +154,77 @@ def create_keywords(cursor):
 #------------------------------------------------------------------------------------
 #Insert into functions
 
-def insert_into_calendar(name, day_str, month_str, year_str):
-    if(check_calendar(name, day_str, month_str, year_str)):
+def insert_into_calendar(input_list):
+    if(check_calendar(input_list[0], input_list[1], input_list[2], input_list[3])):
         connection = sqlite3.connect("smart_wallpaper.db")
         cursor = connection.cursor()
         cursor.execute("""
             INSERT INTO calendar
-            VALUES('""" + name + """', """ + day_str + """, """ + month_str + """, 
-            """ + year_str + """)""")
+            VALUES('""" + input_list[0] + """', """ + input_list[1] + """, """ + input_list[2] + """, 
+            """ + input_list[3] + """)""")
         connection.commit()
         connection.close()
         return True
     return False
 
-def insert_into_mothersdays(day_str, month_str, year_str):
-    if(check_mothersdays(day_str, month_str, year_str)):
+def insert_into_mothersdays(input_list):
+    if(check_mothersdays(input_list[0], input_list[1], input_list[2])):
         connection = sqlite3.connect("smart_wallpaper.db")
         cursor = connection.cursor()
         cursor.execute("""
             INSERT INTO mothersdays
-            VALUES(""" + day_str + """, """ + month_str + """, 
-            """ + year_str + """)""")
+            VALUES(""" + input_list[0] + """, """ + input_list[1] + """, 
+            """ + input_list[2] + """)""")
         connection.commit()
         connection.close()
         return True
     return False
 
-def insert_into_fathersdays(day_str, month_str, year_str):
-    if(check_fathersdays(day_str, month_str, year_str)):
+def insert_into_fathersdays(input_list):
+    if(check_fathersdays(input_list[0], input_list[1], input_list[2])):
         connection = sqlite3.connect("smart_wallpaper.db")
         cursor = connection.cursor()
         cursor.execute("""
             INSERT INTO fathersdays
-            VALUES(""" + day_str + """, """ + month_str + """, 
-            """ + year_str + """)""")
+            VALUES(""" + input_list[0] + """, """ + input_list[1] + """, 
+            """ + input_list[2] + """)""")
         connection.commit()
         connection.close()
         return True
     return False
 
-def insert_into_expenditure(name, day_str, month_str, year_str, category, amount_str):
+def insert_into_birthdays(input_list):
+    if(check_birthdays(input_list[0])):
+        connection = sqlite3.connect("smart_wallpaper.db")
+        cursor = connection.cursor()
+        cursor.execute("""
+            INSERT INTO birthdays
+            VALUES('""" + input_list[0] + """', """ + input_list[1] + """, """ + input_list[2] + """, 
+            """ + input_list[3] + """)""")
+        connection.commit()
+        connection.close()
+        return True
+    return False
+
+def insert_into_expenditure(input_list):
     connection = sqlite3.connect("smart_wallpaper.db")
     cursor = connection.cursor()
     cursor.execute("""
         INSERT INTO expenditure
-        VALUES('""" + name + """', """ + day_str + """, """ + month_str + """, 
-        """ + year_str + """, '""" + category + "', """ + amount_str + """)
+        VALUES('""" + input_list[0] + """', """ + input_list[1] + """, """ + input_list[2] + """, 
+        """ + input_list[3] + """, '""" + input_list[4] + "', """ + input_list[5] + """)
         """)
     connection.commit()
     connection.close()
     return True
 
-def insert_into_recurring_expenditure(name, category, start_month, start_year, end_month, end_year, amount_str):
+def insert_into_recurring_expenditure(input_list):
     connection = sqlite3.connect("smart_wallpaper.db")
     cursor = connection.cursor()
     cursor.execute("""
         INSERT INTO recurring_expenditure
-        VALUES('""" + name + """', '""" + category + "', """ + start_month + """, 
-        """ + start_year + """, """ + end_month + """, """ + end_year + """, """ + amount_str + """)
+        VALUES('""" + input_list[0] + """', '""" + input_list[1] + "', """ + input_list[2] + """, 
+        """ + input_list[3] + """, """ + input_list[4] + """, """ + input_list[5] + """, """ + input_list[6] + """)
         """)
     connection.commit()
     connection.close()
@@ -213,27 +246,27 @@ def insert_into_expenditures_from_recurring_expenditure(added_days):
             return True
     return False
 
-def insert_into_incidents(name, day_str, month_str, year_str, value_str):
-    if(check_incidents(name, day_str, month_str, year_str)):
+def insert_into_incidents(input_list):
+    if(check_incidents(input_list[0], input_list[1], input_list[2], input_list[3])):
         connection = sqlite3.connect("smart_wallpaper.db")
         cursor = connection.cursor()
         cursor.execute("""
             INSERT INTO incidents
-            VALUES ('""" + name + """', """ + day_str + """, """ + month_str + """, 
-            """ + year_str + """, """ + value_str + """)
+            VALUES ('""" + input_list[0] + """', """ + input_list[1] + """, """ + input_list[2] + """, 
+            """ + input_list[3] + """, """ + input_list[4] + """)
             """)
         connection.commit()
         connection.close()
         return True
     return False
 
-def insert_into_keywords(word, score_str):
-    if(check_keywords(word)):
+def insert_into_keywords(input_list):
+    if(check_keywords(input_list[0])):
         connection = sqlite3.connect("smart_wallpaper.db")
         cursor = connection.cursor()
         cursor.execute("""
             INSERT INTO keywords
-            VALUES ('""" + word + """', """ + score_str + """)
+            VALUES ('""" + input_list[0] + """', """ + input_list[1] + """)
             """)
         connection.commit()
         connection.close()
@@ -299,6 +332,33 @@ def select_fathersdays(day_str, month_str, year_str):
         WHERE year = """ + year_str + """
         AND month = """ + month_str + """
         AND day = """ + day_str + """
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
+
+def select_birthdays(name):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT *
+        FROM birthdays
+        WHERE name = '""" + name + """'
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
+
+def select_birthdays_by_date(day_str, month_str):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT *
+        FROM birthdays
+        WHERE day = """ + day_str + """
+        AND month = """ + month_str + """
         """)
     fetch = cursor.fetchall()
     connection.commit()
@@ -519,6 +579,9 @@ def check_mothersdays(day_str, month_str, year_str):
 def check_fathersdays(day_str, month_str, year_str):
     return len(select_fathersdays(day_str, month_str, year_str)) == 0
 
+def check_birthdays(name):
+    return len(select_birthdays(name)) == 0
+
 def check_recurring_expenditure(added_days, name, category, start_month, start_year, end_month, end_year, amount):
     month = get_localtime(added_days).tm_mon
     year = get_localtime(added_days).tm_year
@@ -644,7 +707,3 @@ def test_function():
         print(row)
 
 #test_function()
-#calendar_list = extract_content_list(os.path.dirname(os.path.abspath(__file__)) + "/calendar/3_vatertage.txt")
-#print(calendar_list)
-#for row in calendar_list:
-#    insert_into_fathersdays(row[0], row[1], row[2])

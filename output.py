@@ -11,9 +11,9 @@ def calendar_intro(pre = 1, post = 0):
     print("~calendar")
     tab(post)
 
-def birthday_intro(pre = 1, post = 0):
+def birthdays_intro(pre = 1, post = 0):
     tab(pre)
-    print("~birthday")
+    print("~birthdays")
     tab(post)
 
 def expenditure_intro(pre = 1, post = 0):

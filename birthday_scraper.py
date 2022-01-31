@@ -1,81 +1,40 @@
 import time
-import os
-import codecs
 
 import data as da
 from data import birthdays_categories as bc
 from data import text_file_header as header
+import database_interface as dbi
 
 def scrape_birthdays(added_days):
-    birthdays_dir = manage_dir_structure()
+    dbi.create_birthday_tables()
 
-    birthdays_list = extract_content_list(birthdays_dir + "/" + bc[0][0] + ".txt")
-
-    todays_list, num_events_today = get_daily_reminders(added_days, birthdays_list)
-    months_list = get_monthly_reminders(added_days, birthdays_list)
+    todays_list, num_events_today = get_daily_reminders(added_days)
+    months_list = get_monthly_reminders(added_days)
     return [todays_list, num_events_today, months_list]
 
-def manage_dir_structure():
-    birthdays_dir = os.path.dirname(os.path.realpath(__file__)) + "/birthdays"
-    if(not os.path.isdir(birthdays_dir)):
-        os.mkdir(birthdays_dir)
-    for file_data in bc:
-        file_dir = birthdays_dir + "/" + file_data[0] + ".txt"
-        if(not os.path.isfile(file_dir)):
-            txt_file = codecs.open(file_dir, "w+", "utf-8")
-            txt_file.write(header[0] + file_data[0] + file_data[1] + header[1])
-    return birthdays_dir
-
-def extract_content_list(file_dir):
-    content = read_txt_file_contents(file_dir)
-    if(content == None):
-        return None
-    temp_content_list = content.split("\n")
-    final_content_list = []
-    for string in temp_content_list:
-        if(string != ""):
-            if(string[-1] == "\r"):
-                final_content_list.append(string[0:-1].split("\t"))
-            else:
-                final_content_list.append(string.split("\t"))
-    return final_content_list
-
-def read_txt_file_contents(file_dir):
-    if(not os.path.isfile(file_dir)):
-        return None
-    txt_file = codecs.open(file_dir, "r", "utf-8")
-    txt_str = txt_file.read()
-    num_caption_lines = 7
-    index = 0
-    while(num_caption_lines > 0):
-        if(txt_str[index] == "\n"):
-            num_caption_lines = num_caption_lines - 1
-        index = index + 1
-    return txt_str[index:len(txt_str)]
-
-def get_daily_reminders(added_days, birthdays_list):
+def get_daily_reminders(added_days):
     date = get_date(added_days)
     output = []
     num_events = 0
+    birthdays_list = dbi.select_birthdays_by_date(str(date.tm_mday), str(date.tm_mon))
     for item in birthdays_list:
-        if(int(item[0]) == date.tm_mday and int(item[1]) == date.tm_mon):
-            num_events = num_events + 1
-            entry = []
-            entry.append(item[3])
-            if(int(item[2]) != 0):
-                entry.append(str(date.tm_year - int(item[2])))
-            else:
-                entry.append("")
-            output.append(entry)
+        num_events = num_events + 1
+        entry = []
+        entry.append(item[0])
+        if(int(item[3]) != 0):
+            entry.append(str(date.tm_year - int(item[2])))
+        else:
+            entry.append("")
+        output.append(entry)
     return output, num_events
 
-def get_monthly_reminders(added_days, birthdays_list):
+def get_monthly_reminders(added_days):
     output= []
     for i in range(31):
         date = get_date(added_days + i + 1)
+        birthdays_list = dbi.select_birthdays_by_date(str(date.tm_mday), str(date.tm_mon))
         for item in birthdays_list:
-            if(int(item[0]) == date.tm_mday and int(item[1]) == date.tm_mon):
-                output.append(get_dated_reminder(date, item[3], added_days))
+            output.append(get_dated_reminder(date, item[0], added_days))
     return output
 
 def get_dated_reminder(date, caption, added_days):
