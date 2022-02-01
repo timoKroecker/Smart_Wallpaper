@@ -242,9 +242,7 @@ def insert_into_expenditures_from_recurring_expenditure(added_days):
         amount = row[6]
         if(check_recurring_expenditure(added_days, name, category, start_month, start_year, end_month, end_year, amount)):
             date = get_localtime(added_days)
-            insert_into_expenditure(name, "1", str(date.tm_mon), str(date.tm_year), category, str(amount))
-            return True
-    return False
+            insert_into_expenditure([name, "1", str(date.tm_mon), str(date.tm_year), category, str(amount)])
 
 def insert_into_incidents(input_list):
     if(check_incidents(input_list[0], input_list[1], input_list[2], input_list[3])):
@@ -585,12 +583,33 @@ def check_birthdays(name):
 def check_recurring_expenditure(added_days, name, category, start_month, start_year, end_month, end_year, amount):
     month = get_localtime(added_days).tm_mon
     year = get_localtime(added_days).tm_year
-    if( year < start_year or (year == start_year and month < start_month) or
-        year > end_year or (year == end_year and month > end_month)):
+    if( (not check_rexp_zeros(start_month, start_year) and
+            check_rexp_start_out_of_bounds(added_days, start_month, start_year))
+        or
+        (not check_rexp_zeros(end_month, end_year) and
+            check_rexp_end_out_of_bounds(added_days, end_month, end_year))
+        ):
         return False
     if(len(select_expenditure(name, category, str(month), str(year), str(amount))) != 0):
         return False
     return True
+
+def check_rexp_zeros(month, year):
+    return month == 0 and year == 0
+
+def check_rexp_start_out_of_bounds(added_days, start_month, start_year):
+    month = get_localtime(added_days).tm_mon
+    year = get_localtime(added_days).tm_year
+    if(year < start_year or (year == start_year and month < start_month)):
+        return True
+    return False
+
+def check_rexp_end_out_of_bounds(added_days, end_month, end_year):
+    month = get_localtime(added_days).tm_mon
+    year = get_localtime(added_days).tm_year
+    if(year > end_year or (year == end_year and month > end_month)):
+        return True
+    return False
 
 def check_two_decimals(string):
     if(string[-2] == "."):

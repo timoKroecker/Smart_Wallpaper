@@ -66,7 +66,7 @@ def update_database(incidents_list):
     if(incidents_list == None): return
     if(len(dbi.select_incidents_by_date(date)) == 0):
         for array in incidents_list:
-            dbi.insert_into_incidents(array[0], day_str, month_str, year_str, array[1])
+            dbi.insert_into_incidents([array[0], day_str, month_str, year_str, array[1]])
     else:
         for array in incidents_list:
             dbi.update_incidents(array[0], day_str, month_str, year_str, array[1])

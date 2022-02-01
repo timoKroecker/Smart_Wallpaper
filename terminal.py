@@ -117,7 +117,7 @@ def birthday_terminal():
         elif(terminal_input == "delete"):
             delete("birthdays")
         elif(terminal_input == "help"):
-            op.tab_print(OUTPUT, 0, "show, delete, back")
+            op.tab_print(OUTPUT, 0, "show, insert, delete, back")
         else:
             op.tab_print(OUTPUT, 0, "command not found")
 
