@@ -1,8 +1,0 @@
-+++++++++++++++++++++
-1_fixkosten
-+++++++++++++++++++++
-
-|||||||||||||||||||||
-vvvvvvvvvvvvvvvvvvvvv
-Miete	325.00
-Semesterbeitrag	21.17

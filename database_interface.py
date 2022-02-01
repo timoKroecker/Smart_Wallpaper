@@ -7,6 +7,22 @@ from numpy import insert
 from data import months as mnths
 from data import expence_categories as ec
 
+def create_calendar_tables():
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    create_calendar(cursor)
+    create_mothersdays(cursor)
+    create_fathersdays(cursor)
+    connection.commit()
+    connection.close()
+
+def create_birthday_tables():
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    create_birthdays(cursor)
+    connection.commit()
+    connection.close()
+
 def create_finance_tables():
     connection = sqlite3.connect("smart_wallpaper.db")
     cursor = connection.cursor()
@@ -28,6 +44,56 @@ def create_news_tables():
     create_keywords(cursor)
     connection.commit()
     connection.close()
+
+def create_calendar(cursor):
+    try:
+        cursor.execute("""
+            CREATE TABLE calendar(
+                name text,
+                day integer,
+                month integer,
+                year integer
+            )
+            """)
+    except:
+        pass
+
+def create_mothersdays(cursor):
+    try:
+        cursor.execute("""
+            CREATE TABLE mothersdays(
+                day integer,
+                month integer,
+                year integer
+            )
+            """)
+    except:
+        pass
+
+def create_fathersdays(cursor):
+    try:
+        cursor.execute("""
+            CREATE TABLE fathersdays(
+                day integer,
+                month integer,
+                year integer
+            )
+            """)
+    except:
+        pass
+
+def create_birthdays(cursor):
+    try:
+        cursor.execute("""
+            CREATE TABLE birthdays(
+                name text,
+                day integer,
+                month integer,
+                year integer
+            )
+            """)
+    except:
+        pass
 
 def create_expenditure(cursor):
     try:
@@ -88,27 +154,81 @@ def create_keywords(cursor):
 #------------------------------------------------------------------------------------
 #Insert into functions
 
-def insert_into_expenditure(name, day_str, month_str, year_str, category, amount_str):
+def insert_into_calendar(input_list):
+    if(check_calendar(input_list[0], input_list[1], input_list[2], input_list[3])):
+        connection = sqlite3.connect("smart_wallpaper.db")
+        cursor = connection.cursor()
+        cursor.execute("""
+            INSERT INTO calendar
+            VALUES('""" + input_list[0] + """', """ + input_list[1] + """, """ + input_list[2] + """, 
+            """ + input_list[3] + """)""")
+        connection.commit()
+        connection.close()
+        return True
+    return False
+
+def insert_into_mothersdays(input_list):
+    if(check_mothersdays(input_list[0], input_list[1], input_list[2])):
+        connection = sqlite3.connect("smart_wallpaper.db")
+        cursor = connection.cursor()
+        cursor.execute("""
+            INSERT INTO mothersdays
+            VALUES(""" + input_list[0] + """, """ + input_list[1] + """, 
+            """ + input_list[2] + """)""")
+        connection.commit()
+        connection.close()
+        return True
+    return False
+
+def insert_into_fathersdays(input_list):
+    if(check_fathersdays(input_list[0], input_list[1], input_list[2])):
+        connection = sqlite3.connect("smart_wallpaper.db")
+        cursor = connection.cursor()
+        cursor.execute("""
+            INSERT INTO fathersdays
+            VALUES(""" + input_list[0] + """, """ + input_list[1] + """, 
+            """ + input_list[2] + """)""")
+        connection.commit()
+        connection.close()
+        return True
+    return False
+
+def insert_into_birthdays(input_list):
+    if(check_birthdays(input_list[0])):
+        connection = sqlite3.connect("smart_wallpaper.db")
+        cursor = connection.cursor()
+        cursor.execute("""
+            INSERT INTO birthdays
+            VALUES('""" + input_list[0] + """', """ + input_list[1] + """, """ + input_list[2] + """, 
+            """ + input_list[3] + """)""")
+        connection.commit()
+        connection.close()
+        return True
+    return False
+
+def insert_into_expenditure(input_list):
     connection = sqlite3.connect("smart_wallpaper.db")
     cursor = connection.cursor()
     cursor.execute("""
         INSERT INTO expenditure
-        VALUES('""" + name + """', """ + day_str + """, """ + month_str + """, 
-        """ + year_str + """, '""" + category + "', """ + amount_str + """)
+        VALUES('""" + input_list[0] + """', """ + input_list[1] + """, """ + input_list[2] + """, 
+        """ + input_list[3] + """, '""" + input_list[4] + "', """ + input_list[5] + """)
         """)
     connection.commit()
     connection.close()
+    return True
 
-def insert_into_recurring_expenditure(name, category, start_month, start_year, end_month, end_year, amount_str):
+def insert_into_recurring_expenditure(input_list):
     connection = sqlite3.connect("smart_wallpaper.db")
     cursor = connection.cursor()
     cursor.execute("""
         INSERT INTO recurring_expenditure
-        VALUES('""" + name + """', '""" + category + "', """ + start_month + """, 
-        """ + start_year + """, """ + end_month + """, """ + end_year + """, """ + amount_str + """)
+        VALUES('""" + input_list[0] + """', '""" + input_list[1] + "', """ + input_list[2] + """, 
+        """ + input_list[3] + """, """ + input_list[4] + """, """ + input_list[5] + """, """ + input_list[6] + """)
         """)
     connection.commit()
     connection.close()
+    return True
 
 def insert_into_expenditures_from_recurring_expenditure(added_days):
     rec_exp_matrix = select_recurring_expenditure()
@@ -122,33 +242,126 @@ def insert_into_expenditures_from_recurring_expenditure(added_days):
         amount = row[6]
         if(check_recurring_expenditure(added_days, name, category, start_month, start_year, end_month, end_year, amount)):
             date = get_localtime(added_days)
-            insert_into_expenditure(name, "1", str(date.tm_mon), str(date.tm_year), category, str(amount))
+            insert_into_expenditure([name, "1", str(date.tm_mon), str(date.tm_year), category, str(amount)])
 
-def insert_into_incidents(name, day_str, month_str, year_str, value_str):
-    if(check_incidents(name, day_str, month_str, year_str)):
+def insert_into_incidents(input_list):
+    if(check_incidents(input_list[0], input_list[1], input_list[2], input_list[3])):
         connection = sqlite3.connect("smart_wallpaper.db")
         cursor = connection.cursor()
         cursor.execute("""
             INSERT INTO incidents
-            VALUES ('""" + name + """', """ + day_str + """, """ + month_str + """, 
-            """ + year_str + """, """ + value_str + """)
+            VALUES ('""" + input_list[0] + """', """ + input_list[1] + """, """ + input_list[2] + """, 
+            """ + input_list[3] + """, """ + input_list[4] + """)
             """)
         connection.commit()
         connection.close()
+        return True
+    return False
 
-def insert_into_keywords(word, score_str):
-    if(check_keywords(word)):
+def insert_into_keywords(input_list):
+    if(check_keywords(input_list[0])):
         connection = sqlite3.connect("smart_wallpaper.db")
         cursor = connection.cursor()
         cursor.execute("""
             INSERT INTO keywords
-            VALUES ('""" + word + """', """ + score_str + """)
+            VALUES ('""" + input_list[0] + """', """ + input_list[1] + """)
             """)
         connection.commit()
         connection.close()
+        return True
+    return False
 
 #------------------------------------------------------------------------------------
 #Select functions
+
+def select_calendar(name, day_str, month_str, year_str):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT *
+        FROM calendar
+        WHERE name = '""" + name + """'
+        AND year = """ + year_str + """
+        AND month = """ + month_str + """
+        AND day = """ + day_str + """
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
+
+def select_calendar_by_date(day_str, month_str, year_str):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT *
+        FROM calendar
+        WHERE day = """ + day_str + """
+        AND month = """ + month_str + """
+        AND (year = """ + year_str + """
+        OR year = 0)
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
+
+def select_mothersdays(day_str, month_str, year_str):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT *
+        FROM mothersdays
+        WHERE year = """ + year_str + """
+        AND month = """ + month_str + """
+        AND day = """ + day_str + """
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
+
+def select_fathersdays(day_str, month_str, year_str):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT *
+        FROM fathersdays
+        WHERE year = """ + year_str + """
+        AND month = """ + month_str + """
+        AND day = """ + day_str + """
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
+
+def select_birthdays(name):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT *
+        FROM birthdays
+        WHERE name = '""" + name + """'
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
+
+def select_birthdays_by_date(day_str, month_str):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT *
+        FROM birthdays
+        WHERE day = """ + day_str + """
+        AND month = """ + month_str + """
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
 
 def select_expenditure(name, category, month_str, year_str, amount):
     connection = sqlite3.connect("smart_wallpaper.db")
@@ -327,18 +540,76 @@ def select_score(word):
     if(len(fetch) == 0): return "0.0"
     return fetch[0][0]
 
+def select_table(table):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT rowid, *
+        FROM """ + table + """
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
+
+def select_by_rowid(rowid, tablename):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT rowid, *
+        FROM """ + tablename + """
+        WHERE rowid = """ + rowid + """
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
+
 #------------------------------------------------------------------------------------
 #Check functions
+
+def check_calendar(name, day_str, month_str, year_str):
+    return len(select_calendar(name, day_str, month_str, year_str)) == 0
+
+def check_mothersdays(day_str, month_str, year_str):
+    return len(select_mothersdays(day_str, month_str, year_str)) == 0
+
+def check_fathersdays(day_str, month_str, year_str):
+    return len(select_fathersdays(day_str, month_str, year_str)) == 0
+
+def check_birthdays(name):
+    return len(select_birthdays(name)) == 0
 
 def check_recurring_expenditure(added_days, name, category, start_month, start_year, end_month, end_year, amount):
     month = get_localtime(added_days).tm_mon
     year = get_localtime(added_days).tm_year
-    if( year < start_year or (year == start_year and month < start_month) or
-        year > end_year or (year == end_year and month > end_month)):
+    if( (not check_rexp_zeros(start_month, start_year) and
+            check_rexp_start_out_of_bounds(added_days, start_month, start_year))
+        or
+        (not check_rexp_zeros(end_month, end_year) and
+            check_rexp_end_out_of_bounds(added_days, end_month, end_year))
+        ):
         return False
     if(len(select_expenditure(name, category, str(month), str(year), str(amount))) != 0):
         return False
     return True
+
+def check_rexp_zeros(month, year):
+    return month == 0 and year == 0
+
+def check_rexp_start_out_of_bounds(added_days, start_month, start_year):
+    month = get_localtime(added_days).tm_mon
+    year = get_localtime(added_days).tm_year
+    if(year < start_year or (year == start_year and month < start_month)):
+        return True
+    return False
+
+def check_rexp_end_out_of_bounds(added_days, end_month, end_year):
+    month = get_localtime(added_days).tm_mon
+    year = get_localtime(added_days).tm_year
+    if(year > end_year or (year == end_year and month > end_month)):
+        return True
+    return False
 
 def check_two_decimals(string):
     if(string[-2] == "."):
@@ -373,6 +644,22 @@ def update_incidents(name, day_str, month_str, year_str, value_str):
         """)
     connection.commit()
     connection.close()
+
+#------------------------------------------------------------------------------------
+#Delete functions functions
+
+def delete_by_rowid(rowid, tablename):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        DELETE
+        FROM """ + tablename + """
+        WHERE rowid = """ + rowid + """
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
 
 #------------------------------------------------------------------------------------
 #In case of dropping finance tables
@@ -414,7 +701,7 @@ def read_txt_file_contents(file_dir):
         return None
     txt_file = open(file_dir, "r")
     txt_str = txt_file.read()
-    num_caption_lines = 6
+    num_caption_lines = 7
     index = 0
     while(num_caption_lines > 0):
         if(txt_str[index] == "\n"):
@@ -425,12 +712,12 @@ def read_txt_file_contents(file_dir):
 #------------------------------------------------------------------------------------
 #Test functions
 
-def test_query():
+def test_function():
     connection = sqlite3.connect("smart_wallpaper.db")
     cursor = connection.cursor()
     cursor.execute("""
         SELECT rowid, *
-        FROM expenditure
+        FROM fathersdays
         """)
     fetch = cursor.fetchall()
     connection.commit()
@@ -438,4 +725,4 @@ def test_query():
     for row in fetch:
         print(row)
 
-#test_query()
+#test_function()

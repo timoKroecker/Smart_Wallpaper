@@ -49,7 +49,7 @@ def scrape_n_draw_calendar(img, added_days):
     return img
 
 def scrape_n_draw_birthday_info(img, added_days):
-    op.birthday_intro()
+    op.birthdays_intro()
 
     birthdays_list = bs.scrape_birthdays(added_days)
     todays_list = birthdays_list[0]
@@ -64,7 +64,7 @@ def scrape_n_draw_birthday_info(img, added_days):
     return img
 
 def scrape_n_draw_finances(img, added_days):
-    op.finance_intro()
+    op.expenditure_intro()
     finances = fs.scrape_finances(added_days)
     month_expences = finances[0][0]
     month_total = finances[0][1]
