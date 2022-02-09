@@ -22,7 +22,7 @@ def get_daily_reminders(added_days):
         entry = []
         entry.append(item[0])
         if(int(item[3]) != 0):
-            entry.append(str(date.tm_year - int(item[2])))
+            entry.append(str(date.tm_year - int(item[3])))
         else:
             entry.append("")
         output.append(entry)
