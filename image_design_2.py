@@ -209,7 +209,7 @@ def draw_weather_widgets(img, weather_list):
 def draw_incidents_widgets(img, incidents_list, incidents_plot_cube):
     draw = ImageDraw.Draw(img)
     max_y = get_max_y_from_incidents(incidents_plot_cube)
-    rows = int(max_y // 200)
+    rows = int(max_y // 500)
     draw_content_box(draw, (4, 4.5), (8, 3.5), "Inzidenzen")
     draw_plot_box(draw, (4.2, 5.125), (5.5, 2.650), rows, colors[3], colors[2])
     plot_incidences(draw, (4.2, 5.125), (5.5, 2.650), incidents_plot_cube, max_y)
