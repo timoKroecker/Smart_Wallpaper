@@ -45,6 +45,13 @@ def create_news_tables():
     connection.commit()
     connection.close()
 
+def create_university_tables():
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    create_university(cursor)
+    connection.commit()
+    connection.close()
+
 def create_calendar(cursor):
     try:
         cursor.execute("""
@@ -146,6 +153,19 @@ def create_keywords(cursor):
             CREATE TABLE keywords(
                 word text,
                 score real
+            )
+            """)
+    except:
+        pass
+
+def create_university(cursor):
+    try:
+        cursor.execute("""
+            CREATE TABLE university(
+                name text,
+                day integer,
+                month integer,
+                year integer
             )
             """)
     except:
@@ -266,6 +286,19 @@ def insert_into_keywords(input_list):
             INSERT INTO keywords
             VALUES ('""" + input_list[0] + """', """ + input_list[1] + """)
             """)
+        connection.commit()
+        connection.close()
+        return True
+    return False
+
+def insert_into_university(input_list):
+    if(check_university(input_list[0], input_list[1], input_list[2], input_list[3])):
+        connection = sqlite3.connect("smart_wallpaper.db")
+        cursor = connection.cursor()
+        cursor.execute("""
+            INSERT INTO university
+            VALUES('""" + input_list[0] + """', """ + input_list[1] + """, """ + input_list[2] + """, 
+            """ + input_list[3] + """)""")
         connection.commit()
         connection.close()
         return True
@@ -540,6 +573,38 @@ def select_score(word):
     if(len(fetch) == 0): return "0.0"
     return fetch[0][0]
 
+def select_university(name, day_str, month_str, year_str):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT *
+        FROM university
+        WHERE name = '""" + name + """'
+        AND year = """ + year_str + """
+        AND month = """ + month_str + """
+        AND day = """ + day_str + """
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
+
+def select_university_by_date(day_str, month_str, year_str):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT *
+        FROM university
+        WHERE day = """ + day_str + """
+        AND month = """ + month_str + """
+        AND (year = """ + year_str + """
+        OR year = 0)
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
+
 def select_table(table):
     connection = sqlite3.connect("smart_wallpaper.db")
     cursor = connection.cursor()
@@ -621,6 +686,9 @@ def check_incidents(name, day_str, month_str, year_str):
 
 def check_keywords(word):
     return len(select_keywords(word)) == 0
+
+def check_university(name, day_str, month_str, year_str):
+    return len(select_university(name, day_str, month_str, year_str)) == 0
 
 #------------------------------------------------------------------------------------
 #Get functions
@@ -716,8 +784,7 @@ def test_function():
     connection = sqlite3.connect("smart_wallpaper.db")
     cursor = connection.cursor()
     cursor.execute("""
-        SELECT rowid, *
-        FROM fathersdays
+        
         """)
     fetch = cursor.fetchall()
     connection.commit()

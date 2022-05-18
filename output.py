@@ -36,6 +36,11 @@ def incidents_intro(pre = 1, post = 0):
     print("~incidents")
     tab(post)
 
+def university_intro(pre = 1, post = 0):
+    tab(pre)
+    print("~university")
+    tab(post)
+
 def visible():
     print("\t\tvisible")
 
@@ -81,6 +86,8 @@ def keywords_intro(pre = 1, post = 0):
     tab(post)
 
 def table(table, tabs = 0):
+    if(len(table) == 0):
+        return
     tab_tracker = []
     for i in range(len(table[0])):
         tab_tracker.append(1)
