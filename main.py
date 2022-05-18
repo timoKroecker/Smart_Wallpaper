@@ -127,7 +127,7 @@ def scrape_n_draw_university(img, added_days):
     months_list = university_list[2]
     
     if(len(todays_list) != 0 or len(months_list) != 0):
-        #img = dsgn.draw_university_widgets(img, todays_list, num_events_today, months_list)
+        img = dsgn.draw_university_widgets(img, todays_list, num_events_today, months_list)
         op.visible()
     else:
         op.hidden()
