@@ -1,7 +1,5 @@
 import time
 
-from data import calendar_categories as cc
-from data import text_file_header as header
 from data import weekdays
 
 import database_interface as dbi
@@ -32,7 +30,7 @@ def get_daily_reminders(added_days):
 
 def get_two_weeks_reminders(added_days):
     output= []
-    for i in range(14):
+    for i in range(31):
         date = get_date(added_days + i + 1)
         if(is_mothersday(date)):
             output.append(get_dated_reminder(date, "Muttertag", added_days))
