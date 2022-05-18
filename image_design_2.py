@@ -301,7 +301,6 @@ def draw_university_widgets(img, todays_list, num_events_today, extended_list):
     draw = ImageDraw.Draw(img)
     draw_content_box(draw, (12, 5), (4, 4), "Uni")
 
-    print(PIXEL_PER_ICON_X, PIXEL_PER_ICON_Y)
     draw_todays_calendar_list(draw, todays_list, 1235, 523.5)
     draw_extended_list(draw, extended_list, num_events_today, 1235, 1300, 1370, 523.5)
 
