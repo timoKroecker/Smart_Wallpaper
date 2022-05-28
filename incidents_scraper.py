@@ -40,7 +40,8 @@ def cook_soup():
             for j in range(len(table_rows)):
                 table_columns = table_rows[j].find_all("td")
                 if(len(table_columns) > 0):
-                    if(trim_string(table_columns[0].text) == ingr[i][1]):
+                    if( ingr[i][0] in trim_string(table_columns[0].text) and
+                        ingr[i][1] in trim_string(table_columns[0].text)):
                         new_entry = []
                         new_entry.append(ingr[i][0])
                         trimmed_incidence = trim_string(table_columns[5].text)

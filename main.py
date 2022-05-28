@@ -7,6 +7,7 @@ import finance_scraper as fs
 import news_scraper as ns
 import weather_scraper as ws
 import incidents_scraper as ins
+import university_scraper as us
 import change_wallpaper as cw
 import output as op
 
@@ -27,6 +28,7 @@ def the_one_ring():
     img = scrape_n_draw_news(img)
     img = scrape_n_draw_weather(img)
     img = scrape_n_draw_incidents(img)
+    img = scrape_n_draw_university(img, DAY_OFFSET)
 
     cw.save_img(img, IMG_NAME)
     cw.change_wallpaper(PATH + "/" + IMG_NAME)
@@ -111,6 +113,21 @@ def scrape_n_draw_incidents(img):
     incidents_list, incidents_plot_cube = ins.scrape_incidents()
     if(incidents_list != None):
         img = dsgn.draw_incidents_widgets(img, incidents_list, incidents_plot_cube)
+        op.visible()
+    else:
+        op.hidden()
+    return img
+
+def scrape_n_draw_university(img, added_days):
+    op.university_intro()
+
+    university_list = us.scrape_university(added_days)
+    todays_list = university_list[0]
+    num_events_today = university_list[1]
+    months_list = university_list[2]
+    
+    if(len(todays_list) != 0 or len(months_list) != 0):
+        img = dsgn.draw_university_widgets(img, todays_list, num_events_today, months_list)
         op.visible()
     else:
         op.hidden()

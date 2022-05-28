@@ -21,8 +21,10 @@ def the_one_ring():
             news_terminal()
         elif(terminal_input == "inc"):
             incidents_terminal()
+        elif(terminal_input == "uni"):
+            university_terminal()
         elif(terminal_input == "help"):
-            op.tab_print(OUTPUT, 0, "cal, bir, exp, news, inc, stop")
+            op.tab_print(OUTPUT, 0, "cal, bir, exp, news, inc, uni, stop")
         else:
             op.tab_print(OUTPUT, 0, "command not found")
         op.home(post = 2)
@@ -231,6 +233,27 @@ def incidents_terminal():
         op.incidents_intro(post = INPUT)
         terminal_input = input()
 
+def university_terminal():
+    op.home(post = ZERO)
+    op.university_intro(post = INPUT)
+    terminal_input = input()
+    while(terminal_input != "back"):
+        if(terminal_input == "show"):
+            table = dbi.select_table("university")
+            op.table(table, tabs = OUTPUT)
+        elif(terminal_input == "insert"):
+            insert("university")
+        elif(terminal_input == "delete"):
+            delete("university")
+        elif(terminal_input == "help"):
+            op.tab_print(OUTPUT, 0, "show, insert, delete, back")
+        else:
+            op.tab_print(OUTPUT, 0, "command not found")
+
+        op.home(post = ZERO)
+        op.university_intro(post = INPUT)
+        terminal_input = input()
+
 #-------------------------------------------------------------------
 #Inserts
 
@@ -284,6 +307,13 @@ questions_dictionary = {
     [
         ["name of new keyword (str):", str],
         ["score (float):", float]
+    ],
+    "university":
+    [
+        ["name of new university entry (str):", str],
+        ["day (int):", int],
+        ["month (int):", int],
+        ["year (int):", int]
     ]
 }
 
@@ -294,7 +324,8 @@ insert_dictionary = {
     "birthdays": dbi.insert_into_birthdays,
     "expenditure": dbi.insert_into_expenditure,
     "recurring_expenditure": dbi.insert_into_recurring_expenditure,
-    "keywords": dbi.insert_into_keywords
+    "keywords": dbi.insert_into_keywords,
+    "university": dbi.insert_into_university
 }
 
 def insert(table_name):

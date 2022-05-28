@@ -48,10 +48,10 @@ def draw_primer_widgets(img, added_days):
 
 def draw_calendar_widgets(img, todays_list, num_events_today, months_list):
     draw = ImageDraw.Draw(img)
-    draw_content_box(draw, (0, 0), (4, 8), "Kalendar")
+    draw_content_box(draw, (0, 0), (4, 9), "Kalendar")
 
     draw_todays_calendar_list(draw, todays_list, 35, 86)
-    draw_months_list(draw, months_list, num_events_today, 35, 100, 170, 86)
+    draw_extended_list(draw, months_list, num_events_today, 35, 100, 170, 86)
 
     return img
 
@@ -64,7 +64,7 @@ def draw_birthday_widgets(img, todays_list, num_events_today, months_list):
     draw = ImageDraw.Draw(img)
     draw_content_box(draw, (4, 0), (4, 4.5), "Geburtstage")
     draw_todays_birthday_list(draw, todays_list, 435, 740, 86)
-    draw_months_list(draw, months_list, num_events_today, 435, 500, 600, 86)
+    draw_extended_list(draw, months_list, num_events_today, 435, 500, 600, 86)
     return img
 
 def draw_todays_birthday_list(draw, todays_list, pos_x1, pos_x2, pos_y):
@@ -73,7 +73,7 @@ def draw_todays_birthday_list(draw, todays_list, pos_x1, pos_x2, pos_y):
         draw.text((pos_x2, pos_y), entry[1], font=MAIN_FONT, fill=font_colors[2])
         pos_y = pos_y + 30
 
-def draw_months_list(draw, months_list, num_events_today, pos_x1, pos_x2, pos_x3, pos_y, extra_x = -5):
+def draw_extended_list(draw, months_list, num_events_today, pos_x1, pos_x2, pos_x3, pos_y, extra_x = -5):
     if(num_events_today != 0):
         pos_y = pos_y + (num_events_today + 1) * 30 - 8
         draw.rectangle((pos_x1 - 25 - extra_x, pos_y - 20, pos_x1 + 355 + extra_x, pos_y - 15), fill=colors[2])
@@ -209,7 +209,7 @@ def draw_weather_widgets(img, weather_list):
 def draw_incidents_widgets(img, incidents_list, incidents_plot_cube):
     draw = ImageDraw.Draw(img)
     max_y = get_max_y_from_incidents(incidents_plot_cube)
-    rows = int(max_y // 200)
+    rows = int(max_y // 500)
     draw_content_box(draw, (4, 4.5), (8, 3.5), "Inzidenzen")
     draw_plot_box(draw, (4.2, 5.125), (5.5, 2.650), rows, colors[3], colors[2])
     plot_incidences(draw, (4.2, 5.125), (5.5, 2.650), incidents_plot_cube, max_y)
@@ -296,6 +296,15 @@ def draw_plot_box(draw, pos, size, rows, box_color, line_color):
     for i in range(rows - 1):
         current_height_partition = height_partition * (i + 1)
         draw.rectangle((left, top + current_height_partition, right, top + current_height_partition + 1), fill=line_color)
+
+def draw_university_widgets(img, todays_list, num_events_today, extended_list):
+    draw = ImageDraw.Draw(img)
+    draw_content_box(draw, (12, 5), (4, 4), "Uni")
+
+    draw_todays_calendar_list(draw, todays_list, 1235, 523.5)
+    draw_extended_list(draw, extended_list, num_events_today, 1235, 1300, 1370, 523.5)
+
+    return img
     
 def draw_box(draw, pos, size, fill_color, caption=None):
     top = pos[1] * PIXEL_PER_ICON_Y

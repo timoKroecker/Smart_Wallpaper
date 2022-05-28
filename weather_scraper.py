@@ -23,10 +23,12 @@ def cook_weather_soup():
     except:
         return None, None
     soup = BeautifulSoup(req.text, "lxml")
-
-    current_temp_str = get_current_temperature(soup)
-    night_temp_str = get_night_temperature(soup)
-    current_desc_str = get_current_description(soup)
+    try:
+        current_temp_str = get_current_temperature(soup)
+        night_temp_str = get_night_temperature(soup)
+        current_desc_str = get_current_description(soup)
+    except:
+        return None, None
     return [current_temp_str + " / " + night_temp_str, current_desc_str]
 
 def cook_daylight_soup():

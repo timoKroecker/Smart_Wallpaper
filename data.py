@@ -93,11 +93,11 @@ text_file_header =      [
 incidents_soup_broth =  "https://www.lgl.bayern.de/gesundheit/infektionsschutz/infektionskrankheiten_a_z/coronavirus/karte_coronavirus/#uebersicht"
 
 incidents_soup_ingredients =    [
-                                    ["Erlangen", "ErlangenStadt"],
-                                    ["Nürnberg", "NürnbergStadt"],
-                                    ["Fürth", "FürthStadt"],
-                                    ["Augsburg", "AugsburgStadt"],
-                                    ["München", "MünchenStadt"]
+                                    ["Erlangen", "Stadt"],
+                                    ["Nürnberg", "Stadt"],
+                                    ["Fürth", "Stadt"],
+                                    ["Augsburg", "Stadt"],
+                                    ["München", "Stadt"]
                                 ]
 
 incidents_colors =      [
