@@ -54,7 +54,7 @@ def calendar_terminal():
         elif(terminal_input == "update"):
             update("calendar")
         elif(terminal_input == "help"):
-            op.tab_print(OUTPUT, 0, "show, insert, delete, moth, fath, back")
+            op.tab_print(OUTPUT, 0, "show, insert, update, delete, moth, fath, back")
         else:
             op.tab_print(OUTPUT, 0, "command not found")
 
@@ -78,7 +78,7 @@ def mothersdays_terminal():
         elif(terminal_input == "update"):
             update("mothersdays")
         elif(terminal_input == "help"):
-            op.tab_print(OUTPUT, 0, "show, insert, delete, back")
+            op.tab_print(OUTPUT, 0, "show, insert, update, delete, back")
         else:
             op.tab_print(OUTPUT, 0, "command not found")
 
@@ -103,7 +103,7 @@ def fathersdays_terminal():
         elif(terminal_input == "update"):
             update("fathersdays")
         elif(terminal_input == "help"):
-            op.tab_print(OUTPUT, 0, "show, insert, delete, back")
+            op.tab_print(OUTPUT, 0, "show, insert, update, delete, back")
         else:
             op.tab_print(OUTPUT, 0, "command not found")
 
@@ -127,7 +127,7 @@ def birthday_terminal():
         elif(terminal_input == "update"):
             update("birthdays")
         elif(terminal_input == "help"):
-            op.tab_print(OUTPUT, 0, "show, insert, delete, back")
+            op.tab_print(OUTPUT, 0, "show, insert, update, delete, back")
         else:
             op.tab_print(OUTPUT, 0, "command not found")
 
@@ -152,7 +152,7 @@ def expenditure_terminal():
         elif(terminal_input == "update"):
             update("expenditure")
         elif(terminal_input == "help"):
-            op.tab_print(OUTPUT, 0, "show, insert, delete, rexp, back")
+            op.tab_print(OUTPUT, 0, "show, insert, update, delete, rexp, back")
         else:
             op.tab_print(OUTPUT, 0, "command not found")
 
@@ -176,7 +176,7 @@ def recurring_expenditure_terminal():
         elif(terminal_input == "update"):
             update("recurring_expenditure")
         elif(terminal_input == "help"):
-            op.tab_print(OUTPUT, 0, "show, insert, delete, back")
+            op.tab_print(OUTPUT, 0, "show, insert, update, delete, back")
         else:
             op.tab_print(OUTPUT, 0, "command not found")
 
@@ -218,7 +218,7 @@ def keywords_terminal():
         elif(terminal_input == "update"):
             update("keywords")
         elif(terminal_input == "help"):
-            op.tab_print(OUTPUT, 0, "show, insert, delete, back")
+            op.tab_print(OUTPUT, 0, "show, insert, update, delete, back")
         else:
             op.tab_print(OUTPUT, 0, "command not found")
         
@@ -262,7 +262,7 @@ def university_terminal():
         elif(terminal_input == "update"):
             update("update")
         elif(terminal_input == "help"):
-            op.tab_print(OUTPUT, 0, "show, insert, delete, back")
+            op.tab_print(OUTPUT, 0, "show, insert, update, delete, back")
         else:
             op.tab_print(OUTPUT, 0, "command not found")
 
