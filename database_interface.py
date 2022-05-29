@@ -699,6 +699,32 @@ def get_localtime(added_days):
 #------------------------------------------------------------------------------------
 #Update functions
 
+def update_by_rowid(rowid, table_name, update_list):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    update_string = create_update_string(update_list)
+    cursor.execute("""
+        UPDATE """ + table_name + """
+        SET """ + update_string + """
+        WHERE rowid = """ + str(rowid) + """
+        """)
+    connection.commit()
+    connection.close()
+    return True
+
+def create_update_string(update_list):
+    output = ""
+    for row in update_list:
+        row_string = row[0] + " = "
+        if(type(row[1]).__name__ == "str"):
+            row_string = row_string + "'" + row[1] + "'"
+        else:
+            row_string = row_string + str(row[1])
+        if(not output == ""):
+            row_string = ", " + row_string
+        output = output + row_string
+    return output
+
 def update_incidents(name, day_str, month_str, year_str, value_str):
     connection = sqlite3.connect("smart_wallpaper.db")
     cursor = connection.cursor()
