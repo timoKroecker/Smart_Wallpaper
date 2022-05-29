@@ -473,7 +473,7 @@ def update(table_name):
             updated_selection[iterator] = string
         iterator = iterator + 1
     print("")
-    op.tab_print(INPUT, 0, "update element from the first to the second?(yes/no)")
+    op.tab_print(INPUT, 0, "update element from the first to the second? (yes/no)")
     op.table([selection, updated_selection], INPUT)
     op.tab(INPUT)
     terminal_input = str(input())
