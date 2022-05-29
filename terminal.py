@@ -51,6 +51,8 @@ def calendar_terminal():
             mothersdays_terminal()
         elif(terminal_input == "fath"):
             fathersdays_terminal()
+        elif(terminal_input == "update"):
+            update("calendar")
         elif(terminal_input == "help"):
             op.tab_print(OUTPUT, 0, "show, insert, delete, moth, fath, back")
         else:
@@ -73,6 +75,8 @@ def mothersdays_terminal():
             insert("mothersdays")
         elif(terminal_input == "delete"):
             delete("mothersdays")
+        elif(terminal_input == "update"):
+            update("mothersdays")
         elif(terminal_input == "help"):
             op.tab_print(OUTPUT, 0, "show, insert, delete, back")
         else:
@@ -96,6 +100,8 @@ def fathersdays_terminal():
             insert("fathersdays")
         elif(terminal_input == "delete"):
             delete("fathersdays")
+        elif(terminal_input == "update"):
+            update("fathersdays")
         elif(terminal_input == "help"):
             op.tab_print(OUTPUT, 0, "show, insert, delete, back")
         else:
@@ -118,6 +124,8 @@ def birthday_terminal():
             insert("birthdays")
         elif(terminal_input == "delete"):
             delete("birthdays")
+        elif(terminal_input == "update"):
+            update("birthdays")
         elif(terminal_input == "help"):
             op.tab_print(OUTPUT, 0, "show, insert, delete, back")
         else:
@@ -141,6 +149,8 @@ def expenditure_terminal():
             delete("expenditure")
         elif(terminal_input == "rexp"):
             recurring_expenditure_terminal()
+        elif(terminal_input == "update"):
+            update("expenditure")
         elif(terminal_input == "help"):
             op.tab_print(OUTPUT, 0, "show, insert, delete, rexp, back")
         else:
@@ -163,6 +173,8 @@ def recurring_expenditure_terminal():
             insert("recurring_expenditure")
         elif(terminal_input == "delete"):
             delete("recurring_expenditure")
+        elif(terminal_input == "update"):
+            update("recurring_expenditure")
         elif(terminal_input == "help"):
             op.tab_print(OUTPUT, 0, "show, insert, delete, back")
         else:
@@ -203,6 +215,8 @@ def keywords_terminal():
             insert("keywords")
         elif(terminal_input == "delete"):
             delete("keywords")
+        elif(terminal_input == "update"):
+            update("keywords")
         elif(terminal_input == "help"):
             op.tab_print(OUTPUT, 0, "show, insert, delete, back")
         else:
@@ -245,6 +259,8 @@ def university_terminal():
             insert("university")
         elif(terminal_input == "delete"):
             delete("university")
+        elif(terminal_input == "update"):
+            update("update")
         elif(terminal_input == "help"):
             op.tab_print(OUTPUT, 0, "show, insert, delete, back")
         else:
@@ -257,7 +273,7 @@ def university_terminal():
 #-------------------------------------------------------------------
 #Inserts
 
-questions_dictionary = {
+insert_questions_dictionary = {
     "calendar":
     [
         ["name of new calendar entry (str):", str],
@@ -317,7 +333,7 @@ questions_dictionary = {
     ]
 }
 
-insert_dictionary = {
+insert_db_dictionary = {
     "calendar": dbi.insert_into_calendar,
     "mothersdays": dbi.insert_into_mothersdays,
     "fathersdays": dbi.insert_into_fathersdays,
@@ -330,7 +346,7 @@ insert_dictionary = {
 
 def insert(table_name):
     input_list = []
-    for row in questions_dictionary[table_name]:
+    for row in insert_questions_dictionary[table_name]:
         question = row[0]
         print("")
         op.tab_print(INPUT, INPUT, question)
@@ -351,13 +367,134 @@ def insert(table_name):
     terminal_input = str(input())
     success = False
     if(terminal_input == "yes"):
-        success = insert_dictionary[table_name](input_list)
+        success = insert_db_dictionary[table_name](input_list)
     if(success):
         op.tab_print(OUTPUT, 0, "successfull insertion.")
         return
     else:
         op.tab_print(OUTPUT, 0, "proccess aborted.")
         return
+
+#-------------------------------------------------------------------
+#Updates
+
+update_questions_dictionary = {
+    "calendar":
+    [
+        ["name (str):", str],
+        ["day (int):", int],
+        ["month (int):", int],
+        ["year (int):", int]
+    ],
+    "mothersdays":
+    [
+        ["day (int):", int],
+        ["month (int):", int],
+        ["year (int):", int]
+    ],
+    "fathersdays":
+    [
+        ["day (int):", int],
+        ["month (int):", int],
+        ["year (int):", int]
+    ],
+    "birthdays":
+    [
+        ["name (str):", str],
+        ["day (int):", int],
+        ["month (int):", int],
+        ["year (0, if unknown)(int):", int]
+    ],
+    "expenditure":
+    [
+        ["name (str):", str],
+        ["day (int):", int],
+        ["month (int):", int],
+        ["year (int):", int],
+        ["category (str):", str],
+        ["amount (float):", float]
+    ],
+    "recurring_expenditure":
+    [
+        ["name (str):", str],
+        ["category (str):", str],
+        ["start_month (int):", int],
+        ["start_year (int):", int],
+        ["end_month (int):", int],
+        ["end_year (int):", int],
+        ["amount (float):", float]
+    ],
+    "keywords":     
+    [
+        ["name (str):", str],
+        ["score (float):", float]
+    ],
+    "university":
+    [
+        ["name (str):", str],
+        ["day (int):", int],
+        ["month (int):", int],
+        ["year (int):", int]
+    ]
+}
+
+def update(table_name):
+    update_list = []
+    print("")
+    op.tab_print(INPUT, INPUT, "rowid of element (int):")
+    rowid = str(input())
+    try:
+        int(rowid)
+    except:
+        op.tab_print(OUTPUT, 0, "incorrect type. process aborted.")
+        return
+    selection = create_selection(rowid, table_name)
+    updated_selection = create_selection(rowid, table_name)
+    print("")
+    op.tab_print(INPUT, 0, "selected element:")
+    op.table([selection], INPUT)
+    op.tab_print(INPUT, 0, "enter new values for all changed attributes or leave blank.")
+    iterator = 1
+    for row in update_questions_dictionary[table_name]:
+        question = row[0]
+        print("")
+        op.tab_print(INPUT, INPUT, question)
+        string = str(input())
+        if(not string == ""):
+            if(string == "back"):
+                op.tab_print(OUTPUT, 0, "process aborted.")
+                return
+            try:
+                row[1](string)
+            except:
+                op.tab_print(OUTPUT, 0, "incorrect type. process aborted.")
+                return
+            update_list.append([row[0].split()[0], row[1](string)])
+            updated_selection[iterator] = string
+        iterator = iterator + 1
+    print("")
+    op.tab_print(INPUT, 0, "update element from the first to the second?(yes/no)")
+    op.table([selection, updated_selection], INPUT)
+    op.tab(INPUT)
+    terminal_input = str(input())
+    success = False
+    if(terminal_input == "yes"):
+        success = dbi.update_by_rowid(rowid, table_name, update_list)
+    if(success):
+        op.tab_print(OUTPUT, 0, "successfull update.")
+        return
+    else:
+        op.tab_print(OUTPUT, 0, "proccess aborted.")
+        return
+
+def create_selection(rowid, table_name):
+    fetch = dbi.select_by_rowid(rowid, table_name)
+    if(len(fetch) == 0):
+        return None
+    selection = []
+    for value in fetch[0]:
+        selection.append(value)
+    return selection
 
 #-------------------------------------------------------------------
 #Deletes
