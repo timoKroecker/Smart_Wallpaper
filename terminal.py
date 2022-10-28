@@ -327,9 +327,11 @@ insert_questions_dictionary = {
     "university":
     [
         ["name of new university entry (str):", str],
-        ["day (int):", int],
-        ["month (int):", int],
-        ["year (int):", int]
+        ["weekday (int):", int],
+        ["start_hour (int):", int],
+        ["start_min (int):", int],
+        ["end_hour (int)", int],
+        ["end_min (int)", int]
     ]
 }
 
@@ -432,9 +434,11 @@ update_questions_dictionary = {
     "university":
     [
         ["name (str):", str],
-        ["day (int):", int],
-        ["month (int):", int],
-        ["year (int):", int]
+        ["weekday (int):", int],
+        ["start_hour (int):", int],
+        ["start_min (int):", int],
+        ["end_hour (int)", int],
+        ["end_min (int)", int]
     ]
 }
 
