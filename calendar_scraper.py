@@ -30,7 +30,7 @@ def get_daily_reminders(added_days):
 
 def get_two_weeks_reminders(added_days):
     output= []
-    for i in range(31):
+    for i in range(62):
         date = get_date(added_days + i + 1)
         if(is_mothersday(date)):
             output.append(get_dated_reminder(date, "Muttertag", added_days))

@@ -1,7 +1,5 @@
 from PIL import Image, ImageDraw, ImageFont
-import time
-import os
-import platform
+import math
 
 import birthday_scraper as bs
 from data import colors
@@ -29,6 +27,7 @@ MARGIN_Y = PIXEL_PER_ICON_Y / 6
 RADIUS = 9
 DIAMETER = 2 * RADIUS
 EXTRA_Y = -10
+PLOT_BOX_ROW_HEIGHT = 500
 
 def create_raw_image(added_days):
     img = Image.new('RGB', (WIDTH, HEIGHT), color = colors[0])
@@ -48,7 +47,7 @@ def draw_primer_widgets(img, added_days):
 
 def draw_calendar_widgets(img, todays_list, num_events_today, months_list):
     draw = ImageDraw.Draw(img)
-    draw_content_box(draw, (0, 0), (4, 9), "Kalendar")
+    draw_content_box(draw, (0, 0), (4, 9.5), "Kalendar")
 
     draw_todays_calendar_list(draw, todays_list, 35, 86)
     draw_extended_list(draw, months_list, num_events_today, 35, 100, 170, 86)
@@ -209,10 +208,10 @@ def draw_weather_widgets(img, weather_list):
 def draw_incidents_widgets(img, incidents_list, incidents_plot_cube):
     draw = ImageDraw.Draw(img)
     max_y = get_max_y_from_incidents(incidents_plot_cube)
-    rows = int(max_y // 500)
+    rows = int(math.ceil(max_y / PLOT_BOX_ROW_HEIGHT))
     draw_content_box(draw, (4, 4.5), (8, 3.5), "Inzidenzen")
     draw_plot_box(draw, (4.2, 5.125), (5.5, 2.650), rows, colors[3], colors[2])
-    plot_incidences(draw, (4.2, 5.125), (5.5, 2.650), incidents_plot_cube, max_y)
+    plot_incidences(draw, (4.2, 5.125), (5.5, 2.650), incidents_plot_cube, max_y, rows)
 
     pos_x1 = 995
     pos_x2 = 1155
@@ -232,21 +231,21 @@ def get_max_y_from_incidents(incidents_plot_cube):
         for row in matrix:
             if(max_value < row[4]):
                 max_value = row[4]
-    return (max_value // 200 + 1) * 200
+    return max_value
 
 def draw_content_box(draw, pos, size, caption = None):
     draw_box(draw, pos, size, colors[1], caption=caption)
     draw_box(draw, (pos[0] + 0.05, pos[1] + 0.45), (size[0] - 0.1, size[1] - 0.5), colors[2])
     draw_box(draw, (pos[0] + 0.1, pos[1] + 0.5), (size[0] - 0.2, size[1] - 0.6), colors[1])
 
-def plot_incidences(draw, pos, size, incidents_plot_cube, max_y):
+def plot_incidences(draw, pos, size, incidents_plot_cube, max_y, rows):
     top = pos[1] * PIXEL_PER_ICON_Y + MARGIN_Y - EXTRA_Y
     left = pos[0] * PIXEL_PER_ICON_X + MARGIN_X + RADIUS
     right = left + size[0] * PIXEL_PER_ICON_X - MARGIN_X *2 - RADIUS * 2
     bottom = top + size[1] * PIXEL_PER_ICON_Y - 6
     height = bottom - top
     width = right - left
-    height_partition = height / (max_y - 1)
+    height_partition = height / (PLOT_BOX_ROW_HEIGHT * rows)
     width_partition = width / (len(incidents_plot_cube) - 1)
     radius = 1
     for city_iterator in range(5):
@@ -297,14 +296,42 @@ def draw_plot_box(draw, pos, size, rows, box_color, line_color):
         current_height_partition = height_partition * (i + 1)
         draw.rectangle((left, top + current_height_partition, right, top + current_height_partition + 1), fill=line_color)
 
-def draw_university_widgets(img, todays_list, num_events_today, extended_list):
+def draw_university_widgets(img, todays_list, num_events_today, tomorrows_list):
     draw = ImageDraw.Draw(img)
-    draw_content_box(draw, (12, 5), (4, 4), "Uni")
+    draw_content_box(draw, (12, 5), (4, 4.5), "Uni")
+    #draw_box(draw, (12.05, 5.45), (3.9, 4), colors[1])
+    #draw_box(draw, (12.1, 5.5), (3.8, 3.9), colors[2])
+    #for i in range(5):
+    #    draw_box(draw, (12.1, 5.5 + i * 0.78), (1.9, 0.78), colors[2])
+    #    draw_box(draw, (14, 5.5 + i * 0.78), (1.9, 0.78), colors[2])
 
-    draw_todays_calendar_list(draw, todays_list, 1235, 523.5)
-    draw_extended_list(draw, extended_list, num_events_today, 1235, 1300, 1370, 523.5)
+    draw_university_today(draw, todays_list)
+    draw_university_tomorrow(draw, tomorrows_list)
+    #draw_todays_calendar_list(draw, todays_list, 1235, 523.5)
+    #draw_extended_list(draw, extended_list, num_events_today, 1235, 1300, 1370, 523.5)
 
     return img
+
+def draw_university_today(draw, todays_list):
+    for elem in todays_list:
+        position = (elem[1] - 8) / 2
+        draw_box(draw, (12.15, 5.55 + position * 0.76), (1.85, 0.76), colors[2])
+        draw.text((1228, 523.5 + position * 67), elem[0], font=THIRD_FONT, fill=font_colors[0])
+        time_string = str(elem[1]) + ":" + extra_zero(elem[2]) + " - " + str(elem[3]) + ":" + extra_zero(elem[4])
+        draw.text((1253, 545.5 + position * 67), time_string, font=THIRD_FONT, fill=font_colors[0])
+
+def draw_university_tomorrow(draw, tomorrows_list):
+    for elem in tomorrows_list:
+        position = (elem[1] - 8) / 2
+        draw_box(draw, (14, 5.55 + position * 0.76), (1.85, 0.76), colors[2])
+        draw.text((1413, 523.5 + position * 67), elem[0], font=THIRD_FONT, fill=font_colors[0])
+        time_string = str(elem[1]) + ":" + extra_zero(elem[2]) + " - " + str(elem[3]) + ":" + extra_zero(elem[4])
+        draw.text((1438, 545.5 + position * 67), time_string, font=THIRD_FONT, fill=font_colors[0])
+
+def extra_zero(value):
+    if(value < 10):
+        return "0" + str(value)
+    return str(value)
     
 def draw_box(draw, pos, size, fill_color, caption=None):
     top = pos[1] * PIXEL_PER_ICON_Y
