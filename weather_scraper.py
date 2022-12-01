@@ -45,27 +45,45 @@ def cook_daylight_soup():
     return [sunrise_str, sunset_str]
 
 def get_current_temperature(soup):
-    span = soup.find("span", class_="CurrentConditions--tempValue--3KcTQ")
-    if(span == None):
-        span = soup.find("span", class_="CurrentConditions--tempValue--1RYJJ")
-    if(span == None):
-        span = soup.find("span", class_="CurrentConditions--tempValue--3a50n")
+    class_names =   [
+                        "CurrentConditions--tempValue--MHmYY",
+                        "CurrentConditions--tempValue--3a50n",
+                        "CurrentConditions--tempValue--1RYJJ",
+                        "CurrentConditions--tempValue--3KcTQ"
+                    ]
+    span = None
+    for class_name in class_names:
+        span = soup.find("span", class_=class_name)
+        if(span != None):
+            break
     return span.text
 
 def get_night_temperature(soup):
-    div = soup.find("div", class_="CurrentConditions--tempHiLoValue--A4RQE")
-    if(div == None):
-        div = soup.find("div", class_="CurrentConditions--tempHiLoValue--1s05u")
-    if(div == None):
-        div = soup.find("div", class_="CurrentConditions--tempHiLoValue--3SUHy")
+    class_names =   [
+                        "CurrentConditions--tempHiLoValue--3T1DG",
+                        "CurrentConditions--tempHiLoValue--3SUHy",
+                        "CurrentConditions--tempHiLoValue--1s05u",
+                        "CurrentConditions--tempHiLoValue--A4RQE"
+                    ]
+    div = None
+    for class_name in class_names:
+        div = soup.find("div", class_=class_name)
+        if(div != None):
+            break
     return div.find_all("span")[1].text
 
 def get_current_description(soup):
-    desc = soup.find("div", class_="CurrentConditions--phraseValue--2xXSr")
-    if(desc == None):
-        desc = soup.find("div", class_="CurrentConditions--phraseValue--17s79")
-    if(desc == None):
-        desc = soup.find("div", class_="CurrentConditions--phraseValue--2Z18W")
+    class_names =   [
+                        "CurrentConditions--phraseValue--mZC_p",
+                        "CurrentConditions--phraseValue--2Z18W",
+                        "CurrentConditions--phraseValue--17s79",
+                        "CurrentConditions--phraseValue--2xXSr"
+                    ]
+    desc = None
+    for class_name in class_names:
+        desc = soup.find("div", class_=class_name)
+        if(desc != None):
+            break
     return remove_secondary_descriptions(desc.text)
 
 def remove_secondary_descriptions(description):
