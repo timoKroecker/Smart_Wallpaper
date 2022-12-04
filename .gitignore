@@ -58,6 +58,5 @@ target/
 
 # custom wallpaper
 current_img.png
-# custom generated folders
-# finances
-# birthdays
+# database
+smart_wallpaper.db
