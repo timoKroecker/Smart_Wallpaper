@@ -19,14 +19,14 @@ def the_one_ring():
             expenditure_terminal()
         elif(terminal_input == "news"):
             news_terminal()
-        elif(terminal_input == "inc"):
-            incidents_terminal()
         elif(terminal_input == "uni"):
             university_terminal()
         elif(terminal_input == "boo"):
             books_terminal()
+        elif(terminal_input == "lib"):
+            library_terminal()
         elif(terminal_input == "help"):
-            op.tab_print(OUTPUT, 0, "cal, bir, exp, news, boo, inc, uni, stop")
+            op.tab_print(OUTPUT, 0, "cal, bir, exp, news, boo, uni, stop")
         else:
             op.tab_print(OUTPUT, 0, "command not found")
         op.home(post = 2)
@@ -295,6 +295,29 @@ def books_terminal():
         op.books_intro(post = INPUT)
         terminal_input = input()
 
+def library_terminal():
+    op.home(post = ZERO)
+    op.library_intro(post = INPUT)
+    terminal_input = input()
+    while(terminal_input != "back"):
+        if(terminal_input == "show"):
+            table = dbi.select_table("library")
+            op.table(table, tabs = OUTPUT)
+        elif(terminal_input == "insert"):
+            insert("library")
+        elif(terminal_input == "delete"):
+            delete("library")
+        elif(terminal_input == "update"):
+            update("library")
+        elif(terminal_input == "help"):
+            op.tab_print(OUTPUT, 0, "show, insert, update, delete, back")
+        else:
+            op.tab_print(OUTPUT, 0, "command not found")
+
+        op.home(post = ZERO)
+        op.library_intro(post = INPUT)
+        terminal_input = input()
+
 #-------------------------------------------------------------------
 #Inserts
 
@@ -367,6 +390,12 @@ insert_questions_dictionary = {
         ["year (int):", int],
         ["language (str):", str],
         ["pages (int):", int]
+    ],
+    "library":
+    [
+        ["name of library entry (str):", str],
+        ["medium (str):", str],
+        ["link (str):", str]
     ]
 }
 
@@ -379,7 +408,8 @@ insert_db_dictionary = {
     "recurring_expenditure": dbi.insert_into_recurring_expenditure,
     "keywords": dbi.insert_into_keywords,
     "university": dbi.insert_into_university,
-    "books": dbi.insert_into_books
+    "books": dbi.insert_into_books,
+    "library": dbi.insert_into_library
 }
 
 def insert(table_name):
@@ -485,6 +515,12 @@ update_questions_dictionary = {
         ["year (int):", int],
         ["language (str):", str],
         ["pages (int):", int]
+    ],
+    "library":
+    [
+        ["name (str):", str],
+        ["medium (str):", str],
+        ["link (str):", str]
     ]
 }
 

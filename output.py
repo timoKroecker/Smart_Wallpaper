@@ -90,6 +90,11 @@ def books_intro(pre = 1, post = 0):
     print("~books")
     tab(post)
 
+def library_intro(pre = 1, post = 0):
+    tab(pre)
+    print("~library")
+    tab(post)
+
 def table(table, tabs = 0):
     if(len(table) == 0):
         return

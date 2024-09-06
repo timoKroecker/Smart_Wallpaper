@@ -9,6 +9,7 @@ import weather_scraper as ws
 import incidents_scraper as ins
 import university_scraper as us
 import books_scraper as bos
+import library_scraper as ls
 import change_wallpaper as cw
 import output as op
 
@@ -32,6 +33,7 @@ def the_one_ring():
     #img = scrape_n_draw_incidents(img)
     img = scrape_n_draw_university(img, DAY_OFFSET)
     img = scrape_n_draw_books(img, DAY_OFFSET)
+    img = scrape_n_draw_library(img)
 
     cw.save_img(img, IMG_NAME)
     cw.change_wallpaper(PATH + "/" + IMG_NAME)
@@ -144,6 +146,18 @@ def scrape_n_draw_books(img, added_days):
         op.visible()
     else:
         op.hidden()
+    return img
+
+def scrape_n_draw_library(img):
+    op.library_intro()
+    returned_today, available, reserved, borrowed = ls.scrape_library()
+
+    if(len(returned_today + available + reserved + borrowed) == 0):
+        op.hidden()
+        return img
+    
+    img = dsgn.draw_library_widgets(img, returned_today, available, reserved, borrowed)
+    op.visible()
     return img
 
 the_one_ring()
