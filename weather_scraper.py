@@ -2,6 +2,9 @@ from bs4 import BeautifulSoup
 import requests
 import time
 import codecs
+import threading
+
+TIMEOUT = 3
 
 from data import weather_descriptions as wd
 
@@ -16,12 +19,20 @@ def scrape_weather():
         img_name = get_daytime_index(sunrise_str, sunset_str) + get_description_index(desc) + ".png"
     return [temp, img_name, sunrise_str, sunset_str]
 
+def set_timeout(event):
+    event.set()
+
 def cook_weather_soup():
     req = None
-    try:
-        req = requests.get("https://weather.com/de-DE/wetter/heute/l/3a290f5daf6568a77c79271dc2aa5fb217ceab85a1ba3c54c8d16efac932edfb")
-    except:
-        return None, None
+    event = threading.Event()
+    timer = threading.Timer(TIMEOUT, set_timeout, [event])
+
+    timer.start()
+    while(req == None and not event.is_set()):
+        try:
+            req = requests.get("https://weather.com/de-DE/wetter/heute/l/3a290f5daf6568a77c79271dc2aa5fb217ceab85a1ba3c54c8d16efac932edfb")
+        except:
+            return None, None
     soup = BeautifulSoup(req.text, "lxml")
     try:
         current_temp_str = get_current_temperature(soup)
@@ -61,6 +72,7 @@ def get_current_temperature(soup):
 def get_night_temperature(soup):
     class_names =   [
                         "CurrentConditions--tempHiLoValue--3T1DG",
+                        "CurrentConditions--tempHiLoValue--3T1DG",
                         "CurrentConditions--tempHiLoValue--3SUHy",
                         "CurrentConditions--tempHiLoValue--1s05u",
                         "CurrentConditions--tempHiLoValue--A4RQE"
@@ -70,7 +82,7 @@ def get_night_temperature(soup):
         div = soup.find("div", class_=class_name)
         if(div != None):
             break
-    return div.find_all("span")[1].text
+    return div.find_all("span")[2].text
 
 def get_current_description(soup):
     class_names =   [

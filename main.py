@@ -8,10 +8,12 @@ import news_scraper as ns
 import weather_scraper as ws
 import incidents_scraper as ins
 import university_scraper as us
+import books_scraper as bos
 import change_wallpaper as cw
 import output as op
 
 DAY_OFFSET = 0
+YEARLY_READING_GOAL = 7200
 PATH = os.path.dirname(os.path.realpath(__file__))
 IMG_NAME = "current_img.png"
 
@@ -27,8 +29,9 @@ def the_one_ring():
     img = scrape_n_draw_finances(img, DAY_OFFSET)
     img = scrape_n_draw_news(img)
     img = scrape_n_draw_weather(img)
-    img = scrape_n_draw_incidents(img)
+    #img = scrape_n_draw_incidents(img)
     img = scrape_n_draw_university(img, DAY_OFFSET)
+    img = scrape_n_draw_books(img, DAY_OFFSET)
 
     cw.save_img(img, IMG_NAME)
     cw.change_wallpaper(PATH + "/" + IMG_NAME)
@@ -127,6 +130,17 @@ def scrape_n_draw_university(img, added_days):
     tomorrows_list = university_list[2]
     if(len(todays_list) != 0 or len(tomorrows_list) != 0):
         img = dsgn.draw_university_widgets(img, todays_list, num_events_today, tomorrows_list)
+        op.visible()
+    else:
+        op.hidden()
+    return img
+
+def scrape_n_draw_books(img, added_days):
+    op.books_intro()
+    bounds, goal, books_list, prognosis = bos.scrape_books(added_days, YEARLY_READING_GOAL)
+
+    if(books_list != None):
+        img = dsgn.draw_books_widgets(img, bounds, goal, books_list, prognosis, added_days)
         op.visible()
     else:
         op.hidden()

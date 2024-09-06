@@ -85,6 +85,11 @@ def keywords_intro(pre = 1, post = 0):
     print("~keywords")
     tab(post)
 
+def books_intro(pre = 1, post = 0):
+    tab(pre)
+    print("~books")
+    tab(post)
+
 def table(table, tabs = 0):
     if(len(table) == 0):
         return

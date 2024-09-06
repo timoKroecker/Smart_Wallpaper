@@ -1,13 +1,15 @@
 from bs4 import BeautifulSoup
 import requests
 import time
+import threading
 
 import database_interface as dbi
 
 from data import incidents_soup_broth as broth
 from data import incidents_soup_ingredients as ingr
 
-RANGE_OF_DAYS = 92
+RANGE_OF_DAYS = 730
+TIMEOUT = 3
 
 def scrape_incidents():
     dbi.create_incidents_tables()
@@ -20,12 +22,20 @@ def scrape_incidents():
         return reformat_incidents_selection(incidents_list), incidents_plot_cube
     return incidents_list, incidents_plot_cube
 
+def set_timeout(event):
+    event.set()
+
 def cook_soup():
     req = None
-    try:
-        req = requests.get(broth)
-    except:
-        return None
+    event = threading.Event()
+    timer = threading.Timer(TIMEOUT, set_timeout, [event])
+    
+    timer.start()
+    while(req == None and not event.is_set()):
+        try:
+            req = requests.get(broth)
+        except:
+            return None
 
     soup = BeautifulSoup(req.text, 'lxml')
     #check if the html text is just a blank header

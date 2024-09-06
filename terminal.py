@@ -23,8 +23,10 @@ def the_one_ring():
             incidents_terminal()
         elif(terminal_input == "uni"):
             university_terminal()
+        elif(terminal_input == "boo"):
+            books_terminal()
         elif(terminal_input == "help"):
-            op.tab_print(OUTPUT, 0, "cal, bir, exp, news, inc, uni, stop")
+            op.tab_print(OUTPUT, 0, "cal, bir, exp, news, boo, inc, uni, stop")
         else:
             op.tab_print(OUTPUT, 0, "command not found")
         op.home(post = 2)
@@ -260,7 +262,7 @@ def university_terminal():
         elif(terminal_input == "delete"):
             delete("university")
         elif(terminal_input == "update"):
-            update("update")
+            update("university")
         elif(terminal_input == "help"):
             op.tab_print(OUTPUT, 0, "show, insert, update, delete, back")
         else:
@@ -268,6 +270,29 @@ def university_terminal():
 
         op.home(post = ZERO)
         op.university_intro(post = INPUT)
+        terminal_input = input()
+
+def books_terminal():
+    op.home(post = ZERO)
+    op.books_intro(post = INPUT)
+    terminal_input = input()
+    while(terminal_input != "back"):
+        if(terminal_input == "show"):
+            table = dbi.select_table("books")
+            op.table(table, tabs = OUTPUT)
+        elif(terminal_input == "insert"):
+            insert("books")
+        elif(terminal_input == "delete"):
+            delete("books")
+        elif(terminal_input == "update"):
+            update("books")
+        elif(terminal_input == "help"):
+            op.tab_print(OUTPUT, 0, "show, insert, update, delete, back")
+        else:
+            op.tab_print(OUTPUT, 0, "command not found")
+
+        op.home(post = ZERO)
+        op.books_intro(post = INPUT)
         terminal_input = input()
 
 #-------------------------------------------------------------------
@@ -332,6 +357,16 @@ insert_questions_dictionary = {
         ["start_min (int):", int],
         ["end_hour (int)", int],
         ["end_min (int)", int]
+    ],
+    "books":
+    [
+        ["title of new book entry (str):", str],
+        ["author (str):", str],
+        ["day (int):", int],
+        ["month (int):", int],
+        ["year (int):", int],
+        ["language (str):", str],
+        ["pages (int):", int]
     ]
 }
 
@@ -343,7 +378,8 @@ insert_db_dictionary = {
     "expenditure": dbi.insert_into_expenditure,
     "recurring_expenditure": dbi.insert_into_recurring_expenditure,
     "keywords": dbi.insert_into_keywords,
-    "university": dbi.insert_into_university
+    "university": dbi.insert_into_university,
+    "books": dbi.insert_into_books
 }
 
 def insert(table_name):
@@ -439,6 +475,16 @@ update_questions_dictionary = {
         ["start_min (int):", int],
         ["end_hour (int)", int],
         ["end_min (int)", int]
+    ],
+    "books":
+    [
+        ["title (str):", str],
+        ["author (str):", str],
+        ["day (int):", int],
+        ["month (int):", int],
+        ["year (int):", int],
+        ["language (str):", str],
+        ["pages (int):", int]
     ]
 }
 

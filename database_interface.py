@@ -52,6 +52,13 @@ def create_university_tables():
     connection.commit()
     connection.close()
 
+def create_books_tables():
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    create_books(cursor)
+    connection.commit()
+    connection.close()
+
 def create_calendar(cursor):
     try:
         cursor.execute("""
@@ -170,6 +177,22 @@ def create_university(cursor):
                 end_min integer
             )
             """)
+    except:
+        pass
+
+def create_books(cursor):
+    try:
+        cursor.execute("""
+        CREATE TABLE books(
+            title text,
+            author text,
+            day integer,
+            month integer,
+            year integer,
+            language text,
+            pages integer
+        )
+        """)
     except:
         pass
 
@@ -301,6 +324,19 @@ def insert_into_university(input_list):
             INSERT INTO university
             VALUES('""" + input_list[0] + """', """ + input_list[1] + """, """ + input_list[2] + """, 
             """ + input_list[3] + """, """ + input_list[4] + """, """ + input_list[5] + """)""")
+        connection.commit()
+        connection.close()
+        return True
+    return False
+
+def insert_into_books(input_list):
+    if(check_books(input_list[0], input_list[1], input_list[2], input_list[3], input_list[4])):
+        connection = sqlite3.connect("smart_wallpaper.db")
+        cursor = connection.cursor()
+        cursor.execute("""
+            INSERT INTO books
+            VALUES('""" + input_list[0] + """', '""" + input_list[1] + """', """ + input_list[2] + """, 
+            """ + input_list[3] + """, """ + input_list[4] + """, '""" + input_list[5] + """', """ + input_list[6] + """)""")
         connection.commit()
         connection.close()
         return True
@@ -603,6 +639,37 @@ def select_university_by_weekday(weekday):
     connection.close()
     return fetch
 
+def select_books(title, author, day, month, year):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT *
+        FROM books
+        WHERE title = '""" + title + """'
+        AND author = '""" + author + """'
+        AND day = """ + day + """
+        AND month = """ + month + """
+        AND year = """ + year + """
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
+
+def select_bookpages_by_month_year(month, year):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT sum(pages)
+        FROM books
+        WHERE month = """ + month + """
+        AND year = """ + year + """
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch[0][0]
+
 def select_table(table):
     connection = sqlite3.connect("smart_wallpaper.db")
     cursor = connection.cursor()
@@ -688,6 +755,9 @@ def check_keywords(word):
 def check_university(name, weekday):
     return len(select_university(name, weekday)) == 0
 
+def check_books(title, author, day, month, year):
+    return len(select_books(title, author, day, month, year)) == 0
+
 #------------------------------------------------------------------------------------
 #Get functions
 
@@ -754,62 +824,18 @@ def delete_by_rowid(rowid, tablename):
     return fetch
 
 #------------------------------------------------------------------------------------
-#In case of dropping finance tables
-
-def read_finance_directory(year_str):
-    connection = sqlite3.connect("smart_wallpaper.db")
-    cursor = connection.cursor()
-    year_dir = manage_dir_structure(year_str)
-    for i in range(12):
-        month_dir = year_dir + "/" + mnths[i][0]
-        if(os.path.isdir(month_dir)):
-            for ec_row in ec:
-                category_dir = month_dir + "/" + ec_row[0] + ".txt"
-                content_matrix = extract_content_list(category_dir)
-                for content_row in content_matrix:
-                    cursor.execute("""
-                        INSERT INTO expenditure
-                        VALUES ('""" + content_row[0] + """', 1, """ + str(i + 1) + """, """ + year_str + """, '""" + ec_row[1] + """', """ + content_row[1] + """)
-                        """)
-    connection.commit()
-    connection.close()
-
-def manage_dir_structure(year_str):
-    finance_dir = os.path.dirname(os.path.realpath(__file__)) + "/finances"
-    year_dir = finance_dir + "/" + year_str
-    return year_dir
-
-def extract_content_list(file_dir):
-    content_str = read_txt_file_contents(file_dir)
-    temp_content_list = content_str.split("\n")
-    final_content_list = []
-    for string in temp_content_list:
-        if(string != ""):
-            final_content_list.append(string.split("\t"))
-    return final_content_list
-
-def read_txt_file_contents(file_dir):
-    if(not os.path.isfile(file_dir)):
-        return None
-    txt_file = open(file_dir, "r")
-    txt_str = txt_file.read()
-    num_caption_lines = 7
-    index = 0
-    while(num_caption_lines > 0):
-        if(txt_str[index] == "\n"):
-            num_caption_lines = num_caption_lines - 1
-        index = index + 1
-    return txt_str[index:len(txt_str)]
-
-#------------------------------------------------------------------------------------
 #Test functions
 
 def test_function():
+    print("DATABASE TEST")
     connection = sqlite3.connect("smart_wallpaper.db")
     cursor = connection.cursor()
     cursor.execute("""
-        select *
-        from university
+        select rowid, *
+        from expenditure
+        where month = 5
+        and year = 2024
+        and category = 'Freizeit'
         """)
     fetch = cursor.fetchall()
     connection.commit()
@@ -817,4 +843,5 @@ def test_function():
     for row in fetch:
         print(row)
 
-#test_function()
+if __name__ == "__main__":
+    test_function()

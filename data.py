@@ -9,18 +9,18 @@ weekdays =      [
                 ]
 
 months =        [
-                    ["01_januar", "JAN"],
-                    ["02_februar", "FEB"],
-                    ["03_märz", "MRZ"],
-                    ["04_april", "APR"],
-                    ["05_mai", "MAI"],
-                    ["06_juni", "JUN"],
-                    ["07_juli", "JUL"],
-                    ["08_august", "AUG"],
-                    ["09_september", "SEP"],
-                    ["10_oktober", "OKT"],
-                    ["11_november", "NOV"],
-                    ["12_dezember", "DEZ"]
+                    ["Januar", "JAN"],
+                    ["Februar", "FEB"],
+                    ["März", "MRZ"],
+                    ["April", "APR"],
+                    ["Mai", "MAI"],
+                    ["Juni", "JUN"],
+                    ["Juli", "JUL"],
+                    ["August", "AUG"],
+                    ["September", "SEP"],
+                    ["Oktober", "OKT"],
+                    ["November", "NOV"],
+                    ["Dezember", "DEZ"]
                 ]
 
 backup_colors =        [
@@ -41,7 +41,8 @@ font_colors =   [
                     (200, 200, 200),            #white/ish
                     (0, 0, 0),                  #background
                     (255,215,0),                #gold
-                    (40, 40, 120)                #icon_frames_2
+                    (40, 40, 120),              #icon_frames_2
+                    (250, 125, 0)               #orange
                 ]
 
 birthdays_categories =  [
@@ -49,10 +50,10 @@ birthdays_categories =  [
                         ]
 
 news_soup_ingredients = [
-                            ["https://focus.de", "h4", "vr", " -Focus", 30],
+                            ["https://focus.de", "h3", "", " -Focus", 30],
                             ["https://www.spiegel.de/", "span", "hover:opacity-moderate focus:opacity-moderate", " -Spiegel", 30],
                             ["https://n-tv.de", "span", "teaser__headline", " -ntv", 30],
-                            ["https://www.welt.de/", "div", "o-headline o-teaser__headline c-dreifaltigkeit__headline c-teaser-default__headline", " -Welt", 30]
+                            ["https://www.welt.de/", "h4", "c-teaser__headline", " -Welt", 30]
                         ]
 
 backup = ["https://www.tagesschau.de/", "span", "teaser__headline", " -Tagesschau", 30]
@@ -107,3 +108,8 @@ incidents_colors =      [
                             [(47, 170, 52), (71, 255, 78)],      #green
                             [(170, 159, 50), (255, 239, 75)]     #yellow
                         ]
+
+bar_colors =    [
+                    (170,143,0),    #orange1
+                    (225,189,106)    #orange2
+                ]
