@@ -1,11 +1,14 @@
 from bs4 import BeautifulSoup
 import requests
 import re
+import threading
 
 import database_interface as dbi
 
 from data import news_soup_ingredients as ingr
 from data import unwanted_characters as unwntd
+
+TIMEOUT = 3
 
 def scrape_news_headlines(print_on=False):
     scored_selections = []
@@ -22,12 +25,20 @@ def scrape_news_headlines(print_on=False):
     total_ranked_selection = get_ranked_selection(total_scored_selection, print_on)
     return total_ranked_selection
 
+def set_timeout(event):
+    event.set()
+
 def cook_soup(index):
     req = None
-    try:
-        req = requests.get(ingr[index][0])
-    except:
-        return None
+    event = threading.Event()
+    timer = threading.Timer(TIMEOUT, set_timeout, [event])
+    
+    timer.start()
+    while(req == None and not event.is_set()):
+        try:
+            req = requests.get(ingr[index][0])
+        except:
+            return None
     soup = BeautifulSoup(req.text, 'lxml')
     #check if the html text is just a blank header
     if(len(str(soup)) < 5000):

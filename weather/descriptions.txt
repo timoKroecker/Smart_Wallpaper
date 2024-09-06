@@ -14,3 +14,5 @@ Regenschauer
 Regen
 Schauer in der Nähe
 Sprühregen
+Schweres Gewitter
+Leichter Regen mit Gewitter
