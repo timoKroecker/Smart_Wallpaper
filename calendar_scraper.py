@@ -4,6 +4,8 @@ from data import weekdays
 
 import database_interface as dbi
 
+DAYS_IN_THE_FUTURE = 150
+
 def scrape_calendar(added_days):
     dbi.create_calendar_tables()
 
@@ -30,7 +32,7 @@ def get_daily_reminders(added_days):
 
 def get_two_weeks_reminders(added_days):
     output= []
-    for i in range(62):
+    for i in range(DAYS_IN_THE_FUTURE):
         date = get_date(added_days + i + 1)
         if(is_mothersday(date)):
             output.append(get_dated_reminder(date, "Muttertag", added_days))

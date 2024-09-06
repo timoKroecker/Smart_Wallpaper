@@ -1,7 +1,8 @@
 from PIL import Image, ImageDraw, ImageFont
 import math
+import time
 
-import birthday_scraper as bs
+import data as da
 from data import colors
 from data import font_colors
 from data import incidents_colors
@@ -29,6 +30,9 @@ DIAMETER = 2 * RADIUS
 EXTRA_Y = -10
 PLOT_BOX_ROW_HEIGHT = 500
 
+BAR_CHART_RADIUS = 1
+BAR_CHART_DIAMETER = 2 * BAR_CHART_RADIUS
+
 def create_raw_image(added_days):
     img = Image.new('RGB', (WIDTH, HEIGHT), color = colors[0])
     draw_primer_widgets(img, added_days)
@@ -40,14 +44,14 @@ def draw_primer_widgets(img, added_days):
     draw_box(draw, (0, 9.5), (5, 1), colors[1]) 
     #date
     draw_box(draw, (11, 9.5), (5, 1), colors[1]) 
-    time_string = bs.get_time_string(added_days)
-    draw.text((1240 - (len(time_string) + 1) * 2, 870), "Letzter reload: " + time_string, font=SECOND_FONT, fill=font_colors[0])
+    time_string = "Letzter reload: " + get_time_string(added_days)
+    draw.text((1350 - int(len(time_string) * 3.9), 870), time_string, font=SECOND_FONT, fill=font_colors[0])
     #main folders
     draw_box(draw, (5, 8), (6, 1), colors[1]) 
 
 def draw_calendar_widgets(img, todays_list, num_events_today, months_list):
     draw = ImageDraw.Draw(img)
-    draw_content_box(draw, (0, 0), (4, 9.5), "Kalendar")
+    draw_content_box(draw, (0, 0), (4, 9.5), "Kalender")
 
     draw_todays_calendar_list(draw, todays_list, 35, 86)
     draw_extended_list(draw, months_list, num_events_today, 35, 100, 170, 86)
@@ -210,7 +214,7 @@ def draw_incidents_widgets(img, incidents_list, incidents_plot_cube):
     max_y = get_max_y_from_incidents(incidents_plot_cube)
     rows = int(math.ceil(max_y / PLOT_BOX_ROW_HEIGHT))
     draw_content_box(draw, (4, 4.5), (8, 3.5), "Inzidenzen")
-    draw_plot_box(draw, (4.2, 5.125), (5.5, 2.650), rows, colors[3], colors[2])
+    draw_plot_box_incidents(draw, (4.2, 5.125), (5.5, 2.650), rows, colors[3], colors[2])
     plot_incidences(draw, (4.2, 5.125), (5.5, 2.650), incidents_plot_cube, max_y, rows)
 
     pos_x1 = 995
@@ -284,7 +288,7 @@ def plot_partial_line(draw, current_bounds, prev_bounds, color, is_successor):
         current_bottom = prev_bounds[3] + bottom_step * i
         draw.ellipse((current_left, current_top, current_right, current_bottom), fill=color)
 
-def draw_plot_box(draw, pos, size, rows, box_color, line_color):
+def draw_plot_box_incidents(draw, pos, size, rows, box_color, line_color):
     top = pos[1] * PIXEL_PER_ICON_Y + MARGIN_Y - EXTRA_Y
     left = pos[0] * PIXEL_PER_ICON_X + MARGIN_X
     right = left + size[0] * PIXEL_PER_ICON_X - MARGIN_X * 2
@@ -332,6 +336,79 @@ def extra_zero(value):
     if(value < 10):
         return "0" + str(value)
     return str(value)
+
+def draw_books_widgets(img, max_value, goals, books_list, prognosis, added_days):
+    date = get_date(added_days)
+    draw = ImageDraw.Draw(img)
+    draw_content_box(draw, (4, 4.5), (8, 3.5), "Bücher")
+    plot_box_pos = (4.2, 5.125)
+    plot_box_size = (5.5, 2.650)
+    draw_plot_box_books(draw, plot_box_pos, plot_box_size, colors[3])
+    plot_books(draw, plot_box_pos, plot_box_size, max_value, goals[0:2], books_list, added_days)
+
+    legend_data =   [
+                        [da.months[date.tm_mon - 1][0] + ":", books_list[-1], goals[0]],
+                        ["Kummuliert:", sum(books_list) ,goals[1]],
+                        ["Prognose:", prognosis, goals[2]]
+                    ]
+
+    pos_x1 = 985
+    pos_x2 = 1080
+    pos_x3 = 1120
+    pos_y = 520
+    iterator = 0
+    for entry in legend_data:
+        draw.text((pos_x1, pos_y), entry[0], font= FOURTH_FONT, fill=font_colors[0])
+        if(entry[1] >= entry[2]):
+            draw.text((pos_x2, pos_y - 5), str(entry[1]), font= GEORGIA_14, fill=font_colors[0])
+        else:
+            draw.text((pos_x2, pos_y - 5), str(entry[1]), font= GEORGIA_14, fill=font_colors[4])
+        draw.text((pos_x3, pos_y - 5), " /  " + str(entry[2]), font= GEORGIA_14, fill=font_colors[0])
+        pos_y = pos_y + 60
+        iterator = iterator + 1
+
+    return img
+
+def draw_plot_box_books(draw, pos, size, box_color):
+    draw_box(draw, pos, size, box_color)
+
+def plot_books(draw, pos, size, max_value, goals, books_list, added_days):
+    num_months = get_date(added_days).tm_mon
+    top, left, right, bottom = icon_measures_to_bounds(pos, size)
+    top += 10
+    width = right - left
+    column_width = (width / 12)
+    empty_columns = 12 - len(books_list)
+
+    draw_goal_line(draw, max_value, goals[0], top, left, right, bottom)
+    draw_goal_line(draw, max_value, goals[1], top, left, right, bottom)
+
+    for i in range(12):
+        if(i >= empty_columns):
+            books_index = i - empty_columns
+            new_left = left + i * column_width
+            new_right = left + (i + 1) * column_width
+            draw_monthly_bar_graph(draw, top ,new_left, new_right, bottom, max_value, books_list, books_index)
+
+def draw_goal_line(draw, max_value, goal, top, left, right, bottom):
+    goal_height_ratio = goal / max_value
+    top = top + (1 - goal_height_ratio) * (bottom - top)
+    draw.rectangle((left, top, right, top), (250, 125, 0))
+
+def draw_monthly_bar_graph(draw, top, left, right, bottom, max_value, books_list, books_index):
+    monthly_books = books_list[books_index]
+    cummulative_books = sum(books_list[0:books_index + 1])
+    draw_bar(draw, top, left, right, bottom, max_value, cummulative_books, "RIGHT", da.bar_colors[0])
+    draw_bar(draw, top, left, right, bottom, max_value, monthly_books, "LEFT", da.bar_colors[1])
+
+def draw_bar(draw, top, left, right, bottom, max_value, value, offset, color):
+    bar_height_ratio = value / max_value
+    top = top + (1 - bar_height_ratio) * (bottom - top)
+    if(offset == "RIGHT"):
+        left += (right - left) / 4
+    elif(offset == "LEFT"):
+        right -= (right - left) / 4
+    draw_box_by_bounds(draw, top, left, right, bottom, color)
     
 def draw_box(draw, pos, size, fill_color, caption=None):
     top = pos[1] * PIXEL_PER_ICON_Y
@@ -347,3 +424,59 @@ def draw_box(draw, pos, size, fill_color, caption=None):
     if(caption!=None):
         half_caption_width = (len(caption) + 1) * 4
         draw.text((left + (right - left) / 2 - half_caption_width, top + PIXEL_PER_ICON_Y / 2.25), caption, font=MAIN_FONT, fill=font_colors[0])
+
+def draw_box_by_bounds(draw, top, left, right, bottom, fill_color, caption=None):
+    if(bottom > top):
+        draw.ellipse((left + MARGIN_X, top, left + MARGIN_X + BAR_CHART_DIAMETER, top + BAR_CHART_DIAMETER), fill=fill_color)
+        draw.ellipse((right - MARGIN_X - BAR_CHART_DIAMETER, top, right - MARGIN_X, top + BAR_CHART_DIAMETER), fill=fill_color)
+        draw.ellipse((left + MARGIN_X, bottom - BAR_CHART_DIAMETER, left + MARGIN_X + BAR_CHART_DIAMETER, bottom), fill=fill_color)
+        draw.ellipse((right - MARGIN_X - BAR_CHART_DIAMETER, bottom - BAR_CHART_DIAMETER, right - MARGIN_X, bottom), fill=fill_color)
+        draw.rectangle((left + MARGIN_X + BAR_CHART_RADIUS, top, right - MARGIN_X - BAR_CHART_RADIUS, bottom), fill=fill_color)
+        draw.rectangle((left + MARGIN_X, top + BAR_CHART_RADIUS, right - MARGIN_X, bottom - BAR_CHART_RADIUS), fill=fill_color)
+    else:
+        draw.rectangle((left + MARGIN_X, top, right - MARGIN_X, bottom), fill=fill_color)
+    
+def get_time_string(added_days):
+    date = get_date(added_days)
+    string =    (da.weekdays[date.tm_wday][1] + "   " +
+                str(date.tm_mday) + "." +
+                str(date.tm_mon) + "." +
+                str(date.tm_year) + "   " +
+                str(date.tm_hour) + ":")
+    if(date.tm_min < 10):
+        string = string + "0"
+    return string + str(date.tm_min) + "    KW" + str(get_kalenderwoche(added_days))
+
+def get_kalenderwoche(added_days):
+    date = get_date(added_days)
+    num_mondays = 0
+    subtrahend = 0
+    while(date.tm_yday != 1):
+        if(date.tm_wday == 0):
+            num_mondays += 1
+        subtrahend += 1
+        date = get_date(added_days - subtrahend)
+    if(date.tm_wday == 0):
+            num_mondays += 1
+    if(num_mondays == 0):
+        return 52
+    return num_mondays
+
+def icon_measures_to_bounds(pos, size):
+    top = pos[1] * PIXEL_PER_ICON_Y + MARGIN_Y - EXTRA_Y
+    left = pos[0] * PIXEL_PER_ICON_X + MARGIN_X + 1
+    right = left + size[0] * PIXEL_PER_ICON_X - MARGIN_X * 2 - 1
+    bottom = top + size[1] * PIXEL_PER_ICON_Y - 10
+
+    return top, left, right, bottom
+
+def bounds_to_icon_measures(top, left, right, bottom):
+    pos_x = (left) / PIXEL_PER_ICON_X
+    pos_y = (top) / PIXEL_PER_ICON_Y
+    size_x = (right - left) / PIXEL_PER_ICON_X
+    size_y = (bottom - top) / PIXEL_PER_ICON_Y
+
+    return (pos_x, pos_y), (size_x, size_y)
+
+def get_date(added_days):
+    return time.localtime(time.time() + added_days * 86400)

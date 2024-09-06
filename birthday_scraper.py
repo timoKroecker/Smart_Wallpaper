@@ -1,8 +1,6 @@
 import time
 
 import data as da
-from data import birthdays_categories as bc
-from data import text_file_header as header
 import database_interface as dbi
 
 def scrape_birthdays(added_days):
