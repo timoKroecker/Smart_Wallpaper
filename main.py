@@ -150,13 +150,13 @@ def scrape_n_draw_books(img, added_days):
 
 def scrape_n_draw_library(img):
     op.library_intro()
-    returned_today, available, reserved, borrowed = ls.scrape_library()
+    returned_today, available, unavailable = ls.scrape_library()
 
-    if(len(returned_today + available + reserved + borrowed) == 0):
+    if(len(returned_today + available + unavailable) == 0):
         op.hidden()
         return img
     
-    img = dsgn.draw_library_widgets(img, returned_today, available, reserved, borrowed)
+    img = dsgn.draw_library_widgets(img, returned_today, available, unavailable)
     op.visible()
     return img
 
