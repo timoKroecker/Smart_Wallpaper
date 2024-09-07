@@ -31,7 +31,7 @@ def the_one_ring():
     img = scrape_n_draw_news(img)
     img = scrape_n_draw_weather(img)
     #img = scrape_n_draw_incidents(img)
-    img = scrape_n_draw_university(img, DAY_OFFSET)
+    #img = scrape_n_draw_university(img, DAY_OFFSET)
     img = scrape_n_draw_books(img, DAY_OFFSET)
     img = scrape_n_draw_library(img)
 
