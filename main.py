@@ -1,6 +1,6 @@
 import os
 
-import image_design_2 as dsgn
+import image_design as dsgn
 import calendar_scraper as cs
 import birthday_scraper as bs
 import finance_scraper as fs
