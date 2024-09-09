@@ -330,6 +330,7 @@ def draw_library_widgets(img, returned_today, available, unavailable):
             return img
         draw_library_name(draw, item[0], item[1], pos_x1, pos_y, font_colors[2], star="*")
         pos_y += 25
+        max_lines -= 1
 
     for item in available:
         if max_lines == 0:
