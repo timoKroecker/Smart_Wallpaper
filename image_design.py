@@ -316,6 +316,48 @@ def draw_university_widgets(img, todays_list, num_events_today, tomorrows_list):
 
     return img
 
+def draw_library_widgets(img, returned_today, available, unavailable):
+    draw = ImageDraw.Draw(img)
+    draw_content_box(draw, (12, 5), (4, 4.5), "StadtBib")
+
+    pos_x1 = 1235
+    pos_x2 = 1520
+    pos_y = 524
+    max_lines = 12
+
+    for item in returned_today:
+        if max_lines == 0:
+            return img
+        draw_library_name(draw, item[0], item[1], pos_x1, pos_y, font_colors[2], star="*")
+        pos_y += 25
+        max_lines -= 1
+
+    for item in available:
+        if max_lines == 0:
+            return img
+        draw_library_name(draw, item[0], item[1], pos_x1, pos_y, font_colors[2])
+        pos_y += 25
+        max_lines -= 1
+
+    for item in unavailable:
+        if max_lines == 0:
+            return img
+        draw_library_name(draw, item[0], item[1], pos_x1, pos_y, font_colors[0])
+        draw_num_reservations_or_deadline(draw, item[-1], item[-2], pos_x2, pos_y)
+        pos_y += 25
+        max_lines -= 1
+
+    return img
+
+def draw_library_name(draw, name, medium, pos_x, pos_y, color, star=""):
+    draw.text((pos_x, pos_y), star + name + " (" + medium + ")", font=THIRD_FONT, fill=color)
+
+def draw_num_reservations_or_deadline(draw, num_reservations, deadline, pos_x, pos_y):
+    if num_reservations > 0:
+        draw.text((pos_x, pos_y), str(num_reservations) + "x", font=THIRD_FONT, fill=font_colors[0])
+    else:
+        draw.text((pos_x, pos_y), deadline[:-4], font=THIRD_FONT, fill=font_colors[0])
+
 def draw_university_today(draw, todays_list):
     for elem in todays_list:
         position = (elem[1] - 8) / 2

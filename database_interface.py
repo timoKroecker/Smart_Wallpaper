@@ -1,11 +1,5 @@
 import sqlite3
 import time
-import os
-
-from numpy import insert
-
-from data import months as mnths
-from data import expence_categories as ec
 
 def create_calendar_tables():
     connection = sqlite3.connect("smart_wallpaper.db")
@@ -56,6 +50,13 @@ def create_books_tables():
     connection = sqlite3.connect("smart_wallpaper.db")
     cursor = connection.cursor()
     create_books(cursor)
+    connection.commit()
+    connection.close()
+
+def create_library_tables():
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    create_library(cursor)
     connection.commit()
     connection.close()
 
@@ -191,6 +192,18 @@ def create_books(cursor):
             year integer,
             language text,
             pages integer
+        )
+        """)
+    except:
+        pass
+
+def create_library(cursor):
+    try:
+        cursor.execute("""
+        CREATE TABLE library(
+            name text,
+            medium text,
+            link text
         )
         """)
     except:
@@ -337,6 +350,18 @@ def insert_into_books(input_list):
             INSERT INTO books
             VALUES('""" + input_list[0] + """', '""" + input_list[1] + """', """ + input_list[2] + """, 
             """ + input_list[3] + """, """ + input_list[4] + """, '""" + input_list[5] + """', """ + input_list[6] + """)""")
+        connection.commit()
+        connection.close()
+        return True
+    return False
+
+def insert_into_library(input_list):
+    if(check_library(input_list[0], input_list[1])):
+        connection = sqlite3.connect("smart_wallpaper.db")
+        cursor = connection.cursor()
+        cursor.execute("""
+            INSERT INTO library
+            VALUES('""" + input_list[0] + """', '""" + input_list[1] + """', '""" + input_list[2] + """')""")
         connection.commit()
         connection.close()
         return True
@@ -670,6 +695,32 @@ def select_bookpages_by_month_year(month, year):
     connection.close()
     return fetch[0][0]
 
+def select_library(name, medium):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT *
+        FROM library
+        WHERE name = '""" + name + """'
+        AND medium = '""" + medium + """'
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
+
+def select_all_library():
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT *
+        FROM library
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
+
 def select_table(table):
     connection = sqlite3.connect("smart_wallpaper.db")
     cursor = connection.cursor()
@@ -757,6 +808,9 @@ def check_university(name, weekday):
 
 def check_books(title, author, day, month, year):
     return len(select_books(title, author, day, month, year)) == 0
+
+def check_library(name, medium):
+    return len(select_library(name, medium)) == 0
 
 #------------------------------------------------------------------------------------
 #Get functions
