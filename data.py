@@ -69,15 +69,15 @@ expence_categories =    [
                         ]
 
 weather_descriptions =  [
-                            ["Sonnig", "Klar"],                             #confirmed
-                            ["Wolkig", "Heiter"],                           #confirmed
-                            ["Bedeckt"],                                    #confirmed
-                            ["Stark bewölkt", "Schauer in der Nähe"],       #confirmed
-                            ["Nebel", "Feuchter Dunst"],                    #confirmed
-                            ["Leichter Regen"],                             #confirmed
-                            ["Regen", "Regenschauer"],                      #confirmed
-                            ["Schneefall", "Schneeschauer", "Schneeregen"], #confirmed
-                            ["Gewitter"]
+                            ["Sonnig", "Klar"],
+                            ["Wolkig", "Heiter"],
+                            ["Bedeckt"],
+                            ["Stark bewölkt", "Schauer in der Nähe"],
+                            ["Nebel", "Feuchter Dunst"],
+                            ["Leichter Regen", "Sprühregen"],
+                            ["Regen", "Regenschauer"],
+                            ["Schneefall", "Schneeschauer", "Schneeregen"],
+                            ["Gewitter", "Schweres Gewitter", "Leichter Regen mit Gewitter"]
                         ]
 
 calendar_categories =   [
