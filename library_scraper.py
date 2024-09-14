@@ -14,6 +14,7 @@ FLAG_BORROWED = "Entliehen"
 FLAG_RESERVED = "Zurückgelegt"
 FLAG_LOCKED = "Gesperrt"
 FLAG_ORDERED = "Bestellt"
+FLAG_IN_PROGRESS = "in Bearbeitung"
 FLAG_VALID_STORE = "Hauptstelle"
 
 def scrape_library():
@@ -76,8 +77,9 @@ def sort_raw(raw):
                         FLAG_AVAILABLE: 1,
                         FLAG_BORROWED: 2,
                         FLAG_RESERVED: 2,
-                        FLAG_LOCKED: 3,
-                        FLAG_ORDERED: 3
+                        FLAG_LOCKED: 99,
+                        FLAG_ORDERED: 99,
+                        FLAG_IN_PROGRESS: 99
                       }
     return sorted(raw,
                   key=lambda x: (status_to_order[x[0]],
