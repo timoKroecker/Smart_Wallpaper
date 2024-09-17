@@ -82,7 +82,11 @@ def get_night_temperature(soup):
         div = soup.find("div", class_=class_name)
         if(div != None):
             break
-    return div.find_all("span")[2].text
+    for i in [2, 3]:
+        temp = div.find_all("span")[i].text
+        if(is_temperature(temp)):
+            return temp
+    return ""
 
 def get_current_description(soup):
     class_names =   [
@@ -152,4 +156,13 @@ def get_description_index(desc):
 def get_date():
     return time.localtime(time.time())
 
-cook_daylight_soup()
+def is_temperature(temp):
+    if(len(temp) == 0):
+        return False
+    if(temp[-1] != "°"):
+        return False
+    try:
+        int(temp[:-1])
+        return True
+    except:
+        return False
