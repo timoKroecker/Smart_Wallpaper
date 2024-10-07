@@ -159,7 +159,8 @@ def cook_medium(soup):
                         "Buch Romane": "Buch",
                         "DVD": "DVD",
                         "Blu-ray": "BluRay",
-                        "Sachbücher": "Buch"
+                        "Sachbücher": "Buch",
+                        "Jugendroman": "Buch"
                     }
     text = soup.find("span",
                      id=("dnn_ctr378_MainView_UcDetailView_uc" +
