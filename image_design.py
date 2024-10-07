@@ -328,29 +328,35 @@ def draw_library_widgets(img, returned_today, available, unavailable):
     for item in returned_today:
         if max_lines == 0:
             return img
-        draw_library_name(draw, item[0], item[1], pos_x1, pos_y, font_colors[2], star="*")
-        pos_y += 25
-        max_lines -= 1
+        max_lines, pos_y = draw_library_item(draw, item, pos_x1, pos_y, font_colors[2], max_lines, star="*")
 
     for item in available:
         if max_lines == 0:
             return img
-        draw_library_name(draw, item[0], item[1], pos_x1, pos_y, font_colors[2])
-        pos_y += 25
-        max_lines -= 1
+        max_lines, pos_y = draw_library_item(draw, item, pos_x1, pos_y, font_colors[2], max_lines)
 
     for item in unavailable:
         if max_lines == 0:
             return img
-        draw_library_name(draw, item[0], item[1], pos_x1, pos_y, font_colors[0])
-        draw_num_reservations_or_deadline(draw, item[-1], item[-2], pos_x2, pos_y)
-        pos_y += 25
-        max_lines -= 1
+        max_lines, pos_y = draw_library_item(draw, item, pos_x1, pos_y, font_colors[0], max_lines, pos_x2=pos_x2)
 
     return img
 
-def draw_library_name(draw, name, medium, pos_x, pos_y, color, star=""):
-    draw.text((pos_x, pos_y), star + name + " (" + medium + ")", font=THIRD_FONT, fill=color)
+def draw_library_item(draw, item, pos_x, pos_y, color, max_lines, star="", pos_x2=None):
+    y_offset = 25
+    name = item[0]
+    medium = item[1]
+    compressed_line = compress(star + name + " (" + medium + ")", line_length=38)
+    if max_lines < len(compressed_line):
+        return max_lines, pos_y
+    for line in compressed_line:
+        draw.text((pos_x, pos_y), line, font=THIRD_FONT, fill=color)
+        max_lines -= 1
+        pos_y += y_offset
+    if pos_x2 != None:
+        draw_num_reservations_or_deadline(draw, item[-1], item[-2], pos_x2, pos_y - y_offset)
+    return max_lines, pos_y
+    
 
 def draw_num_reservations_or_deadline(draw, num_reservations, deadline, pos_x, pos_y):
     if num_reservations > 0:
