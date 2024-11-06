@@ -11,9 +11,8 @@ from data import weather_descriptions as wd
 def scrape_weather():
     temp, desc = cook_weather_soup()
     sunrise_str, sunset_str = cook_daylight_soup()
-    if(temp == None):
-        return None
-    update_descriptions(desc)
+    if desc is not None:
+        update_descriptions(desc)
     img_name = None
     if(get_description_index(desc) != None):
         img_name = get_daytime_index(sunrise_str, sunset_str) + get_description_index(desc) + ".png"
@@ -60,7 +59,8 @@ def get_current_temperature(soup):
                         "CurrentConditions--tempValue--MHmYY",
                         "CurrentConditions--tempValue--3a50n",
                         "CurrentConditions--tempValue--1RYJJ",
-                        "CurrentConditions--tempValue--3KcTQ"
+                        "CurrentConditions--tempValue--3KcTQ",
+                        "CurrentConditions--tempValue--zUBSz"
                     ]
     span = None
     for class_name in class_names:
@@ -75,7 +75,8 @@ def get_night_temperature(soup):
                         "CurrentConditions--tempHiLoValue--3T1DG",
                         "CurrentConditions--tempHiLoValue--3SUHy",
                         "CurrentConditions--tempHiLoValue--1s05u",
-                        "CurrentConditions--tempHiLoValue--A4RQE"
+                        "CurrentConditions--tempHiLoValue--A4RQE",
+                        "CurrentConditions--tempHiLoValue--Og9IG"
                     ]
     div = None
     for class_name in class_names:
@@ -93,7 +94,8 @@ def get_current_description(soup):
                         "CurrentConditions--phraseValue--mZC_p",
                         "CurrentConditions--phraseValue--2Z18W",
                         "CurrentConditions--phraseValue--17s79",
-                        "CurrentConditions--phraseValue--2xXSr"
+                        "CurrentConditions--phraseValue--2xXSr",
+                        "CurrentConditions--phraseValue---VS-k"
                     ]
     desc = None
     for class_name in class_names:

@@ -189,13 +189,14 @@ def compress(string, line_length=30):
 def draw_weather_widgets(img, weather_list):
     draw = ImageDraw.Draw(img)
 
-    draw.text((113 - len(weather_list[0]) * 2, 868), weather_list[0], font=GEORGIA_15, fill=font_colors[0])
+    if(weather_list[1] is not None):
+        draw.text((113 - len(weather_list[0]) * 2, 868), weather_list[0], font=GEORGIA_15, fill=font_colors[0])
     if(weather_list[1] != None):
         weather_icon = Image.open("weather/icons/" + weather_list[1], "r")
         weather_icon = weather_icon.resize((33, 33), Image.ANTIALIAS)
         img.paste(weather_icon, (43, 860), weather_icon)
     #sunrise/sunset
-    if(weather_list[2] != None and weather_list[3] != None):
+    if(weather_list[2] is not None and weather_list[3] is not None):
         #sunrise
         sunrise_icon = Image.open("weather/icons/sunrise.png", "r")
         sunrise_icon = sunrise_icon.resize((39, 26), Image.ANTIALIAS)
