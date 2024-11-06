@@ -5,6 +5,7 @@ from datetime import datetime
 import time
 
 import database_interface as dbi
+import output as op
 
 TIMEOUT = 3
 
@@ -107,6 +108,8 @@ def cook_all_soups(library):
         soup = cook_soup(link)
         if not soup == None:
             all_soups.append(soup)
+        else:
+            op.library_error(library_entry)
     return all_soups
 
 def set_timeout(event):
@@ -130,6 +133,8 @@ def cook_soup(link):
     
     name = cook_name(soup)
     medium = cook_medium(soup)
+    if medium is None:
+        return None
 
     td = soup.find_all("td", style="")
     matches = []
@@ -160,13 +165,19 @@ def cook_medium(soup):
                         "DVD": "DVD",
                         "Blu-ray": "BluRay",
                         "Sachbücher": "Buch",
-                        "Jugendroman": "Buch"
+                        "Jugendroman": "Buch",
+                        "Jugendsachbuch": "Buch"
                     }
     text = soup.find("span",
                      id=("dnn_ctr378_MainView_UcDetailView_uc" +
                          "SharedCatalogueView_spanMediaGrpValue")).text
     text = text.replace("\r", "").replace("\n", "").replace("\t", "")
-    return abreviations[text]
+    medium = None
+    try:
+        medium = abreviations[text]
+    except:
+        pass
+    return medium
 
 def get_localdate():
     time_ = time.localtime(time.time())

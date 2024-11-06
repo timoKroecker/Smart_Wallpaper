@@ -117,6 +117,11 @@ def library_intro(pre = 1, post = 0):
     print("~library")
     tab(post)
 
+def library_error(library_entry, pre = 1, post = 0):
+    tab(pre)
+    print("Library error: ", library_entry[0], library_entry[1], library_entry[2])
+    tab(post)
+
 def table(table, tabs = 0):
     if(len(table) == 0):
         return
