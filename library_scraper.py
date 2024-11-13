@@ -16,7 +16,7 @@ FLAG_RESERVED = "Zurückgelegt"
 FLAG_LOCKED = "Gesperrt"
 FLAG_ORDERED = "Bestellt"
 FLAG_IN_PROGRESS = "in Bearbeitung"
-FLAG_VALID_STORE = "Hauptstelle"
+FLAG_VALID_STORES = ["Hauptstelle", "Jugendbibliothek"]
 
 def scrape_library():
     dbi.create_library_tables()
@@ -147,7 +147,7 @@ def cook_soup(link):
         deadline = matches[i + 5].text
         num_reservations = int(matches[i + 7].text)
         store = matches[i + 9].text
-        if store == FLAG_VALID_STORE:
+        if store in FLAG_VALID_STORES:
             soups.append([status, deadline, num_reservations])
 
     sorted_soups = sort_raw(soups)
