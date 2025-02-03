@@ -360,7 +360,7 @@ def draw_library_item(draw, item, pos_x, pos_y, color, max_lines, star="", pos_x
     
 
 def draw_num_reservations_or_deadline(draw, num_reservations, deadline, pos_x, pos_y):
-    if num_reservations > 0:
+    if num_reservations > -1:
         draw.text((pos_x, pos_y), str(num_reservations) + "x", font=THIRD_FONT, fill=font_colors[0])
     else:
         draw.text((pos_x, pos_y), deadline[:-4], font=THIRD_FONT, fill=font_colors[0])

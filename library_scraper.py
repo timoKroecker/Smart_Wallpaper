@@ -12,7 +12,7 @@ TIMEOUT = 3
 FLAG_RETURNED_TODAY = "Heute zurückgegeben"
 FLAG_AVAILABLE = "Verfügbar"
 FLAG_BORROWED = "Entliehen"
-FLAG_RESERVED = "Zurückgelegt"
+FLAG_RESERVED = "Reserviert"
 FLAG_LOCKED = "Gesperrt"
 FLAG_ORDERED = "Bestellt"
 FLAG_IN_PROGRESS = "in Bearbeitung"
@@ -107,6 +107,8 @@ def cook_all_soups(library):
         link = library_entry[2]
         soup = cook_soup(link)
         if not soup == None:
+            if soup[2] == FLAG_BORROWED:
+                soup[4] = -1
             all_soups.append(soup)
         else:
             op.library_error(library_entry)
@@ -166,7 +168,8 @@ def cook_medium(soup):
                         "Blu-ray": "BluRay",
                         "Sachbücher": "Buch",
                         "Jugendroman": "Buch",
-                        "Jugendsachbuch": "Buch"
+                        "Jugendsachbuch": "Buch",
+                        "Buch SL Fremdsprachi": "Buch"
                     }
     text = soup.find("span",
                      id=("dnn_ctr378_MainView_UcDetailView_uc" +
