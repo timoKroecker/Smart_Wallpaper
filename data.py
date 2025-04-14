@@ -9,18 +9,18 @@ weekdays =      [
                 ]
 
 months =        [
-                    ["Januar", "JAN"],
-                    ["Februar", "FEB"],
-                    ["März", "MRZ"],
-                    ["April", "APR"],
-                    ["Mai", "MAI"],
-                    ["Juni", "JUN"],
-                    ["Juli", "JUL"],
-                    ["August", "AUG"],
-                    ["September", "SEP"],
-                    ["Oktober", "OKT"],
-                    ["November", "NOV"],
-                    ["Dezember", "DEZ"]
+                    ["Januar", "JAN", "January"],
+                    ["Februar", "FEB", "February"],
+                    ["März", "MRZ", "March"],
+                    ["April", "APR", "April"],
+                    ["Mai", "MAI", "May"],
+                    ["Juni", "JUN", "June"],
+                    ["Juli", "JUL", "July"],
+                    ["August", "AUG", "August"],
+                    ["September", "SEP", "September"],
+                    ["Oktober", "OKT", "October"],
+                    ["November", "NOV", "November"],
+                    ["Dezember", "DEZ", "December"]
                 ]
 
 backup_colors =        [

@@ -12,7 +12,8 @@ TIMEOUT = 3
 FLAG_RETURNED_TODAY = "Heute zurückgegeben"
 FLAG_AVAILABLE = "Verfügbar"
 FLAG_BORROWED = "Entliehen"
-FLAG_RESERVED = "Reserviert"
+FLAG_RESERVED_1 = "Zurückgelegt"
+FLAG_RESERVED_2 = "Reserviert"
 FLAG_LOCKED = "Gesperrt"
 FLAG_ORDERED = "Bestellt"
 FLAG_IN_PROGRESS = "in Bearbeitung"
@@ -62,7 +63,8 @@ def get_unavailable(soups):
         deadline = soup[3]
         num_reservations = soup[4]
         if (status == FLAG_BORROWED or
-            status == FLAG_RESERVED):
+            status == FLAG_RESERVED_1 or
+            status == FLAG_RESERVED_2):
             unavailable.append([name, medium, deadline, num_reservations])
     return sort_unavailable(unavailable)
 
@@ -77,7 +79,8 @@ def sort_raw(raw):
                         FLAG_RETURNED_TODAY: 0,
                         FLAG_AVAILABLE: 1,
                         FLAG_BORROWED: 2,
-                        FLAG_RESERVED: 2,
+                        FLAG_RESERVED_1: 2,
+                        FLAG_RESERVED_2: 2,
                         FLAG_LOCKED: 99,
                         FLAG_ORDERED: 99,
                         FLAG_IN_PROGRESS: 99

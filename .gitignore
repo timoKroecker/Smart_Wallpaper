@@ -60,3 +60,5 @@ target/
 current_img.png
 # database
 smart_wallpaper.db
+# pdfs
+*.pdf

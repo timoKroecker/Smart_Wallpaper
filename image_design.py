@@ -329,12 +329,12 @@ def draw_library_widgets(img, returned_today, available, unavailable):
     for item in returned_today:
         if max_lines == 0:
             return img
-        max_lines, pos_y = draw_library_item(draw, item, pos_x1, pos_y, font_colors[2], max_lines, star="*")
+        max_lines, pos_y = draw_library_item(draw, item, pos_x1, pos_y, font_colors[2], max_lines, line_length=45, star="*")
 
     for item in available:
         if max_lines == 0:
             return img
-        max_lines, pos_y = draw_library_item(draw, item, pos_x1, pos_y, font_colors[2], max_lines)
+        max_lines, pos_y = draw_library_item(draw, item, pos_x1, pos_y, font_colors[2], max_lines, line_length=45)
 
     for item in unavailable:
         if max_lines == 0:
@@ -343,11 +343,11 @@ def draw_library_widgets(img, returned_today, available, unavailable):
 
     return img
 
-def draw_library_item(draw, item, pos_x, pos_y, color, max_lines, star="", pos_x2=None):
+def draw_library_item(draw, item, pos_x, pos_y, color, max_lines, star="", line_length=38, pos_x2=None):
     y_offset = 25
     name = item[0]
     medium = item[1]
-    compressed_line = compress(star + name + " (" + medium + ")", line_length=38)
+    compressed_line = compress(star + name + " (" + medium + ")", line_length=line_length)
     if max_lines < len(compressed_line):
         return max_lines, pos_y
     for line in compressed_line:

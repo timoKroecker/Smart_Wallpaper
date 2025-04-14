@@ -15,6 +15,8 @@ def the_one_ring():
             calendar_terminal()
         elif(terminal_input == "bir"):
             birthday_terminal()
+        elif(terminal_input == "inc"):
+            income_terminal()
         elif(terminal_input == "exp"):
             expenditure_terminal()
         elif(terminal_input == "news"):
@@ -26,7 +28,7 @@ def the_one_ring():
         elif(terminal_input == "lib"):
             library_terminal()
         elif(terminal_input == "help"):
-            op.tab_print(OUTPUT, 0, "cal, bir, exp, news, boo, uni, stop")
+            op.tab_print(OUTPUT, 0, "cal, bir, inc, exp, news, boo, uni, stop")
         else:
             op.tab_print(OUTPUT, 0, "command not found")
         op.home(post = 2)
@@ -137,6 +139,31 @@ def birthday_terminal():
         op.birthdays_intro(post = INPUT)
         terminal_input = input()
 
+def income_terminal():
+    op.home(post = ZERO)
+    op.income_intro(post = INPUT)
+    terminal_input = input()
+    while(terminal_input != "back"):
+        if(terminal_input == "show"):
+            table = dbi.select_table("income")
+            op.table(table, tabs = OUTPUT)
+        elif(terminal_input == "insert"):
+            insert("income")
+        elif(terminal_input == "delete"):
+            delete("income")
+        elif(terminal_input == "rinc"):
+            recurring_income_terminal()
+        elif(terminal_input == "update"):
+            update("income")
+        elif(terminal_input == "help"):
+            op.tab_print(OUTPUT, 0, "show, insert, update, delete, rexp, back")
+        else:
+            op.tab_print(OUTPUT, 0, "command not found")
+
+        op.home(post = ZERO)
+        op.income_intro(post = INPUT)
+        terminal_input = input()
+
 def expenditure_terminal():
     op.home(post = ZERO)
     op.expenditure_intro(post = INPUT)
@@ -160,6 +187,32 @@ def expenditure_terminal():
 
         op.home(post = ZERO)
         op.expenditure_intro(post = INPUT)
+        terminal_input = input()
+
+def recurring_income_terminal():
+    op.home(post = ZERO)
+    op.income_intro()
+    op.recurring_income_intro(post = INPUT)
+    terminal_input = input()
+    while(terminal_input != "back"):
+        if(terminal_input == "show"):
+            table = dbi.select_table("recurring_income")
+            op.table(table, tabs = OUTPUT)
+        elif(terminal_input == "insert"):
+            insert("recurring_income")
+        elif(terminal_input == "delete"):
+            delete("recurring_income")
+        elif(terminal_input == "update"):
+            update("recurring_income")
+        elif(terminal_input == "help"):
+            op.tab_print(OUTPUT, 0, "show, insert, update, delete, back")
+        else:
+            op.tab_print(OUTPUT, 0, "command not found")
+
+
+        op.home(post = ZERO)
+        op.income_intro()
+        op.recurring_income_intro(post = INPUT)
         terminal_input = input()
 
 def recurring_expenditure_terminal():
@@ -348,6 +401,14 @@ insert_questions_dictionary = {
         ["month (int):", int],
         ["year (0, if unknown)(int):", int]
     ],
+    "income":
+    [
+        ["name of new income (str):", str],
+        ["day (int):", int],
+        ["month (int):", int],
+        ["year (int):", int],
+        ["amount (float):", float]
+    ],
     "expenditure":
     [
         ["name of new expenditure (str):", str],
@@ -355,6 +416,15 @@ insert_questions_dictionary = {
         ["month (int):", int],
         ["year (int):", int],
         ["category (str):", str],
+        ["amount (float):", float]
+    ],
+    "recurring_income":
+    [
+        ["name of new recurring income (str):", str],
+        ["start month (int):", int],
+        ["start year (int):", int],
+        ["end month (int):", int],
+        ["end year (int):", int],
         ["amount (float):", float]
     ],
     "recurring_expenditure":
@@ -405,7 +475,9 @@ insert_db_dictionary = {
     "fathersdays": dbi.insert_into_fathersdays,
     "birthdays": dbi.insert_into_birthdays,
     "expenditure": dbi.insert_into_expenditure,
+    "income": dbi.insert_into_income,
     "recurring_expenditure": dbi.insert_into_recurring_expenditure,
+    "recurring_income": dbi.insert_into_recurring_income,
     "keywords": dbi.insert_into_keywords,
     "university": dbi.insert_into_university,
     "books": dbi.insert_into_books,
@@ -473,6 +545,14 @@ update_questions_dictionary = {
         ["month (int):", int],
         ["year (0, if unknown)(int):", int]
     ],
+    "income":
+    [
+        ["name (str):", str],
+        ["day (int):", int],
+        ["month (int):", int],
+        ["year (int):", int],
+        ["amount (float):", float]
+    ],
     "expenditure":
     [
         ["name (str):", str],
@@ -480,6 +560,15 @@ update_questions_dictionary = {
         ["month (int):", int],
         ["year (int):", int],
         ["category (str):", str],
+        ["amount (float):", float]
+    ],
+    "recurring_income":
+    [
+        ["name (str):", str],
+        ["start_month (int):", int],
+        ["start_year (int):", int],
+        ["end_month (int):", int],
+        ["end_year (int):", int],
         ["amount (float):", float]
     ],
     "recurring_expenditure":

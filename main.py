@@ -1,4 +1,5 @@
 import os
+import subprocess
 
 import image_design as dsgn
 import calendar_scraper as cs
@@ -37,6 +38,8 @@ def the_one_ring():
 
     cw.save_img(img, IMG_NAME)
     cw.change_wallpaper(PATH + "/" + IMG_NAME)
+
+    subprocess.run(["sh", "shell/run_latex_interface.sh"], capture_output=True)
 
     op.final_words()
 

@@ -1,10 +1,11 @@
 import time
 
 from data import weekdays
+from util import get_date
 
 import database_interface as dbi
 
-DAYS_IN_THE_FUTURE = 150
+DAYS_IN_THE_FUTURE = 100
 
 def scrape_calendar(added_days):
     dbi.create_calendar_tables()
@@ -69,6 +70,3 @@ def is_mothersday(date):
 
 def is_fathersday(date):
     return len(dbi.select_fathersdays(str(date.tm_mday), str(date.tm_mon), str(date.tm_year))) == 1
-
-def get_date(added_days):
-    return time.localtime(time.time() + added_days * 86400)

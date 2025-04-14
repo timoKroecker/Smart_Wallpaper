@@ -26,6 +26,11 @@ def birthdays_intro(pre = 1, post = 0):
     print("~birthdays")
     tab(post)
 
+def income_intro(pre = 1, post = 0):
+    tab(pre)
+    print("~income")
+    tab(post)
+
 def expenditure_intro(pre = 1, post = 0):
     tab(pre)
     print("~expenditure")
@@ -95,6 +100,11 @@ def mothersdays_intro(pre = 1, post = 0):
 def fathersdays_intro(pre = 1, post = 0):
     tab(pre)
     print("~fathersdays")
+    tab(post)
+
+def recurring_income_intro(pre = 1, post = 0):
+    tab(pre)
+    print("~recurring income")
     tab(post)
 
 def recurring_expenditure_intro(pre = 1, post = 0):
