@@ -758,6 +758,22 @@ def select_monthly_category_sorted_expenditures(month_str, year_str, category):
     connection.close()
     return fetch
 
+def select_mon_cat_sort_exp_list(month_str, year_str, category):
+    connection = sqlite3.connect("smart_wallpaper.db")
+    cursor = connection.cursor()
+    cursor.execute("""
+        SELECT name, day, amount
+        FROM expenditure
+        WHERE month = """ + month_str + """
+        AND year = """ + year_str + """
+        AND category = '""" + category + """'
+        ORDER BY day ASC
+        """)
+    fetch = cursor.fetchall()
+    connection.commit()
+    connection.close()
+    return fetch
+
 def select_yearly_sorted_expenditures(year_str):
     connection = sqlite3.connect("smart_wallpaper.db")
     cursor = connection.cursor()
