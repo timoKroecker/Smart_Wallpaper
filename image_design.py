@@ -93,54 +93,34 @@ def draw_extended_list(draw, months_list, num_events_today, pos_x1, pos_x2, pos_
             draw.text((pos_x3, pos_y), entry[2], font=THIRD_FONT, fill=font_colors[0])
         pos_y = pos_y + 25
 
-def draw_finance_widgets(   img,
-                            month_expences,
-                            month_total,
-                            month_str,
-                            year_expences,
-                            year_total,
-                            year_str):
+def draw_finance_widgets(img,
+                         month_finances,
+                         month_str,
+                         year_finances,
+                         year_str):
     draw = ImageDraw.Draw(img)
     draw_content_box(draw, (8, 0), (4, 4.5), "Finanzen")
 
     draw.text((1140, 80), month_str, font=BOLD_GEORGIA_13, fill=font_colors[3])
-    draw_finance_month_list(draw, month_expences, month_total)
+    draw_finance_list(draw, 90, month_finances)
 
     draw.rectangle((815, 232, 1185, 237), fill=colors[2])
 
     draw.text((1129, 370), year_str, font=BOLD_GEORGIA_15, fill=font_colors[3])
-    draw_finance_year_list(draw, year_expences, year_total)
+    draw_finance_list(draw, 260, year_finances)
     return img
 
-def draw_finance_month_list(draw, expences, total):
-    pos_x1 = 835
-    pos_x2 = 990
-    pos_x3 = 1080
-    pos_y = 85
-    for entry in expences:
-        draw.text((pos_x1, pos_y), entry[0], font= FOURTH_FONT, fill=font_colors[0])
-        draw_expence_value(draw, entry[2], pos_x2, pos_y - 5, 8, GEORGIA_14, "%")
-        draw_expence_value(draw, entry[1], pos_x3 + 20, pos_y - 5, 8, GEORGIA_14, "€")
-        pos_y = pos_y + 22
+def draw_finance_list(draw, anchor_y, finances):
+    pos_x1 = 840
+    pos_x2 = 1080
+    pos_ys = [anchor_y, anchor_y + 40, anchor_y + 100]
+    labels = ["Einnahmen:", "Ausgaben:", "Saldo:"]
 
-    draw.rectangle((pos_x1, pos_y, pos_x3 + 30, pos_y + 1), fill=font_colors[0])
-    draw.text((pos_x1, pos_y + 13), total[0], font= THIRD_FONT, fill=font_colors[0])
-    draw_expence_value(draw, total[1], pos_x3 + 20, pos_y + 9, 10, GEORGIA_15, "€")
-
-def draw_finance_year_list(draw, expences, total):
-    pos_x1 = 835
-    pos_x2 = 990
-    pos_x3 = 1080
-    pos_y = 250
-    for entry in expences:
-        draw.text((pos_x1, pos_y), entry[0], font= FOURTH_FONT, fill=font_colors[0])
-        draw_expence_value(draw, entry[2], pos_x2, pos_y - 5, 8, GEORGIA_14, "%")
-        draw_expence_value(draw, entry[1], pos_x3 + 20, pos_y - 5, 8, GEORGIA_14, "€")
-        pos_y = pos_y + 22
-
-    draw.rectangle((pos_x1, pos_y, pos_x3 + 30, pos_y + 1), fill=font_colors[0])
-    draw.text((pos_x1, pos_y + 13), total[0], font= THIRD_FONT, fill=font_colors[0])
-    draw_expence_value(draw, total[1], pos_x3 + 20, pos_y + 9, 10, GEORGIA_15, "€")
+    for i, pos_y in enumerate(pos_ys):
+        draw.text((pos_x1, pos_y), labels[i], font=THIRD_FONT, fill=font_colors[0])
+    for i, pos_y in enumerate(pos_ys):
+        draw_expence_value(draw, finances[i], pos_x2, pos_y - 5, 8, GEORGIA_15, "")
+    draw.rectangle((pos_x1, pos_y -20, pos_x2, pos_y - 19), fill=font_colors[0])
 
 def draw_expence_value(draw, value_str, pos_x, pos_y, offset, custom_font, trailer):
     index = len(value_str)

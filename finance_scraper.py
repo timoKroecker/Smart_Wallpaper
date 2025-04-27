@@ -8,41 +8,23 @@ from data import expence_categories as ec
 def scrape_finances(added_days):
     dbi.create_finance_tables()
     dbi.insert_into_expenditures_from_recurring_expenditure(added_days)
-    return [get_months_expences(added_days), get_years_expences(added_days)]
+    return get_months_finances(added_days), get_years_finances(added_days)
 
-def get_months_expences(added_days):
+def get_months_finances(added_days):
     month_int = get_localtime(added_days).tm_mon
     month_str = str(month_int)
     year_str = str(get_localtime(added_days).tm_year)
-    expences = []
-    total = ["Gesamt:"]
+    income = dbi.select_monthly_total_income(month_str, year_str)
+    expences = dbi.select_monthly_total_expenditure(month_str, year_str)
+    return [[income, expences, str(round(float(income) - float(expences), 2))],
+            mnths[month_int - 1][1]]
 
-    fetch = dbi.select_monthly_total_expenditure(month_str, year_str)
-    total.append(fetch)
-    for i in range(len(ec)):
-        category = ec[i][1]
-        category_array = [category + ":"]
-        fetch = dbi.select_monthly_category_expenditure(month_str, year_str, category)
-        category_array.append(fetch)
-        category_array.append(get_percentage(category_array[1], total[1]))
-        expences.append(category_array)
-    return [expences, total, mnths[month_int - 1][1]]
-
-def get_years_expences(added_days):
+def get_years_finances(added_days):
     year_str = str(get_localtime(added_days).tm_year)
-    expences = []
-    total = ["Gesamt:"]
-
-    fetch = dbi.select_yearly_total_expenditure(year_str)
-    total.append(fetch)
-    for i in range(len(ec)):
-        category = ec[i][1]
-        category_array = [category + ":"]
-        fetch = dbi.select_yearly_category_expenditure(year_str, category)
-        category_array.append(fetch)
-        category_array.append(get_percentage(category_array[1], total[1]))
-        expences.append(category_array)
-    return [expences, total, year_str]
+    income = dbi.select_yearly_total_income(year_str)
+    expences = dbi.select_yearly_total_expenditure(year_str)
+    return [[income, expences, str(round(float(income) - float(expences), 2))],
+            year_str]
 
 def get_percentage(category_amount, total_amount):
     if(total_amount == 0):

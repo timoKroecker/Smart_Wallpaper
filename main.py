@@ -76,24 +76,16 @@ def scrape_n_draw_birthday_info(img, added_days):
 def scrape_n_draw_finances(img, added_days):
     op.expenditure_intro()
     finances = fs.scrape_finances(added_days)
-    month_expences = finances[0][0]
-    month_total = finances[0][1]
-    month_str = finances[0][2]
-    year_expences = finances[1][0]
-    year_total = finances[1][1]
-    year_str = finances[1][2]
-    year_expences, year_total, year_str = fs.get_years_expences(added_days)
-    if(True):
-        img = dsgn.draw_finance_widgets(    img,
-                                            month_expences,
-                                            month_total,
-                                            month_str,
-                                            year_expences,
-                                            year_total,
-                                            year_str)
-        op.visible()
-    else:
-        op.hidden()
+    month_finances = finances[0][0]
+    month_str = finances[0][1]
+    year_finances = finances[1][0]
+    year_str = finances[1][1]
+    img = dsgn.draw_finance_widgets(img,
+                                    month_finances,
+                                    month_str,
+                                    year_finances,
+                                    year_str)
+    op.visible()
     return img
 
 def scrape_n_draw_news(img):
