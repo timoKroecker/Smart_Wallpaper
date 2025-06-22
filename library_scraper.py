@@ -110,7 +110,7 @@ def cook_all_soups(library):
         link = library_entry[2]
         soup = cook_soup(link)
         if not soup == None:
-            if soup[2] == FLAG_BORROWED:
+            if soup[2] == FLAG_BORROWED and soup[4] <= 0:
                 soup[4] = -1
             all_soups.append(soup)
         else:
