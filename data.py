@@ -77,7 +77,8 @@ weather_descriptions =  [
                             ["Leichter Regen", "Sprühregen"],
                             ["Regen", "Regenschauer"],
                             ["Schneefall", "Schneeschauer", "Schneeregen"],
-                            ["Gewitter", "Schweres Gewitter", "Leichter Regen mit Gewitter"]
+                            ["Gewitter", "Schweres Gewitter",
+                             "Leichter Regen mit Gewitter", "Gewitter in der Nähe"]
                         ]
 
 calendar_categories =   [
